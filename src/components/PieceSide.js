@@ -4,7 +4,7 @@ export default function PieceSide(props) {
     return (
         <>
             <mesh rotation={props.rotation} position={props.position}>
-                <boxBufferGeometry attach='geometry' args={[.01, .99, .99]} />
+                <boxBufferGeometry attach='geometry' args={[.01, .9, .9]} />
                 <meshLambertMaterial attach='material' color={props.color} />
             </mesh>
             <mesh rotation={props.rotation} position={props.position}>
