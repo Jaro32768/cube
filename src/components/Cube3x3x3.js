@@ -1,37 +1,37 @@
 import React from 'react';
-import CubePiece from './CubePiece';
+import CenterPiece from './CenterPiece';
+import EdgePiece from './EdgePiece';
+import CornerPiece from './CornerPiece';
 
 export default function Cube3x3x3() {
     return (<>
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, -1, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, 0, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, 1, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, -1, 0]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, 0, 0]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, 1, 0]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, -1, 1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, 0, 1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[-1, 1, 1]} />
+        <mesh rotation={[0, 0, 0]} position={[0, 0, 0]}>
+            <boxBufferGeometry attach='geometry' args={[1, 1, 1]} />
+            <meshLambertMaterial attach='material' color={'white'} />
+        </mesh>
+        {/*<CenterPiece position={[0, 0, 1.5]} rotation={[0, Math.PI / 2, 0]} />
+        <CenterPiece position={[0, 0, -1.5]} rotation={[0, Math.PI / 2, 0]} />
+        <CenterPiece position={[0, 1.5, 0]} rotation={[0, 0, Math.PI / 2]} />
+        <CenterPiece position={[0, -1.5, 0]} rotation={[0, 0, Math.PI / 2]} />
+        <CenterPiece position={[1.5, 0, 0]} rotation={[0, 0, 0]} />
+        <CenterPiece position={[-1.5, 0, 0]} rotation={[0, 0, 0]} />
 
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[0, -1, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[0, 0, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[0, 1, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[0, -1, 0]} />
-        // no middle piece, because it is not seen anyways
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[0, 1, 0]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[0, -1, 1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[0, 0, 1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[0, 1, 1]} />
+        <EdgePiece position1={[1.5, 1, 0]} position2={[1, 1.5, 0]} rotation1={[0, 0, 0]} rotation2={[0, 0, Math.PI / 2]} />
+        <EdgePiece position1={[-1.5, 1, 0]} position2={[-1, 1.5, 0]} rotation1={[0, 0, 0]} rotation2={[0, 0, Math.PI / 2]} />
+        <EdgePiece position1={[1.5, -1, 0]} position2={[1, -1.5, 0]} rotation1={[0, 0, 0]} rotation2={[0, 0, Math.PI / 2]} />
+        <EdgePiece position1={[-1.5, -1, 0]} position2={[-1, -1.5, 0]} rotation1={[0, 0, 0]} rotation2={[0, 0, Math.PI / 2]} />
 
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, -1, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, 0, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, 1, -1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, -1, 0]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, 0, 0]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, 1, 0]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, -1, 1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, 0, 1]} />
-        <CubePiece color={'#' + Math.floor(Math.random() * 16777215).toString(16)} position={[1, 1, 1]} />
+        <EdgePiece position1={[1.5, 0, 1]} position2={[1, 0, 1.5]} rotation1={[0, 0, 0]} rotation2={[0, Math.PI / 2, 0]} />
+        <EdgePiece position1={[-1.5, 0, 1]} position2={[-1, 0, 1.5]} rotation1={[0, 0, 0]} rotation2={[0, Math.PI / 2, 0]} />
+        <EdgePiece position1={[1.5, 0, -1]} position2={[1, 0, -1.5]} rotation1={[0, 0, 0]} rotation2={[0, Math.PI / 2, 0]} />
+        <EdgePiece position1={[-1.5, 0, -1]} position2={[-1, 0, -1.5]} rotation1={[0, 0, 0]} rotation2={[0, Math.PI / 2, 0]} />
+
+        <EdgePiece position1={[0, 1, 1.5]} position2={[0, 1.5, 1]} rotation1={[0, Math.PI / 2, 0]} rotation2={[0, 0, Math.PI / 2]} />
+        <EdgePiece position1={[0, 1, -1.5]} position2={[0, 1.5, -1]} rotation1={[0, Math.PI / 2, 0]} rotation2={[0, 0, Math.PI / 2]} />
+        <EdgePiece position1={[0, -1, 1.5]} position2={[0, -1.5, 1]} rotation1={[0, Math.PI / 2, 0]} rotation2={[0, 0, Math.PI / 2]} />
+        <EdgePiece position1={[0, -1, -1.5]} position2={[0, -1.5, -1]} rotation1={[0, Math.PI / 2, 0]} rotation2={[0, 0, Math.PI / 2]} />*/}
+
+        <CornerPiece />
     </>
     )
 }
