@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './css/App.css';
 import Cube3x3x3 from './components/Cube3x3x3';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
