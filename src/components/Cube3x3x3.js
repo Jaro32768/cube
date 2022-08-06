@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CenterPiece from './CenterPiece';
 import EdgePiece from './EdgePiece';
 import CornerPiece from './CornerPiece';
@@ -70,7 +70,6 @@ export default function Cube3x3x3() {
 
     const renderCornerPieces = () => {
         return cornerPiecesColors.map((color, index) => {
-            console.log(cornerPiecesRotations[index]);
             return <CornerPiece
                 key={index}
                 color1={color[0]}
@@ -84,6 +83,59 @@ export default function Cube3x3x3() {
                 rotation3={cornerPiecesRotations[index][2]} />
         });
     }
+    const selectSide = (side) => {
+        let position, index;
+        let newCenterPiecesColors = [...centerPiecesColors];
+        let newEdgePiecesColors = [...edgePiecesColors];
+        let newCornerPiecesColors = [...cornerPiecesColors];
+        switch (side) {
+            case 'f': { position = 1.5; index = 2; break; }
+            case 'b': { position = -1.5; index = 2; break; }
+            case 'u': { position = 1.5; index = 1; break; }
+            case 'd': { position = -1.5; index = 1; break; }
+            case 'l': { position = -1.5; index = 0; break; }
+            case 'r': { position = 1.5; index = 0; break; }
+            case 'm': { position = 0; index = 0; break; }
+            case 'e': { position = 0; index = 1; break; }
+            case 's': { position = 0; index = 2; break; }
+            default: return;
+        }
+        centerPiecesPositions.forEach((piecePosition, i) => {
+            if (piecePosition[index] === position) {
+                newCenterPiecesColors[i] = '#099';
+            }
+        });
+        edgePiecesPositions.forEach((piecePositions, i) => {
+            piecePositions.forEach((piecePosition, j) => {
+                if (piecePosition[index] === position) {
+                    newEdgePiecesColors[i][j - 1] = '#099';
+                    newEdgePiecesColors[i][j] = '#099';
+                    newEdgePiecesColors[i][j + 1] = '#099';
+                }
+
+            });
+        });
+        cornerPiecesPositions.forEach((piecePositions, i) => {
+            piecePositions.forEach((piecePosition, j) => {
+                if (piecePosition[index] === position) {
+                    newCornerPiecesColors[i][j - 2] = '#099';
+                    newCornerPiecesColors[i][j - 1] = '#099';
+                    newCornerPiecesColors[i][j] = '#099';
+                    newCornerPiecesColors[i][j + 1] = '#099';
+                    newCornerPiecesColors[i][j + 2] = '#099';
+                }
+
+            });
+        });
+        setCenterPiecesColors(newCenterPiecesColors);
+        setEdgePiecesColors(newEdgePiecesColors);
+        setCornerPiecesColors(newCornerPiecesColors);
+    }
+
+    useEffect(() => {
+        selectSide(''); // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing
+    }, []);
+
     return (
         <>
             {renderCenterPieces()}
