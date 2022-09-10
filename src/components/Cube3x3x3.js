@@ -11,7 +11,7 @@ export default function Cube3x3x3() {
     ////////////////////////////////////////////////////////////////
 
     // f b u d l r
-    const [centerPiecesColors, setCenterPiecesColors] = useState(['#0f0', '#00f', '#fff', '#ff0', '#f90', '#f00']);
+    const [centerPiecesColors, setCenterPiecesColors] = useState(['#0f0', '#00f', '#fff', '#ff0', '#f00', '#f90']);
     const [centerPiecesPositions, setCenterPiecesPositions] = useState([[0, 0, 1.5], [0, 0, -1.5], [0, 1.5, 0], [0, -1.5, 0], [1.5, 0, 0], [-1.5, 0, 0]]);
     const [centerPiecesRotations, setCenterPiecesRotations] = useState([[0, Math.PI / 2, 0], [0, Math.PI / 2, 0], [0, 0, Math.PI / 2], [0, 0, Math.PI / 2], [0, 0, 0], [0, 0, 0]]);
 
@@ -19,8 +19,8 @@ export default function Cube3x3x3() {
     // rf lf rb lb
     // fu bu fd bd
     const [edgePiecesColors, setEdgePiecesColors] = useState([
-        ['#f90', '#fff'], ['#f00', '#fff'], ['#f90', '#ff0'], ['#f00', '#ff0'],
-        ['#f90', '#0f0'], ['#f00', '#0f0'], ['#f90', '#00f'], ['#f00', '#00f'],
+        ['#f00', '#fff'], ['#f90', '#fff'], ['#f00', '#ff0'], ['#f90', '#ff0'],
+        ['#f00', '#0f0'], ['#f90', '#0f0'], ['#f00', '#00f'], ['#f90', '#00f'],
         ['#0f0', '#fff'], ['#00f', '#fff'], ['#0f0', '#ff0'], ['#00f', '#ff0']]);
     const [edgePiecesPositions, setEdgePiecesPositions] = useState([
         [[1.5, 1, 0], [1, 1.5, 0]], [[-1.5, 1, 0], [-1, 1.5, 0]], [[1.5, -1, 0], [1, -1.5, 0]], [[-1.5, -1, 0], [-1, -1.5, 0]],
@@ -31,12 +31,11 @@ export default function Cube3x3x3() {
         [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]],
         [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]]]);
 
-
     // rfu lfu rfd lfd
     // rbu lbu rbd lbd
     const [cornerPiecesColors, setCornerPiecesColors] = useState([
-        ['#f90', '#0f0', '#fff'], ['#f00', '#0f0', '#fff'], ['#f90', '#0f0', '#ff0'], ['#f00', '#0f0', '#ff0'],
-        ['#f90', '#00f', '#fff'], ['#f00', '#00f', '#fff'], ['#f90', '#00f', '#ff0'], ['#f00', '#00f', '#ff0']]);
+        ['#f00', '#0f0', '#fff'], ['#f90', '#0f0', '#fff'], ['#f00', '#0f0', '#ff0'], ['#f90', '#0f0', '#ff0'],
+        ['#f00', '#00f', '#fff'], ['#f90', '#00f', '#fff'], ['#f00', '#00f', '#ff0'], ['#f90', '#00f', '#ff0']]);
     const [cornerPiecesPositions, setCornerPiecesPositions] = useState([
         [[1.5, 1, 1], [1, 1, 1.5], [1, 1.5, 1]], [[-1.5, 1, 1], [-1, 1, 1.5], [-1, 1.5, 1]], [[1.5, -1, 1], [1, -1, 1.5], [1, -1.5, 1]], [[-1.5, -1, 1], [-1, -1, 1.5], [-1, -1.5, 1]],
         [[1.5, 1, -1], [1, 1, -1.5], [1, 1.5, -1]], [[-1.5, 1, -1], [-1, 1, -1.5], [-1, 1.5, -1]], [[1.5, -1, -1], [1, -1, -1.5], [1, -1.5, -1]], [[-1.5, -1, -1], [-1, -1, -1.5], [-1, -1.5, -1]]]);
@@ -44,6 +43,136 @@ export default function Cube3x3x3() {
         [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
         [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]]);
 
+    // f b u d l r
+
+    const sides = {
+        'f': {
+            centers: {          // [0],
+                positions: [0, 0, 1.5],
+                rotations: [0, Math.PI / 2, 0]
+            },
+            edges: {            // [4, 5, 8, 10],
+                positions: [[[1.5, 0, 1], [1, 0, 1.5]], [[-1.5, 0, 1], [-1, 0, 1.5]], [[0, 1, 1.5], [0, 1.5, 1]], [[0, -1, 1.5], [0, -1.5, 1]]],
+                rotations: [[[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]]]
+            },
+            corners: {          // [0, 1, 2, 3]
+                positions: [[[1.5, 1, 1], [1, 1, 1.5], [1, 1.5, 1]], [[-1.5, 1, 1], [-1, 1, 1.5], [-1, 1.5, 1]], [[1.5, -1, 1], [1, -1, 1.5], [1, -1.5, 1]], [[-1.5, -1, 1], [-1, -1, 1.5], [-1, -1.5, 1]]],
+                rotations: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]]
+            }
+        },
+        'b': {
+            centers: {          // [1],
+                positions: [0, 0, -1.5],
+                rotations: [0, Math.PI / 2, 0]
+            },
+            edges: {            // [6, 7, 9, 11],
+                positions: [[[1.5, 0, -1], [1, 0, -1.5]], [[-1.5, 0, -1], [-1, 0, -1.5]], [[0, 1, -1.5], [0, 1.5, -1]], [[0, -1, -1.5], [0, -1.5, -1]]],
+                rotations: [[[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]]]
+            },
+            corners: {          // [4, 5, 6, 7]
+                positions: [[[1.5, 1, -1], [1, 1, -1.5], [1, 1.5, -1]], [[-1.5, 1, -1], [-1, 1, -1.5], [-1, 1.5, -1]], [[1.5, -1, -1], [1, -1, -1.5], [1, -1.5, -1]], [[-1.5, -1, -1], [-1, -1, -1.5], [-1, -1.5, -1]]],
+                rotations: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]]
+            }
+        },
+        'u': {
+            centers: {          // [2],
+                positions: [0, 1.5, 0],
+                rotations: [0, 0, Math.PI / 2]
+            },
+            edges: {            // [0, 1, 8, 9],
+                positions: [[[1.5, 1, 0], [1, 1.5, 0]], [[-1.5, 1, 0], [-1, 1.5, 0]], [[0, 1, 1.5], [0, 1.5, 1]], [[0, 1, -1.5], [0, 1.5, -1]]],
+                rotations: [[[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, Math.PI / 2], [0, 0, 0]], [[0, 0, Math.PI / 2], [0, 0, 0]]]
+            },
+            corners: {          // [0, 1, 4, 5]
+                positions: [[[1.5, 1, 1], [1.5, 1, -1], [1, 1.5, 1]], [[-1.5, 1, 1], [-1.5, 1, -1], [-1, 1.5, 1]], [[1.5, 1, 1], [1.5, 1, -1], [1, 1.5, -1]], [[-1.5, 1, 1], [-1.5, 1, -1], [-1, 1.5, -1]]],
+                rotations: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]]
+            }
+        },
+        'd': {
+            centers: {          // [3],
+                positions: [0, -1.5, 0],
+                rotations: [0, 0, Math.PI / 2]
+            },
+            edges: {            // [2, 3, 10, 11],
+                positions: [[[1.5, -1, 0], [1, -1.5, 0]], [[-1.5, -1, 0], [-1, -1.5, 0]], [[0, -1, 1.5], [0, -1.5, 1]], [[0, -1, -1.5], [0, -1.5, -1]]],
+                rotations: [[[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, Math.PI / 2], [0, 0, 0]], [[0, 0, Math.PI / 2], [0, 0, 0]]]
+            },
+            corners: {          // [2, 3, 6, 7]
+                positions: [[[1.5, -1, 1], [1.5, -1, -1], [1, -1.5, 1]], [[-1.5, -1, 1], [-1.5, -1, -1], [-1, -1.5, 1]], [[1.5, -1, 1], [1.5, -1, -1], [1, -1.5, -1]], [[-1.5, -1, 1], [-1.5, -1, -1], [-1, -1.5, -1]]],
+                rotations: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]]
+            }
+        },
+        'l': {
+            centers: {          // [4],
+                positions: [1.5, 0, 0],
+                rotations: [0, 0, 0]
+            },
+            edges: {            // [1, 3, 5, 7],
+                positions: [[[1, 1.5, 0], [1.5, 1, 0]], [[1, -1.5, 0], [1.5, -1, 0]], [[-1.5, 0, 1], [-1, 0, 1.5]], [[-1.5, 0, -1], [-1, 0, -1.5]]],
+                rotations: [[[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]]]
+            },
+            corners: {          // [1, 3, 5, 7]
+                positions: [[[-1.5, 1, 0], [-1, 1.5, 0]], [[-1.5, -1, 0], [-1, -1.5, 0]], [[-1.5, 0, 1], [-1, 0, 1.5]], [[-1.5, 0, -1], [-1, 0, -1.5]]],
+                rotations: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]]
+            }
+        },
+        'r': {
+            centers: {          // [5],
+                positions: [-1.5, 0, 0],
+                rotations: [0, 0, 0]
+            },
+            edges: {            // [0, 2, 4, 6],
+                positions: [[[1.5, 1, 0], [1, 1.5, 0]], [[1.5, -1, 0], [1, -1.5, 0]], [[1.5, 0, 1], [1, 0, 1.5]], [[1.5, 0, -1], [1, 0, -1.5]]],
+                rotations: [[[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]]]
+            },
+            corners: {          // [0, 2, 4, 6]
+                positions: [[[1.5, 1, 1], [1, 1, 1.5], [1, 1.5, 1]], [[1.5, -1, 1], [1, -1, 1.5], [1, -1.5, 1]], [[1.5, 1, -1], [1, 1, -1.5], [1, 1.5, -1]], [[1.5, -1, -1], [1, -1, -1.5], [1, -1.5, -1]]],
+                rotations: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]]
+            }
+        },
+        'm': {
+            centers: {          // [0, 1, 2, 3],
+                positions: [[0, 0, 1.5], [0, 0, -1.5], [0, 1.5, 0], [0, -1.5, 0]],
+                rotations: [[0, Math.PI / 2, 0], [0, Math.PI / 2, 0], [0, 0, Math.PI / 2], [0, 0, Math.PI / 2]]
+            },
+            edges: {            // [8, 9, 10, 11],
+                positions: [[[0, 1, 1.5], [0, 1.5, 1]], [[0, 1, -1.5], [0, 1.5, -1]], [[0, -1, 1.5], [0, -1.5, 1]], [[0, -1, -1.5], [0, -1.5, -1]]],
+                rotations: [[[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]], [[0, Math.PI / 2, 0], [0, 0, Math.PI / 2]]]
+            },
+            corners: {          // []
+                positions: [],
+                rotations: []
+            }
+        },
+        'e': {
+            centers: {          // [0, 1, 4, 5],
+                positions: [[0, 0, 1.5], [0, 0, -1.5], [1.5, 0, 0], [-1.5, 0, 0]],
+                rotations: [[0, Math.PI / 2, 0], [0, Math.PI / 2, 0], [0, 0, 0], [0, 0, 0]]
+            },
+            edges: {            // [4, 5, 6, 7],
+                positions: [[[1.5, 0, 1], [1, 0, 1.5]], [[-1.5, 0, 1], [-1, 0, 1.5]], [[1.5, 0, -1], [1, 0, -1.5]], [[-1.5, 0, -1], [-1, 0, -1.5]]],
+                rotations: [[[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]], [[0, 0, 0], [0, Math.PI / 2, 0]],]
+            },
+            corners: {          // []
+                positions: [],
+                rotations: []
+            }
+        },
+        's': {
+            centers: {          // [2, 3, 4, 5],
+                positions: [[0, 1.5, 0], [0, -1.5, 0], [1.5, 0, 0], [-1.5, 0, 0]],
+                rotations: [[0, 1.5, 0], [0, -1.5, 0], [0, 0, 0], [0, 0, 0]]
+            },
+            edges: {            // [0, 1, 2, 3],
+                positions: [[[1.5, 1, 0], [1, 1.5, 0]], [[-1.5, 1, 0], [-1, 1.5, 0]], [[1.5, -1, 0], [1, -1.5, 0]], [[-1.5, -1, 0], [-1, -1.5, 0]]],
+                rotations: [[[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, 0, Math.PI / 2]], [[0, 0, 0], [0, 0, Math.PI / 2]]]
+            },
+            corners: {          // []
+                positions: [],
+                rotations: []
+            }
+        }
+    }
 
     const renderCenterPieces = () => {
         return centerPiecesColors.map((color, index) => {
@@ -83,57 +212,45 @@ export default function Cube3x3x3() {
                 rotation3={cornerPiecesRotations[index][2]} />
         });
     }
-    const selectSide = (side) => {
-        let position, index;
-        let newCenterPiecesColors = [...centerPiecesColors];
-        let newEdgePiecesColors = [...edgePiecesColors];
-        let newCornerPiecesColors = [...cornerPiecesColors];
+    const rotateSide = (side) => {
+        let newCenterPiecesPositions = [...centerPiecesPositions];
+        let newEdgePiecesPositions = [...edgePiecesPositions];
+        let newCornerPiecesPositions = [...cornerPiecesPositions];
+        let newCenterPiecesRotations = [...centerPiecesRotations];
+        let newEdgePiecesRotations = [...edgePiecesRotations];
+        let newCornerPiecesRotations = [...cornerPiecesRotations];
+
+        // f b u d l r
         switch (side) {
-            case 'f': { position = 1.5; index = 2; break; }
-            case 'b': { position = -1.5; index = 2; break; }
-            case 'u': { position = 1.5; index = 1; break; }
-            case 'd': { position = -1.5; index = 1; break; }
-            case 'l': { position = -1.5; index = 0; break; }
-            case 'r': { position = 1.5; index = 0; break; }
-            case 'm': { position = 0; index = 0; break; }
-            case 'e': { position = 0; index = 1; break; }
-            case 's': { position = 0; index = 2; break; }
-            default: return;
+            case 'f':
+                {
+                    break;
+                }
+            case 'b':
+                {
+                    break;
+                }
+            case 'u':
+                {
+                    break;
+                }
+            case 'd':
+                {
+                    break;
+                }
+            case 'l':
+                {
+                    break;
+                }
+            case 'r':
+                {
+                    break;
+                }
         }
-        centerPiecesPositions.forEach((piecePosition, i) => {
-            if (piecePosition[index] === position) {
-                newCenterPiecesColors[i] = '#099';
-            }
-        });
-        edgePiecesPositions.forEach((piecePositions, i) => {
-            piecePositions.forEach((piecePosition, j) => {
-                if (piecePosition[index] === position) {
-                    newEdgePiecesColors[i][j - 1] = '#099';
-                    newEdgePiecesColors[i][j] = '#099';
-                    newEdgePiecesColors[i][j + 1] = '#099';
-                }
-
-            });
-        });
-        cornerPiecesPositions.forEach((piecePositions, i) => {
-            piecePositions.forEach((piecePosition, j) => {
-                if (piecePosition[index] === position) {
-                    newCornerPiecesColors[i][j - 2] = '#099';
-                    newCornerPiecesColors[i][j - 1] = '#099';
-                    newCornerPiecesColors[i][j] = '#099';
-                    newCornerPiecesColors[i][j + 1] = '#099';
-                    newCornerPiecesColors[i][j + 2] = '#099';
-                }
-
-            });
-        });
-        setCenterPiecesColors(newCenterPiecesColors);
-        setEdgePiecesColors(newEdgePiecesColors);
-        setCornerPiecesColors(newCornerPiecesColors);
     }
 
     useEffect(() => {
-        selectSide(''); // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing
+        rotateSide('f'); // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing
     }, []);
 
     return (
@@ -144,3 +261,20 @@ export default function Cube3x3x3() {
         </>
     )
 }
+
+
+
+
+/*
+---- u ----
+centerPiecesPositions[2][1]
+edgePiecesPositions[0][0][1]
+edgePiecesPositions[0][1][1]
+edgePiecesPositions[1][0][1]
+edgePiecesPositions[1][1][1]
+edgePiecesPositions[8][0][1]
+edgePiecesPositions[8][1][1]
+edgePiecesPositions[9][0][1]
+edgePiecesPositions[9][1][1]
+
+*/
