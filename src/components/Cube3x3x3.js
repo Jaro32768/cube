@@ -1039,15 +1039,63 @@ export default function Cube3x3x3() {
             case 'f': {
                 for (let i = 0; i < Math.max(SIDES.F.CORNERS.POSITIONS.length, SIDES.F.EDGES.POSITIONS.length); i++) {
                     cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) == JSON.stringify(SIDES.F.CORNERS.POSITIONS[i])) indexes[0][i] = index;
+                        if (JSON.stringify(position) === JSON.stringify(SIDES.F.CORNERS.POSITIONS[i])) indexes[0][i] = index;
                     });
                     edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) == JSON.stringify(SIDES.F.EDGES.POSITIONS[i])) indexes[1][i] = index;
+                        if (JSON.stringify(position) === JSON.stringify(SIDES.F.EDGES.POSITIONS[i])) indexes[1][i] = index;
                     });
                 }
 
-                console.log(cornerPiecesRotations[indexes[0][1]]);
+                newCornerPiecesPositions[indexes[0][0]] = [
+                    cornerPiecesPositions[indexes[0][1]][2],
+                    cornerPiecesPositions[indexes[0][1]][1],
+                    cornerPiecesPositions[indexes[0][1]][0],
+                ];
+                newCornerPiecesPositions[indexes[0][1]] = [
+                    cornerPiecesPositions[indexes[0][3]][2],
+                    cornerPiecesPositions[indexes[0][3]][1],
+                    cornerPiecesPositions[indexes[0][3]][0],
+                ];
+                newCornerPiecesPositions[indexes[0][2]] = [
+                    cornerPiecesPositions[indexes[0][0]][2],
+                    cornerPiecesPositions[indexes[0][0]][1],
+                    cornerPiecesPositions[indexes[0][0]][0],
+                ];
+                newCornerPiecesPositions[indexes[0][3]] = [
+                    cornerPiecesPositions[indexes[0][2]][2],
+                    cornerPiecesPositions[indexes[0][2]][1],
+                    cornerPiecesPositions[indexes[0][2]][0],
+                ];
+                newCornerPiecesRotations[indexes[0][0]] = [
+                    cornerPiecesRotations[indexes[0][1]][2],
+                    cornerPiecesRotations[indexes[0][1]][1],
+                    cornerPiecesRotations[indexes[0][1]][0],
+                ];
+                newCornerPiecesRotations[indexes[0][1]] = [
+                    cornerPiecesRotations[indexes[0][3]][2],
+                    cornerPiecesRotations[indexes[0][3]][1],
+                    cornerPiecesRotations[indexes[0][3]][0],
+                ];
+                newCornerPiecesRotations[indexes[0][2]] = [
+                    cornerPiecesRotations[indexes[0][0]][2],
+                    cornerPiecesRotations[indexes[0][0]][1],
+                    cornerPiecesRotations[indexes[0][0]][0],
+                ];
+                newCornerPiecesRotations[indexes[0][3]] = [
+                    cornerPiecesRotations[indexes[0][2]][2],
+                    cornerPiecesRotations[indexes[0][2]][1],
+                    cornerPiecesRotations[indexes[0][2]][0],
+                ];
 
+                newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
+                newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
+                newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
+                newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
+                newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
+                newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
+                newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
+                newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
+                /*
                 newCornerPiecesPositions[indexes[0][0]] = [SIDES.F.CORNERS.POSITIONS[1][2], SIDES.F.CORNERS.POSITIONS[1][1], SIDES.F.CORNERS.POSITIONS[1][0]];
                 newCornerPiecesPositions[indexes[0][1]] = [SIDES.F.CORNERS.POSITIONS[3][2], SIDES.F.CORNERS.POSITIONS[3][1], SIDES.F.CORNERS.POSITIONS[3][0]];
                 newCornerPiecesPositions[indexes[0][2]] = [SIDES.F.CORNERS.POSITIONS[0][2], SIDES.F.CORNERS.POSITIONS[0][1], SIDES.F.CORNERS.POSITIONS[0][0]];
@@ -1065,13 +1113,19 @@ export default function Cube3x3x3() {
                 newEdgePiecesRotations[indexes[1][1]] = [SIDES.F.EDGES.ROTATIONS[3][1], SIDES.F.EDGES.ROTATIONS[3][0]];
                 newEdgePiecesRotations[indexes[1][2]] = [SIDES.F.EDGES.ROTATIONS[1][1], SIDES.F.EDGES.ROTATIONS[1][0]];
                 newEdgePiecesRotations[indexes[1][3]] = [SIDES.F.EDGES.ROTATIONS[0][1], SIDES.F.EDGES.ROTATIONS[0][0]];
+                console.log(cornerPiecesPositions[indexes[0][0]]);
+                console.log([SIDES.F.CORNERS.POSITIONS[1][2], SIDES.F.CORNERS.POSITIONS[1][1], SIDES.F.CORNERS.POSITIONS[1][0]]);
+                cornerPiecesPositions.forEach((position, index) => {
+                    console.log(position);
+                    if (
+                        (JSON.stringify(SIDES.F.CORNERS.POSITIONS[1][2]) === JSON.stringify(position[2]) &&
+                        JSON.stringify(SIDES.F.CORNERS.POSITIONS[1][1]) === JSON.stringify(position[1]) &&
+                        JSON.stringify(SIDES.F.CORNERS.POSITIONS[1][0]) === JSON.stringify(position[0]))
 
-                for (let i = 0; i < Math.max(SIDES.F.CORNERS.POSITIONS.length, SIDES.F.EDGES.POSITIONS.length); i++) {
-                    /*
-                    newEdgePiecesPositions[indexes[1][i]] = SIDES.F.EDGES.POSITIONS[(i + 1) % SIDES.F.EDGES.POSITIONS.length];
-                    newCornerPiecesRotations[indexes[0][i]] = SIDES.F.CORNERS.ROTATIONS[(i + 1) % SIDES.F.CORNERS.ROTATIONS.length];
-                    newEdgePiecesRotations[indexes[1][i]] = SIDES.F.EDGES.ROTATIONS[(i + 1) % SIDES.F.EDGES.ROTATIONS.length];*/
-                }
+                    ) {
+                    }
+                });
+                */
                 break;
             }
             case 'b': {
@@ -1090,7 +1144,6 @@ export default function Cube3x3x3() {
                 break;
             }
         }
-        console.log(newCornerPiecesRotations[indexes[0][1]]);
 
         setCenterPiecesPositions(newCenterPiecesPositions);
         setEdgePiecesPositions(newEdgePiecesPositions);
