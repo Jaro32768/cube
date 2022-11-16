@@ -1007,233 +1007,48 @@ export default function Cube3x3x3() {
                     });
                 }
 
-                console.log(JSON.stringify(cornerPiecesPositions[indexes[0][0]]));
-
                 setCornerPiecesPositions((prevArr) => {
-                    let newCornerPiecesPositions = [...prevArr];
-                    newCornerPiecesPositions[indexes[0][0]] = [
-                        cornerPiecesPositions[indexes[0][2]][2],
-                        cornerPiecesPositions[indexes[0][2]][1],
-                        cornerPiecesPositions[indexes[0][2]][0],
-                    ];
-                    newCornerPiecesPositions[indexes[0][1]] = [
-                        cornerPiecesPositions[indexes[0][0]][2],
-                        cornerPiecesPositions[indexes[0][0]][1],
-                        cornerPiecesPositions[indexes[0][0]][0],
-                    ];
-                    newCornerPiecesPositions[indexes[0][2]] = [
-                        cornerPiecesPositions[indexes[0][3]][2],
-                        cornerPiecesPositions[indexes[0][3]][1],
-                        cornerPiecesPositions[indexes[0][3]][0],
-                    ];
-                    newCornerPiecesPositions[indexes[0][3]] = [
-                        cornerPiecesPositions[indexes[0][1]][2],
-                        cornerPiecesPositions[indexes[0][1]][1],
-                        cornerPiecesPositions[indexes[0][1]][0],
-                    ];
-                    return newCornerPiecesPositions;
+                    let arr = [...prevArr];
+                    arr[indexes[0][0]] = [prevArr[indexes[0][2]][2], prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0]];
+                    arr[indexes[0][1]] = [prevArr[indexes[0][0]][2], prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0]];
+                    arr[indexes[0][2]] = [prevArr[indexes[0][3]][2], prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0]];
+                    arr[indexes[0][3]] = [prevArr[indexes[0][1]][2], prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0]];
+                    return arr;
                 });
 
                 setCornerPiecesRotations((prevArr) => {
-                    let newCornerPiecesRotations = [...prevArr];
-                    newCornerPiecesRotations[indexes[0][0]] = [
-                        cornerPiecesRotations[indexes[0][2]][2],
-                        cornerPiecesRotations[indexes[0][2]][1],
-                        cornerPiecesRotations[indexes[0][2]][0],
-                    ];
-                    newCornerPiecesRotations[indexes[0][1]] = [
-                        cornerPiecesRotations[indexes[0][0]][2],
-                        cornerPiecesRotations[indexes[0][0]][1],
-                        cornerPiecesRotations[indexes[0][0]][0],
-                    ];
-                    newCornerPiecesRotations[indexes[0][2]] = [
-                        cornerPiecesRotations[indexes[0][3]][2],
-                        cornerPiecesRotations[indexes[0][3]][1],
-                        cornerPiecesRotations[indexes[0][3]][0],
-                    ];
-                    newCornerPiecesRotations[indexes[0][3]] = [
-                        cornerPiecesRotations[indexes[0][1]][2],
-                        cornerPiecesRotations[indexes[0][1]][1],
-                        cornerPiecesRotations[indexes[0][1]][0],
-                    ];
-                    return newCornerPiecesRotations;
+                    let arr = [...prevArr];
+                    arr[indexes[0][0]] = [prevArr[indexes[0][2]][2], prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0]];
+                    arr[indexes[0][1]] = [prevArr[indexes[0][0]][2], prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0]];
+                    arr[indexes[0][2]] = [prevArr[indexes[0][3]][2], prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0]];
+                    arr[indexes[0][3]] = [prevArr[indexes[0][1]][2], prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0]];
+                    return arr;
                 });
 
                 setEdgePiecesPositions((prevArr) => {
-                    let newEdgePiecesPositions = [...prevArr];
-                    newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
-                    newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
-                    newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
-                    newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
-                    return newEdgePiecesPositions;
+                    let arr = [...prevArr];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][3]][1], prevArr[indexes[1][3]][0]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][2]][1], prevArr[indexes[1][2]][0]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][0]][1], prevArr[indexes[1][0]][0]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][1]][1], prevArr[indexes[1][1]][0]];
+                    return arr;
                 });
 
                 setEdgePiecesRotations((prevArr) => {
-                    let newEdgePiecesRotations = [...prevArr];
-                    newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
-                    newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
-                    newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
-                    newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
-                    return newEdgePiecesRotations;
+                    let arr = [...prevArr];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][3]][1], prevArr[indexes[1][3]][0]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][2]][1], prevArr[indexes[1][2]][0]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][0]][1], prevArr[indexes[1][0]][0]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][1]][1], prevArr[indexes[1][1]][0]];
+                    return arr;
                 });
 
                 break;
             }
-            /*
             case 'F': {
-                newCornerPiecesPositions[indexes[0][0]] = [
-                    cornerPiecesPositions[indexes[0][1]][2],
-                    cornerPiecesPositions[indexes[0][1]][1],
-                    cornerPiecesPositions[indexes[0][1]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][1]] = [
-                    cornerPiecesPositions[indexes[0][3]][2],
-                    cornerPiecesPositions[indexes[0][3]][1],
-                    cornerPiecesPositions[indexes[0][3]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][2]] = [
-                    cornerPiecesPositions[indexes[0][0]][2],
-                    cornerPiecesPositions[indexes[0][0]][1],
-                    cornerPiecesPositions[indexes[0][0]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][3]] = [
-                    cornerPiecesPositions[indexes[0][2]][2],
-                    cornerPiecesPositions[indexes[0][2]][1],
-                    cornerPiecesPositions[indexes[0][2]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][0]] = [
-                    cornerPiecesRotations[indexes[0][1]][2],
-                    cornerPiecesRotations[indexes[0][1]][1],
-                    cornerPiecesRotations[indexes[0][1]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][1]] = [
-                    cornerPiecesRotations[indexes[0][3]][2],
-                    cornerPiecesRotations[indexes[0][3]][1],
-                    cornerPiecesRotations[indexes[0][3]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][2]] = [
-                    cornerPiecesRotations[indexes[0][0]][2],
-                    cornerPiecesRotations[indexes[0][0]][1],
-                    cornerPiecesRotations[indexes[0][0]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][3]] = [
-                    cornerPiecesRotations[indexes[0][2]][2],
-                    cornerPiecesRotations[indexes[0][2]][1],
-                    cornerPiecesRotations[indexes[0][2]][0],
-                ];
-
-                newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
-                newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
-                newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
-                newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
-                newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
-                newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
-                newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
-                newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
                 break;
             }
             case 'b': {
-                newCornerPiecesPositions[indexes[0][0]] = [
-                    cornerPiecesPositions[indexes[0][2]][2],
-                    cornerPiecesPositions[indexes[0][2]][1],
-                    cornerPiecesPositions[indexes[0][2]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][1]] = [
-                    cornerPiecesPositions[indexes[0][0]][2],
-                    cornerPiecesPositions[indexes[0][0]][1],
-                    cornerPiecesPositions[indexes[0][0]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][2]] = [
-                    cornerPiecesPositions[indexes[0][3]][2],
-                    cornerPiecesPositions[indexes[0][3]][1],
-                    cornerPiecesPositions[indexes[0][3]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][3]] = [
-                    cornerPiecesPositions[indexes[0][1]][2],
-                    cornerPiecesPositions[indexes[0][1]][1],
-                    cornerPiecesPositions[indexes[0][1]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][0]] = [
-                    cornerPiecesRotations[indexes[0][2]][2],
-                    cornerPiecesRotations[indexes[0][2]][1],
-                    cornerPiecesRotations[indexes[0][2]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][1]] = [
-                    cornerPiecesRotations[indexes[0][0]][2],
-                    cornerPiecesRotations[indexes[0][0]][1],
-                    cornerPiecesRotations[indexes[0][0]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][2]] = [
-                    cornerPiecesRotations[indexes[0][3]][2],
-                    cornerPiecesRotations[indexes[0][3]][1],
-                    cornerPiecesRotations[indexes[0][3]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][3]] = [
-                    cornerPiecesRotations[indexes[0][1]][2],
-                    cornerPiecesRotations[indexes[0][1]][1],
-                    cornerPiecesRotations[indexes[0][1]][0],
-                ];
-
-                newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
-                newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
-                newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
-                newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
-                newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
-                newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
-                newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
-                newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
-                break;
-            }
-            case 'B': {
-                newCornerPiecesPositions[indexes[0][0]] = [
-                    cornerPiecesPositions[indexes[0][1]][2],
-                    cornerPiecesPositions[indexes[0][1]][1],
-                    cornerPiecesPositions[indexes[0][1]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][1]] = [
-                    cornerPiecesPositions[indexes[0][3]][2],
-                    cornerPiecesPositions[indexes[0][3]][1],
-                    cornerPiecesPositions[indexes[0][3]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][2]] = [
-                    cornerPiecesPositions[indexes[0][0]][2],
-                    cornerPiecesPositions[indexes[0][0]][1],
-                    cornerPiecesPositions[indexes[0][0]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][3]] = [
-                    cornerPiecesPositions[indexes[0][2]][2],
-                    cornerPiecesPositions[indexes[0][2]][1],
-                    cornerPiecesPositions[indexes[0][2]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][0]] = [
-                    cornerPiecesRotations[indexes[0][1]][2],
-                    cornerPiecesRotations[indexes[0][1]][1],
-                    cornerPiecesRotations[indexes[0][1]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][1]] = [
-                    cornerPiecesRotations[indexes[0][3]][2],
-                    cornerPiecesRotations[indexes[0][3]][1],
-                    cornerPiecesRotations[indexes[0][3]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][2]] = [
-                    cornerPiecesRotations[indexes[0][0]][2],
-                    cornerPiecesRotations[indexes[0][0]][1],
-                    cornerPiecesRotations[indexes[0][0]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][3]] = [
-                    cornerPiecesRotations[indexes[0][2]][2],
-                    cornerPiecesRotations[indexes[0][2]][1],
-                    cornerPiecesRotations[indexes[0][2]][0],
-                ];
-
-                newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
-                newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
-                newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
-                newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
-                newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
-                newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
-                newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
-                newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
                 break;
             }
             case 'u': {
@@ -1273,43 +1088,9 @@ export default function Cube3x3x3() {
                 break;
             }
             case 's': {
-                newCenterPiecesPositions[indexes[0][0]] = centerPiecesPositions[indexes[0][2]];
-                newCenterPiecesPositions[indexes[0][1]] = centerPiecesPositions[indexes[0][3]];
-                newCenterPiecesPositions[indexes[0][2]] = centerPiecesPositions[indexes[0][1]];
-                newCenterPiecesPositions[indexes[0][3]] = centerPiecesPositions[indexes[0][0]];
-                newCenterPiecesRotations[indexes[0][0]] = centerPiecesRotations[indexes[0][2]];
-                newCenterPiecesRotations[indexes[0][1]] = centerPiecesRotations[indexes[0][3]];
-                newCenterPiecesRotations[indexes[0][2]] = centerPiecesRotations[indexes[0][1]];
-                newCenterPiecesRotations[indexes[0][3]] = centerPiecesRotations[indexes[0][0]];
-
-                newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
-                newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
-                newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
-                newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
-                newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
-                newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
-                newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
-                newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
                 break;
             }
             case 'S': {
-                newCenterPiecesPositions[indexes[0][0]] = centerPiecesPositions[indexes[0][3]];
-                newCenterPiecesPositions[indexes[0][1]] = centerPiecesPositions[indexes[0][2]];
-                newCenterPiecesPositions[indexes[0][2]] = centerPiecesPositions[indexes[0][0]];
-                newCenterPiecesPositions[indexes[0][3]] = centerPiecesPositions[indexes[0][1]];
-                newCenterPiecesRotations[indexes[0][0]] = centerPiecesRotations[indexes[0][3]];
-                newCenterPiecesRotations[indexes[0][1]] = centerPiecesRotations[indexes[0][2]];
-                newCenterPiecesRotations[indexes[0][2]] = centerPiecesRotations[indexes[0][0]];
-                newCenterPiecesRotations[indexes[0][3]] = centerPiecesRotations[indexes[0][1]];
-
-                newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
-                newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
-                newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
-                newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
-                newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
-                newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
-                newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
-                newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
                 break;
             }
             case 'x': {
@@ -1329,7 +1110,7 @@ export default function Cube3x3x3() {
             }
             case 'Z': {
                 break;
-            }*/
+            }
             default:
                 return;
         }
