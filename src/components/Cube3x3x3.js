@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import CenterPiece from './CenterPiece';
 import EdgePiece from './EdgePiece';
 import CornerPiece from './CornerPiece';
@@ -982,78 +982,105 @@ export default function Cube3x3x3() {
         },
     };
 
+    /* setArr((prevArr) => {
+        let arr = [...prevArr];
+        arr[0] = prevArr[1];
+        arr[1] = prevArr[0];
+        return arr;
+    }); */
+
     const rotateSide = (side) => {
-        let newCenterPiecesPositions = [...centerPiecesPositions];
-        let newEdgePiecesPositions = [...edgePiecesPositions];
-        let newCornerPiecesPositions = [...cornerPiecesPositions];
-        let newCenterPiecesRotations = [...centerPiecesRotations];
-        let newEdgePiecesRotations = [...edgePiecesRotations];
-        let newCornerPiecesRotations = [...cornerPiecesRotations];
+        let indexes = [
+            [-1, -1, -1, -1],
+            [-1, -1, -1, -1],
+        ];
+
         // f b u d l r
         switch (side) {
             case 'f': {
-                let indexes = [
-                    [0, 1, 2, 3],
-                    [4, 5, 8, 10],
-                ];
+                for (let i = 0; i < 4; i++) {
+                    cornerPiecesPositions.forEach((position, index) => {
+                        if (JSON.stringify(position) === JSON.stringify(SIDES.F.CORNERS.POSITIONS[i])) indexes[0][i] = index;
+                    });
+                    edgePiecesPositions.forEach((position, index) => {
+                        if (JSON.stringify(position) === JSON.stringify(SIDES.F.EDGES.POSITIONS[i])) indexes[1][i] = index;
+                    });
+                }
 
-                newCornerPiecesPositions[indexes[0][0]] = [
-                    cornerPiecesPositions[indexes[0][2]][2],
-                    cornerPiecesPositions[indexes[0][2]][1],
-                    cornerPiecesPositions[indexes[0][2]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][1]] = [
-                    cornerPiecesPositions[indexes[0][0]][2],
-                    cornerPiecesPositions[indexes[0][0]][1],
-                    cornerPiecesPositions[indexes[0][0]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][2]] = [
-                    cornerPiecesPositions[indexes[0][3]][2],
-                    cornerPiecesPositions[indexes[0][3]][1],
-                    cornerPiecesPositions[indexes[0][3]][0],
-                ];
-                newCornerPiecesPositions[indexes[0][3]] = [
-                    cornerPiecesPositions[indexes[0][1]][2],
-                    cornerPiecesPositions[indexes[0][1]][1],
-                    cornerPiecesPositions[indexes[0][1]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][0]] = [
-                    cornerPiecesRotations[indexes[0][2]][2],
-                    cornerPiecesRotations[indexes[0][2]][1],
-                    cornerPiecesRotations[indexes[0][2]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][1]] = [
-                    cornerPiecesRotations[indexes[0][0]][2],
-                    cornerPiecesRotations[indexes[0][0]][1],
-                    cornerPiecesRotations[indexes[0][0]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][2]] = [
-                    cornerPiecesRotations[indexes[0][3]][2],
-                    cornerPiecesRotations[indexes[0][3]][1],
-                    cornerPiecesRotations[indexes[0][3]][0],
-                ];
-                newCornerPiecesRotations[indexes[0][3]] = [
-                    cornerPiecesRotations[indexes[0][1]][2],
-                    cornerPiecesRotations[indexes[0][1]][1],
-                    cornerPiecesRotations[indexes[0][1]][0],
-                ];
+                console.log(JSON.stringify(cornerPiecesPositions[indexes[0][0]]));
 
-                newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
-                newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
-                newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
-                newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
-                newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
-                newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
-                newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
-                newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
+                setCornerPiecesPositions((prevArr) => {
+                    let newCornerPiecesPositions = [...prevArr];
+                    newCornerPiecesPositions[indexes[0][0]] = [
+                        cornerPiecesPositions[indexes[0][2]][2],
+                        cornerPiecesPositions[indexes[0][2]][1],
+                        cornerPiecesPositions[indexes[0][2]][0],
+                    ];
+                    newCornerPiecesPositions[indexes[0][1]] = [
+                        cornerPiecesPositions[indexes[0][0]][2],
+                        cornerPiecesPositions[indexes[0][0]][1],
+                        cornerPiecesPositions[indexes[0][0]][0],
+                    ];
+                    newCornerPiecesPositions[indexes[0][2]] = [
+                        cornerPiecesPositions[indexes[0][3]][2],
+                        cornerPiecesPositions[indexes[0][3]][1],
+                        cornerPiecesPositions[indexes[0][3]][0],
+                    ];
+                    newCornerPiecesPositions[indexes[0][3]] = [
+                        cornerPiecesPositions[indexes[0][1]][2],
+                        cornerPiecesPositions[indexes[0][1]][1],
+                        cornerPiecesPositions[indexes[0][1]][0],
+                    ];
+                    return newCornerPiecesPositions;
+                });
+
+                setCornerPiecesRotations((prevArr) => {
+                    let newCornerPiecesRotations = [...prevArr];
+                    newCornerPiecesRotations[indexes[0][0]] = [
+                        cornerPiecesRotations[indexes[0][2]][2],
+                        cornerPiecesRotations[indexes[0][2]][1],
+                        cornerPiecesRotations[indexes[0][2]][0],
+                    ];
+                    newCornerPiecesRotations[indexes[0][1]] = [
+                        cornerPiecesRotations[indexes[0][0]][2],
+                        cornerPiecesRotations[indexes[0][0]][1],
+                        cornerPiecesRotations[indexes[0][0]][0],
+                    ];
+                    newCornerPiecesRotations[indexes[0][2]] = [
+                        cornerPiecesRotations[indexes[0][3]][2],
+                        cornerPiecesRotations[indexes[0][3]][1],
+                        cornerPiecesRotations[indexes[0][3]][0],
+                    ];
+                    newCornerPiecesRotations[indexes[0][3]] = [
+                        cornerPiecesRotations[indexes[0][1]][2],
+                        cornerPiecesRotations[indexes[0][1]][1],
+                        cornerPiecesRotations[indexes[0][1]][0],
+                    ];
+                    return newCornerPiecesRotations;
+                });
+
+                setEdgePiecesPositions((prevArr) => {
+                    let newEdgePiecesPositions = [...prevArr];
+                    newEdgePiecesPositions[indexes[1][0]] = [edgePiecesPositions[indexes[1][3]][1], edgePiecesPositions[indexes[1][3]][0]];
+                    newEdgePiecesPositions[indexes[1][1]] = [edgePiecesPositions[indexes[1][2]][1], edgePiecesPositions[indexes[1][2]][0]];
+                    newEdgePiecesPositions[indexes[1][2]] = [edgePiecesPositions[indexes[1][0]][1], edgePiecesPositions[indexes[1][0]][0]];
+                    newEdgePiecesPositions[indexes[1][3]] = [edgePiecesPositions[indexes[1][1]][1], edgePiecesPositions[indexes[1][1]][0]];
+                    return newEdgePiecesPositions;
+                });
+
+                setEdgePiecesRotations((prevArr) => {
+                    let newEdgePiecesRotations = [...prevArr];
+                    newEdgePiecesRotations[indexes[1][0]] = [edgePiecesRotations[indexes[1][3]][1], edgePiecesRotations[indexes[1][3]][0]];
+                    newEdgePiecesRotations[indexes[1][1]] = [edgePiecesRotations[indexes[1][2]][1], edgePiecesRotations[indexes[1][2]][0]];
+                    newEdgePiecesRotations[indexes[1][2]] = [edgePiecesRotations[indexes[1][0]][1], edgePiecesRotations[indexes[1][0]][0]];
+                    newEdgePiecesRotations[indexes[1][3]] = [edgePiecesRotations[indexes[1][1]][1], edgePiecesRotations[indexes[1][1]][0]];
+                    return newEdgePiecesRotations;
+                });
+
                 break;
             }
+            /*
             case 'F': {
-                let indexes = [
-                    [0, 1, 2, 3],
-                    [4, 5, 8, 10],
-                ];
-
                 newCornerPiecesPositions[indexes[0][0]] = [
                     cornerPiecesPositions[indexes[0][1]][2],
                     cornerPiecesPositions[indexes[0][1]][1],
@@ -1106,10 +1133,6 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'b': {
-                let indexes = [
-                    [4, 5, 6, 7],
-                    [6, 7, 9, 11],
-                ];
                 newCornerPiecesPositions[indexes[0][0]] = [
                     cornerPiecesPositions[indexes[0][2]][2],
                     cornerPiecesPositions[indexes[0][2]][1],
@@ -1162,11 +1185,6 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'B': {
-                let indexes = [
-                    [4, 5, 6, 7],
-                    [6, 7, 9, 11],
-                ];
-
                 newCornerPiecesPositions[indexes[0][0]] = [
                     cornerPiecesPositions[indexes[0][1]][2],
                     cornerPiecesPositions[indexes[0][1]][1],
@@ -1255,11 +1273,6 @@ export default function Cube3x3x3() {
                 break;
             }
             case 's': {
-                let indexes = [
-                    [2, 3, 4, 5],
-                    [0, 1, 2, 3],
-                ];
-
                 newCenterPiecesPositions[indexes[0][0]] = centerPiecesPositions[indexes[0][2]];
                 newCenterPiecesPositions[indexes[0][1]] = centerPiecesPositions[indexes[0][3]];
                 newCenterPiecesPositions[indexes[0][2]] = centerPiecesPositions[indexes[0][1]];
@@ -1280,11 +1293,6 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'S': {
-                let indexes = [
-                    [2, 3, 4, 5],
-                    [0, 1, 2, 3],
-                ];
-
                 newCenterPiecesPositions[indexes[0][0]] = centerPiecesPositions[indexes[0][3]];
                 newCenterPiecesPositions[indexes[0][1]] = centerPiecesPositions[indexes[0][2]];
                 newCenterPiecesPositions[indexes[0][2]] = centerPiecesPositions[indexes[0][0]];
@@ -1321,14 +1329,10 @@ export default function Cube3x3x3() {
             }
             case 'Z': {
                 break;
-            }
+            }*/
+            default:
+                return;
         }
-        setCenterPiecesPositions(newCenterPiecesPositions);
-        setEdgePiecesPositions(newEdgePiecesPositions);
-        setCornerPiecesPositions(newCornerPiecesPositions);
-        setCenterPiecesRotations(newCenterPiecesRotations);
-        setEdgePiecesRotations(newEdgePiecesRotations);
-        setCornerPiecesRotations(newCornerPiecesRotations);
     };
 
     // INDEXES FINDER CODE
@@ -1344,39 +1348,37 @@ export default function Cube3x3x3() {
     //        });
     //    }
 
-    const onDocumentKeyDown = useCallback((event) => {
-        var key = event.key;
+    useEffect(() => {
+        document.addEventListener('keyup', (event) => {
+            var key = event.key;
 
-        if (event.repeat) return;
-
-        // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing, uppercase = counter-clockwise, lowercase = clockwise
-        if (key === 'f') rotateSide('f');
-        if (key === 'F') rotateSide('F');
-        if (key === 'b') rotateSide('b');
-        if (key === 'B') rotateSide('B');
-        if (key === 'u') rotateSide('u');
-        if (key === 'U') rotateSide('U');
-        if (key === 'd') rotateSide('d');
-        if (key === 'D') rotateSide('D');
-        if (key === 'l') rotateSide('l');
-        if (key === 'L') rotateSide('L');
-        if (key === 'r') rotateSide('r');
-        if (key === 'R') rotateSide('R');
-        if (key === 'm') rotateSide('m');
-        if (key === 'M') rotateSide('M');
-        if (key === 'e') rotateSide('e');
-        if (key === 'E') rotateSide('E');
-        if (key === 's') rotateSide('s');
-        if (key === 'S') rotateSide('S');
-        if (key === 'x') rotateSide('x');
-        if (key === 'X') rotateSide('X');
-        if (key === 'y') rotateSide('y');
-        if (key === 'Y') rotateSide('Y');
-        if (key === 'z') rotateSide('z');
-        if (key === 'Z') rotateSide('Z');
-    });
-
-    document.addEventListener('keydown', onDocumentKeyDown);
+            // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing, uppercase = counter-clockwise, lowercase = clockwise
+            if (key === 'f') rotateSide('f');
+            if (key === 'F') rotateSide('F');
+            if (key === 'b') rotateSide('b');
+            if (key === 'B') rotateSide('B');
+            if (key === 'u') rotateSide('u');
+            if (key === 'U') rotateSide('U');
+            if (key === 'd') rotateSide('d');
+            if (key === 'D') rotateSide('D');
+            if (key === 'l') rotateSide('l');
+            if (key === 'L') rotateSide('L');
+            if (key === 'r') rotateSide('r');
+            if (key === 'R') rotateSide('R');
+            if (key === 'm') rotateSide('m');
+            if (key === 'M') rotateSide('M');
+            if (key === 'e') rotateSide('e');
+            if (key === 'E') rotateSide('E');
+            if (key === 's') rotateSide('s');
+            if (key === 'S') rotateSide('S');
+            if (key === 'x') rotateSide('x');
+            if (key === 'X') rotateSide('X');
+            if (key === 'y') rotateSide('y');
+            if (key === 'Y') rotateSide('Y');
+            if (key === 'z') rotateSide('z');
+            if (key === 'Z') rotateSide('Z');
+        });
+    }, []);
 
     const renderCenterPieces = () => {
         return centerPiecesColors.map((color, index) => {
