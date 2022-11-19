@@ -1852,7 +1852,7 @@ export default function Cube3x3x3() {
                 break;
             }
             default:
-                return;
+                console.error('Invalid side');
         }
     };
 
@@ -1872,7 +1872,6 @@ export default function Cube3x3x3() {
     useEffect(() => {
         document.addEventListener('keyup', (event) => {
             var key = event.key;
-
             // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing, uppercase = counter-clockwise, lowercase = clockwise
             if (key === 'f') rotateSide('f');
             if (key === 'F') rotateSide('F');
