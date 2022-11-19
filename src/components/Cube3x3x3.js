@@ -1851,24 +1851,6 @@ export default function Cube3x3x3() {
 
                 break;
             }
-            case 'x': {
-                break;
-            }
-            case 'X': {
-                break;
-            }
-            case 'y': {
-                break;
-            }
-            case 'Y': {
-                break;
-            }
-            case 'z': {
-                break;
-            }
-            case 'Z': {
-                break;
-            }
             default:
                 return;
         }
@@ -1910,12 +1892,36 @@ export default function Cube3x3x3() {
             if (key === 'E') rotateSide('E');
             if (key === 's') rotateSide('s');
             if (key === 'S') rotateSide('S');
-            if (key === 'x') rotateSide('x');
-            if (key === 'X') rotateSide('X');
-            if (key === 'y') rotateSide('y');
-            if (key === 'Y') rotateSide('Y');
-            if (key === 'z') rotateSide('z');
-            if (key === 'Z') rotateSide('Z');
+            if (key === 'x') {
+                rotateSide('r');
+                rotateSide('L');
+                rotateSide('M');
+            }
+            if (key === 'X') {
+                rotateSide('R');
+                rotateSide('l');
+                rotateSide('m');
+            }
+            if (key === 'y') {
+                rotateSide('U');
+                rotateSide('d');
+                rotateSide('E');
+            }
+            if (key === 'Y') {
+                rotateSide('u');
+                rotateSide('D');
+                rotateSide('e');
+            }
+            if (key === 'z') {
+                rotateSide('f');
+                rotateSide('B');
+                rotateSide('s');
+            }
+            if (key === 'Z') {
+                rotateSide('F');
+                rotateSide('b');
+                rotateSide('S');
+            }
         });
     }, []);
 
