@@ -1570,9 +1570,97 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'm': {
+                for (let i = 0; i < 4; i++) {
+                    centerPiecesPositions.forEach((position, index) => {
+                        if (JSON.stringify(position) === JSON.stringify(SIDES.M.CENTERS.POSITIONS[i])) indexes[0][i] = index;
+                    });
+                    edgePiecesPositions.forEach((position, index) => {
+                        if (JSON.stringify(position) === JSON.stringify(SIDES.M.EDGES.POSITIONS[i])) indexes[1][i] = index;
+                    });
+                }
+                setCenterPiecesPositions((prevArr) => {
+                    let arr = [...prevArr];
+                    arr[indexes[0][0]] = prevArr[indexes[0][3]];
+                    arr[indexes[0][1]] = prevArr[indexes[0][2]];
+                    arr[indexes[0][2]] = prevArr[indexes[0][0]];
+                    arr[indexes[0][3]] = prevArr[indexes[0][1]];
+                    return arr;
+                });
+
+                setCenterPiecesRotations((prevArr) => {
+                    let arr = [...prevArr];
+                    arr[indexes[0][0]] = prevArr[indexes[0][3]];
+                    arr[indexes[0][1]] = prevArr[indexes[0][2]];
+                    arr[indexes[0][2]] = prevArr[indexes[0][0]];
+                    arr[indexes[0][3]] = prevArr[indexes[0][1]];
+                    return arr;
+                });
+
+                setEdgePiecesPositions((prevArr) => {
+                    let arr = [...prevArr];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][2]][1], prevArr[indexes[1][2]][0]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][0]][1], prevArr[indexes[1][0]][0]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][3]][1], prevArr[indexes[1][3]][0]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][1]][1], prevArr[indexes[1][1]][0]];
+                    return arr;
+                });
+
+                setEdgePiecesRotations((prevArr) => {
+                    let arr = [...prevArr];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][2]][1], prevArr[indexes[1][2]][0]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][0]][1], prevArr[indexes[1][0]][0]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][3]][1], prevArr[indexes[1][3]][0]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][1]][1], prevArr[indexes[1][1]][0]];
+                    return arr;
+                });
+
                 break;
             }
             case 'M': {
+                for (let i = 0; i < 4; i++) {
+                    centerPiecesPositions.forEach((position, index) => {
+                        if (JSON.stringify(position) === JSON.stringify(SIDES.M.CENTERS.POSITIONS[i])) indexes[0][i] = index;
+                    });
+                    edgePiecesPositions.forEach((position, index) => {
+                        if (JSON.stringify(position) === JSON.stringify(SIDES.M.EDGES.POSITIONS[i])) indexes[1][i] = index;
+                    });
+                }
+                setCenterPiecesPositions((prevArr) => {
+                    let arr = [...prevArr];
+                    arr[indexes[0][0]] = prevArr[indexes[0][2]];
+                    arr[indexes[0][1]] = prevArr[indexes[0][3]];
+                    arr[indexes[0][2]] = prevArr[indexes[0][1]];
+                    arr[indexes[0][3]] = prevArr[indexes[0][0]];
+                    return arr;
+                });
+
+                setCenterPiecesRotations((prevArr) => {
+                    let arr = [...prevArr];
+                    arr[indexes[0][0]] = prevArr[indexes[0][2]];
+                    arr[indexes[0][1]] = prevArr[indexes[0][3]];
+                    arr[indexes[0][2]] = prevArr[indexes[0][1]];
+                    arr[indexes[0][3]] = prevArr[indexes[0][0]];
+                    return arr;
+                });
+
+                setEdgePiecesPositions((prevArr) => {
+                    let arr = [...prevArr];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][1]][1], prevArr[indexes[1][1]][0]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][3]][1], prevArr[indexes[1][3]][0]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][0]][1], prevArr[indexes[1][0]][0]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][2]][1], prevArr[indexes[1][2]][0]];
+                    return arr;
+                });
+
+                setEdgePiecesRotations((prevArr) => {
+                    let arr = [...prevArr];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][1]][1], prevArr[indexes[1][1]][0]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][3]][1], prevArr[indexes[1][3]][0]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][0]][1], prevArr[indexes[1][0]][0]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][2]][1], prevArr[indexes[1][2]][0]];
+                    return arr;
+                });
+
                 break;
             }
             case 'e': {
