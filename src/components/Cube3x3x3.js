@@ -1002,14 +1002,49 @@ export default function Cube3x3x3() {
         // f b u d l r
         switch (side) {
             case 'f': {
-                for (let i = 0; i < 4; i++) {
+                /*
+                [ 1.5,  1, 1]         [ 1,  1, 1.5]         [ 1,  1.5, 1]
+                [-1.5,  1, 1]         [-1,  1, 1.5]         [-1,  1.5, 1]
+                [ 1.5, -1, 1]         [ 1, -1, 1.5]         [ 1, -1.5, 1]
+                [-1.5, -1, 1]         [-1, -1, 1.5]         [-1, -1.5, 1]
+                */
+
+                /*
+                [Math.PI / 2, 0, 0]     [0, Math.PI / 2, 0]     [0, 0, Math.PI / 2]
+                [Math.PI / 2, 0, 0]     [0, Math.PI / 2, 0]     [0, 0, Math.PI / 2]
+                [Math.PI / 2, 0, 0]     [0, Math.PI / 2, 0]     [0, 0, Math.PI / 2]
+                [Math.PI / 2, 0, 0]     [0, Math.PI / 2, 0]     [0, 0, Math.PI / 2]
+                */
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][2]) == 1 && JSON.stringify(position[1][2]) == 1.5 && JSON.stringify(position[2][2]) == 1)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                // 4 5 8 10
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][2]) == 1 && JSON.stringify(position[1][2]) == 1.5) ||
+                        (JSON.stringify(position[0][2]) == 1.5 && JSON.stringify(position[1][2]) == 1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
+                /* for (let i = 0; i < 4; i++) {
                     cornerPiecesPositions.forEach((position, index) => {
                         if (JSON.stringify(position) === JSON.stringify(SIDES.F.CORNERS.POSITIONS[i])) indexes[0][i] = index;
                     });
                     edgePiecesPositions.forEach((position, index) => {
                         if (JSON.stringify(position) === JSON.stringify(SIDES.F.EDGES.POSITIONS[i])) indexes[1][i] = index;
                     });
-                }
+                } */
 
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
