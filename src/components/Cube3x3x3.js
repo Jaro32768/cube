@@ -4,245 +4,258 @@ import EdgePiece from './EdgePiece';
 import CornerPiece from './CornerPiece';
 
 export default function Cube3x3x3() {
+    let moveTimeline = '';
     ////////////////////////////////////////////////////////////////
     //                                                            //
     // f = front, b = back, u = up, d = down, l = left, r = right //
     //                                                            //
     ////////////////////////////////////////////////////////////////
 
-    // f b u d l r
-    const [centerPiecesColors, setCenterPiecesColors] = useState(['#0f0', '#00f', '#fff', '#ff0', '#f00', '#f90']);
-    const [centerPiecesPositions, setCenterPiecesPositions] = useState([
-        [0, 0, 1.5],
-        [0, 0, -1.5],
-        [0, 1.5, 0],
-        [0, -1.5, 0],
-        [1.5, 0, 0],
-        [-1.5, 0, 0],
-    ]);
-    const [centerPiecesRotations, setCenterPiecesRotations] = useState([
-        [0, Math.PI / 2, 0],
-        [0, Math.PI / 2, 0],
-        [0, 0, Math.PI / 2],
-        [0, 0, Math.PI / 2],
-        [0, 0, 0],
-        [0, 0, 0],
-    ]);
+    const initValues = {
+        // f b u d l r
+        centerPiecesColors: ['#0f0', '#00f', '#fff', '#ff0', '#f00', '#f90'],
+        centerPiecesPositions: [
+            [0, 0, 1.5],
+            [0, 0, -1.5],
+            [0, 1.5, 0],
+            [0, -1.5, 0],
+            [1.5, 0, 0],
+            [-1.5, 0, 0],
+        ],
+        centerPiecesRotations: [
+            [0, Math.PI / 2, 0],
+            [0, Math.PI / 2, 0],
+            [0, 0, Math.PI / 2],
+            [0, 0, Math.PI / 2],
+            [0, 0, 0],
+            [0, 0, 0],
+        ],
 
-    // ru lu rd ld
-    // rf lf rb lb
-    // fu bu fd bd
-    const [edgePiecesColors, setEdgePiecesColors] = useState([
-        ['#f00', '#fff'],
-        ['#f90', '#fff'],
-        ['#f00', '#ff0'],
-        ['#f90', '#ff0'],
-        ['#f00', '#0f0'],
-        ['#f90', '#0f0'],
-        ['#f00', '#00f'],
-        ['#f90', '#00f'],
-        ['#0f0', '#fff'],
-        ['#00f', '#fff'],
-        ['#0f0', '#ff0'],
-        ['#00f', '#ff0'],
-    ]);
-    const [edgePiecesPositions, setEdgePiecesPositions] = useState([
-        [
-            [1.5, 1, 0],
-            [1, 1.5, 0],
+        // ru lu rd ld
+        // rf lf rb lb
+        // fu bu fd bd
+        edgePiecesColors: [
+            ['#f00', '#fff'],
+            ['#f90', '#fff'],
+            ['#f00', '#ff0'],
+            ['#f90', '#ff0'],
+            ['#f00', '#0f0'],
+            ['#f90', '#0f0'],
+            ['#f00', '#00f'],
+            ['#f90', '#00f'],
+            ['#0f0', '#fff'],
+            ['#00f', '#fff'],
+            ['#0f0', '#ff0'],
+            ['#00f', '#ff0'],
         ],
-        [
-            [-1.5, 1, 0],
-            [-1, 1.5, 0],
+        edgePiecesPositions: [
+            [
+                [1.5, 1, 0],
+                [1, 1.5, 0],
+            ],
+            [
+                [-1.5, 1, 0],
+                [-1, 1.5, 0],
+            ],
+            [
+                [1.5, -1, 0],
+                [1, -1.5, 0],
+            ],
+            [
+                [-1.5, -1, 0],
+                [-1, -1.5, 0],
+            ],
+            [
+                [1.5, 0, 1],
+                [1, 0, 1.5],
+            ],
+            [
+                [-1.5, 0, 1],
+                [-1, 0, 1.5],
+            ],
+            [
+                [1.5, 0, -1],
+                [1, 0, -1.5],
+            ],
+            [
+                [-1.5, 0, -1],
+                [-1, 0, -1.5],
+            ],
+            [
+                [0, 1, 1.5],
+                [0, 1.5, 1],
+            ],
+            [
+                [0, 1, -1.5],
+                [0, 1.5, -1],
+            ],
+            [
+                [0, -1, 1.5],
+                [0, -1.5, 1],
+            ],
+            [
+                [0, -1, -1.5],
+                [0, -1.5, -1],
+            ],
         ],
-        [
-            [1.5, -1, 0],
-            [1, -1.5, 0],
+        edgePiecesRotations: [
+            [
+                [0, 0, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, 0, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, 0, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, 0, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, 0, 0],
+                [0, Math.PI / 2, 0],
+            ],
+            [
+                [0, 0, 0],
+                [0, Math.PI / 2, 0],
+            ],
+            [
+                [0, 0, 0],
+                [0, Math.PI / 2, 0],
+            ],
+            [
+                [0, 0, 0],
+                [0, Math.PI / 2, 0],
+            ],
+            [
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
         ],
-        [
-            [-1.5, -1, 0],
-            [-1, -1.5, 0],
-        ],
-        [
-            [1.5, 0, 1],
-            [1, 0, 1.5],
-        ],
-        [
-            [-1.5, 0, 1],
-            [-1, 0, 1.5],
-        ],
-        [
-            [1.5, 0, -1],
-            [1, 0, -1.5],
-        ],
-        [
-            [-1.5, 0, -1],
-            [-1, 0, -1.5],
-        ],
-        [
-            [0, 1, 1.5],
-            [0, 1.5, 1],
-        ],
-        [
-            [0, 1, -1.5],
-            [0, 1.5, -1],
-        ],
-        [
-            [0, -1, 1.5],
-            [0, -1.5, 1],
-        ],
-        [
-            [0, -1, -1.5],
-            [0, -1.5, -1],
-        ],
-    ]);
-    const [edgePiecesRotations, setEdgePiecesRotations] = useState([
-        [
-            [0, 0, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [0, 0, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [0, 0, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [0, 0, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [0, 0, 0],
-            [0, Math.PI / 2, 0],
-        ],
-        [
-            [0, 0, 0],
-            [0, Math.PI / 2, 0],
-        ],
-        [
-            [0, 0, 0],
-            [0, Math.PI / 2, 0],
-        ],
-        [
-            [0, 0, 0],
-            [0, Math.PI / 2, 0],
-        ],
-        [
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-    ]);
 
-    // rfu lfu rfd lfd
-    // rbu lbu rbd lbd
-    const [cornerPiecesColors, setCornerPiecesColors] = useState([
-        ['#f00', '#0f0', '#fff'],
-        ['#f90', '#0f0', '#fff'],
-        ['#f00', '#0f0', '#ff0'],
-        ['#f90', '#0f0', '#ff0'],
-        ['#f00', '#00f', '#fff'],
-        ['#f90', '#00f', '#fff'],
-        ['#f00', '#00f', '#ff0'],
-        ['#f90', '#00f', '#ff0'],
-    ]);
-    const [cornerPiecesPositions, setCornerPiecesPositions] = useState([
-        [
-            [1.5, 1, 1],
-            [1, 1, 1.5],
-            [1, 1.5, 1],
+        // rfu lfu rfd lfd
+        // rbu lbu rbd lbd
+        cornerPiecesColors: [
+            ['#f00', '#0f0', '#fff'],
+            ['#f90', '#0f0', '#fff'],
+            ['#f00', '#0f0', '#ff0'],
+            ['#f90', '#0f0', '#ff0'],
+            ['#f00', '#00f', '#fff'],
+            ['#f90', '#00f', '#fff'],
+            ['#f00', '#00f', '#ff0'],
+            ['#f90', '#00f', '#ff0'],
         ],
-        [
-            [-1.5, 1, 1],
-            [-1, 1, 1.5],
-            [-1, 1.5, 1],
+        cornerPiecesPositions: [
+            [
+                [1.5, 1, 1],
+                [1, 1, 1.5],
+                [1, 1.5, 1],
+            ],
+            [
+                [-1.5, 1, 1],
+                [-1, 1, 1.5],
+                [-1, 1.5, 1],
+            ],
+            [
+                [1.5, -1, 1],
+                [1, -1, 1.5],
+                [1, -1.5, 1],
+            ],
+            [
+                [-1.5, -1, 1],
+                [-1, -1, 1.5],
+                [-1, -1.5, 1],
+            ],
+            [
+                [1.5, 1, -1],
+                [1, 1, -1.5],
+                [1, 1.5, -1],
+            ],
+            [
+                [-1.5, 1, -1],
+                [-1, 1, -1.5],
+                [-1, 1.5, -1],
+            ],
+            [
+                [1.5, -1, -1],
+                [1, -1, -1.5],
+                [1, -1.5, -1],
+            ],
+            [
+                [-1.5, -1, -1],
+                [-1, -1, -1.5],
+                [-1, -1.5, -1],
+            ],
         ],
-        [
-            [1.5, -1, 1],
-            [1, -1, 1.5],
-            [1, -1.5, 1],
+        cornerPiecesRotations: [
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
         ],
-        [
-            [-1.5, -1, 1],
-            [-1, -1, 1.5],
-            [-1, -1.5, 1],
-        ],
-        [
-            [1.5, 1, -1],
-            [1, 1, -1.5],
-            [1, 1.5, -1],
-        ],
-        [
-            [-1.5, 1, -1],
-            [-1, 1, -1.5],
-            [-1, 1.5, -1],
-        ],
-        [
-            [1.5, -1, -1],
-            [1, -1, -1.5],
-            [1, -1.5, -1],
-        ],
-        [
-            [-1.5, -1, -1],
-            [-1, -1, -1.5],
-            [-1, -1.5, -1],
-        ],
-    ]);
-    const [cornerPiecesRotations, setCornerPiecesRotations] = useState([
-        [
-            [Math.PI / 2, 0, 0],
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [Math.PI / 2, 0, 0],
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [Math.PI / 2, 0, 0],
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [Math.PI / 2, 0, 0],
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [Math.PI / 2, 0, 0],
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [Math.PI / 2, 0, 0],
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [Math.PI / 2, 0, 0],
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-        [
-            [Math.PI / 2, 0, 0],
-            [0, Math.PI / 2, 0],
-            [0, 0, Math.PI / 2],
-        ],
-    ]);
+    };
+
+    const [centerPiecesColors, setCenterPiecesColors] = useState(initValues.centerPiecesColors);
+    const [centerPiecesPositions, setCenterPiecesPositions] = useState(initValues.centerPiecesPositions);
+    const [centerPiecesRotations, setCenterPiecesRotations] = useState(initValues.centerPiecesRotations);
+    const [edgePiecesColors, setEdgePiecesColors] = useState(initValues.edgePiecesColors);
+    const [edgePiecesPositions, setEdgePiecesPositions] = useState(initValues.edgePiecesPositions);
+    const [edgePiecesRotations, setEdgePiecesRotations] = useState(initValues.edgePiecesRotations);
+    const [cornerPiecesColors, setCornerPiecesColors] = useState(initValues.cornerPiecesColors);
+    const [cornerPiecesPositions, setCornerPiecesPositions] = useState(initValues.cornerPiecesPositions);
+    const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
 
     // f b u d l r
 
@@ -993,7 +1006,28 @@ export default function Cube3x3x3() {
         return arr;
     }); */
 
+    // threejs and react don't like each other and that causes moves to run in reverse, this function reverses them back
+    const rotateSideNew = (side) => {
+        moveTimeline += side;
+        let newMoveTimeline = moveTimeline.split('').reverse().join('');
+
+        setCenterPiecesColors(initValues.centerPiecesColors);
+        setCenterPiecesPositions(initValues.centerPiecesPositions);
+        setCenterPiecesRotations(initValues.centerPiecesRotations);
+        setEdgePiecesColors(initValues.edgePiecesColors);
+        setEdgePiecesPositions(initValues.edgePiecesPositions);
+        setEdgePiecesRotations(initValues.edgePiecesRotations);
+        setCornerPiecesColors(initValues.cornerPiecesColors);
+        setCornerPiecesPositions(initValues.cornerPiecesPositions);
+        setCornerPiecesRotations(initValues.cornerPiecesRotations);
+
+        for (let i = 0; i < newMoveTimeline.length; i++) {
+            rotateSide(newMoveTimeline[i]);
+        }
+    };
+
     const rotateSide = (side) => {
+        console.log(side);
         let indexes = [
             [-1, -1, -1, -1],
             [-1, -1, -1, -1],
@@ -1239,37 +1273,37 @@ export default function Cube3x3x3() {
                 }
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
-                    arr[indexes[0][0]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
-                    arr[indexes[0][1]] = [prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0], prevArr[indexes[0][0]][2]];
-                    arr[indexes[0][2]] = [prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0], prevArr[indexes[0][3]][2]];
-                    arr[indexes[0][3]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
+                    arr[indexes[0][0]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
+                    arr[indexes[0][1]] = [prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0], prevArr[indexes[0][3]][2]];
+                    arr[indexes[0][2]] = [prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0], prevArr[indexes[0][0]][2]];
+                    arr[indexes[0][3]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
                     return arr;
                 });
 
                 setCornerPiecesRotations((prevArr) => {
                     let arr = [...prevArr];
-                    arr[indexes[0][0]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
-                    arr[indexes[0][1]] = [prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0], prevArr[indexes[0][0]][2]];
-                    arr[indexes[0][2]] = [prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0], prevArr[indexes[0][3]][2]];
-                    arr[indexes[0][3]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
+                    arr[indexes[0][0]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
+                    arr[indexes[0][1]] = [prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0], prevArr[indexes[0][3]][2]];
+                    arr[indexes[0][2]] = [prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0], prevArr[indexes[0][0]][2]];
+                    arr[indexes[0][3]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
                     return arr;
                 });
 
                 setEdgePiecesPositions((prevArr) => {
                     let arr = [...prevArr];
-                    arr[indexes[1][0]] = [prevArr[indexes[1][3]][0], prevArr[indexes[1][3]][1]];
-                    arr[indexes[1][1]] = [prevArr[indexes[1][2]][0], prevArr[indexes[1][2]][1]];
-                    arr[indexes[1][2]] = [prevArr[indexes[1][0]][0], prevArr[indexes[1][0]][1]];
-                    arr[indexes[1][3]] = [prevArr[indexes[1][1]][0], prevArr[indexes[1][1]][1]];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][2]][0], prevArr[indexes[1][2]][1]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][3]][0], prevArr[indexes[1][3]][1]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][1]][0], prevArr[indexes[1][1]][1]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][0]][0], prevArr[indexes[1][0]][1]];
                     return arr;
                 });
 
                 setEdgePiecesRotations((prevArr) => {
                     let arr = [...prevArr];
-                    arr[indexes[1][0]] = [prevArr[indexes[1][3]][0], prevArr[indexes[1][3]][1]];
-                    arr[indexes[1][1]] = [prevArr[indexes[1][2]][0], prevArr[indexes[1][2]][1]];
-                    arr[indexes[1][2]] = [prevArr[indexes[1][0]][0], prevArr[indexes[1][0]][1]];
-                    arr[indexes[1][3]] = [prevArr[indexes[1][1]][0], prevArr[indexes[1][1]][1]];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][2]][0], prevArr[indexes[1][2]][1]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][3]][0], prevArr[indexes[1][3]][1]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][1]][0], prevArr[indexes[1][1]][1]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][0]][0], prevArr[indexes[1][0]][1]];
                     return arr;
                 });
 
@@ -1286,37 +1320,37 @@ export default function Cube3x3x3() {
                 }
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
-                    arr[indexes[0][0]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
-                    arr[indexes[0][1]] = [prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0], prevArr[indexes[0][3]][2]];
-                    arr[indexes[0][2]] = [prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0], prevArr[indexes[0][0]][2]];
-                    arr[indexes[0][3]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
+                    arr[indexes[0][0]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
+                    arr[indexes[0][1]] = [prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0], prevArr[indexes[0][0]][2]];
+                    arr[indexes[0][2]] = [prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0], prevArr[indexes[0][3]][2]];
+                    arr[indexes[0][3]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
                     return arr;
                 });
 
                 setCornerPiecesRotations((prevArr) => {
                     let arr = [...prevArr];
-                    arr[indexes[0][0]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
-                    arr[indexes[0][1]] = [prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0], prevArr[indexes[0][3]][2]];
-                    arr[indexes[0][2]] = [prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0], prevArr[indexes[0][0]][2]];
-                    arr[indexes[0][3]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
+                    arr[indexes[0][0]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
+                    arr[indexes[0][1]] = [prevArr[indexes[0][0]][1], prevArr[indexes[0][0]][0], prevArr[indexes[0][0]][2]];
+                    arr[indexes[0][2]] = [prevArr[indexes[0][3]][1], prevArr[indexes[0][3]][0], prevArr[indexes[0][3]][2]];
+                    arr[indexes[0][3]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
                     return arr;
                 });
 
                 setEdgePiecesPositions((prevArr) => {
                     let arr = [...prevArr];
-                    arr[indexes[1][0]] = [prevArr[indexes[1][2]][0], prevArr[indexes[1][2]][1]];
-                    arr[indexes[1][1]] = [prevArr[indexes[1][3]][0], prevArr[indexes[1][3]][1]];
-                    arr[indexes[1][2]] = [prevArr[indexes[1][1]][0], prevArr[indexes[1][1]][1]];
-                    arr[indexes[1][3]] = [prevArr[indexes[1][0]][0], prevArr[indexes[1][0]][1]];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][3]][0], prevArr[indexes[1][3]][1]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][2]][0], prevArr[indexes[1][2]][1]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][0]][0], prevArr[indexes[1][0]][1]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][1]][0], prevArr[indexes[1][1]][1]];
                     return arr;
                 });
 
                 setEdgePiecesRotations((prevArr) => {
                     let arr = [...prevArr];
-                    arr[indexes[1][0]] = [prevArr[indexes[1][2]][0], prevArr[indexes[1][2]][1]];
-                    arr[indexes[1][1]] = [prevArr[indexes[1][3]][0], prevArr[indexes[1][3]][1]];
-                    arr[indexes[1][2]] = [prevArr[indexes[1][1]][0], prevArr[indexes[1][1]][1]];
-                    arr[indexes[1][3]] = [prevArr[indexes[1][0]][0], prevArr[indexes[1][0]][1]];
+                    arr[indexes[1][0]] = [prevArr[indexes[1][3]][0], prevArr[indexes[1][3]][1]];
+                    arr[indexes[1][1]] = [prevArr[indexes[1][2]][0], prevArr[indexes[1][2]][1]];
+                    arr[indexes[1][2]] = [prevArr[indexes[1][0]][0], prevArr[indexes[1][0]][1]];
+                    arr[indexes[1][3]] = [prevArr[indexes[1][1]][0], prevArr[indexes[1][1]][1]];
                     return arr;
                 });
 
@@ -1908,53 +1942,53 @@ export default function Cube3x3x3() {
         document.addEventListener('keyup', (event) => {
             var key = event.key;
             // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing, uppercase = counter-clockwise, lowercase = clockwise
-            if (key === 'f') rotateSide('f');
-            if (key === 'F') rotateSide('F');
-            if (key === 'b') rotateSide('b');
-            if (key === 'B') rotateSide('B');
-            if (key === 'u') rotateSide('u');
-            if (key === 'U') rotateSide('U');
-            if (key === 'd') rotateSide('d');
-            if (key === 'D') rotateSide('D');
-            if (key === 'l') rotateSide('l');
-            if (key === 'L') rotateSide('L');
-            if (key === 'r') rotateSide('r');
-            if (key === 'R') rotateSide('R');
-            if (key === 'm') rotateSide('m');
-            if (key === 'M') rotateSide('M');
-            if (key === 'e') rotateSide('e');
-            if (key === 'E') rotateSide('E');
-            if (key === 's') rotateSide('s');
-            if (key === 'S') rotateSide('S');
+            if (key === 'f') rotateSideNew('f');
+            if (key === 'F') rotateSideNew('F');
+            if (key === 'b') rotateSideNew('b');
+            if (key === 'B') rotateSideNew('B');
+            if (key === 'u') rotateSideNew('u');
+            if (key === 'U') rotateSideNew('U');
+            if (key === 'd') rotateSideNew('d');
+            if (key === 'D') rotateSideNew('D');
+            if (key === 'l') rotateSideNew('l');
+            if (key === 'L') rotateSideNew('L');
+            if (key === 'r') rotateSideNew('r');
+            if (key === 'R') rotateSideNew('R');
+            if (key === 'm') rotateSideNew('m');
+            if (key === 'M') rotateSideNew('M');
+            if (key === 'e') rotateSideNew('e');
+            if (key === 'E') rotateSideNew('E');
+            if (key === 's') rotateSideNew('s');
+            if (key === 'S') rotateSideNew('S');
             if (key === 'x') {
-                rotateSide('r');
-                rotateSide('L');
-                rotateSide('M');
+                rotateSideNew('r');
+                rotateSideNew('L');
+                rotateSideNew('M');
             }
             if (key === 'X') {
-                rotateSide('R');
-                rotateSide('l');
-                rotateSide('m');
+                rotateSideNew('R');
+                rotateSideNew('l');
+                rotateSideNew('m');
             }
             if (key === 'y') {
-                rotateSide('U');
-                rotateSide('d');
-                rotateSide('E');
+                rotateSideNew('U');
+                rotateSideNew('d');
+                rotateSideNew('E');
             }
             if (key === 'Y') {
-                rotateSide('u');
-                rotateSide('D');
-                rotateSide('e');
+                rotateSideNew('u');
+                rotateSideNew('D');
+                rotateSideNew('e');
             }
             if (key === 'z') {
-                rotateSide('f');
-                rotateSide('B');
-                rotateSide('s');
+                rotateSideNew('f');
+                rotateSideNew('B');
+                rotateSideNew('s');
             }
             if (key === 'Z') {
-                rotateSide('F');
-                rotateSide('b');
-                rotateSide('S');
+                rotateSideNew('F');
+                rotateSideNew('b');
+                rotateSideNew('S');
             }
         });
     }, []);
