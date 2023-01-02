@@ -1167,14 +1167,26 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'b': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.B.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.B.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][2]) == -1 && JSON.stringify(position[1][2]) == -1.5 && JSON.stringify(position[2][2]) == -1)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][2]) == -1 && JSON.stringify(position[1][2]) == -1.5) ||
+                        (JSON.stringify(position[0][2]) == -1.5 && JSON.stringify(position[1][2]) == -1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
 
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
@@ -1215,14 +1227,26 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'B': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.B.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.B.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][2]) == -1 && JSON.stringify(position[1][2]) == -1.5 && JSON.stringify(position[2][2]) == -1)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][2]) == -1 && JSON.stringify(position[1][2]) == -1.5) ||
+                        (JSON.stringify(position[0][2]) == -1.5 && JSON.stringify(position[1][2]) == -1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
 
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
@@ -1263,14 +1287,27 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'u': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.U.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.U.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][1]) == 1 && JSON.stringify(position[1][1]) == 1 && JSON.stringify(position[2][1]) == 1.5)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][1]) == 1 && JSON.stringify(position[1][1]) == 1.5) ||
+                        (JSON.stringify(position[0][1]) == 1.5 && JSON.stringify(position[1][1]) == 1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
@@ -1310,14 +1347,27 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'U': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.U.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.U.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][1]) == 1 && JSON.stringify(position[1][1]) == 1 && JSON.stringify(position[2][1]) == 1.5)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][1]) == 1 && JSON.stringify(position[1][1]) == 1.5) ||
+                        (JSON.stringify(position[0][1]) == 1.5 && JSON.stringify(position[1][1]) == 1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
@@ -1357,14 +1407,27 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'd': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.D.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.D.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][1]) == -1 && JSON.stringify(position[1][1]) == -1 && JSON.stringify(position[2][1]) == -1.5)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][1]) == -1 && JSON.stringify(position[1][1]) == -1.5) ||
+                        (JSON.stringify(position[0][1]) == -1.5 && JSON.stringify(position[1][1]) == -1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = [prevArr[indexes[0][1]][1], prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2]];
@@ -1404,14 +1467,27 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'D': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.D.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.D.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][1]) == -1 && JSON.stringify(position[1][1]) == -1 && JSON.stringify(position[2][1]) == -1.5)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][1]) == -1 && JSON.stringify(position[1][1]) == -1.5) ||
+                        (JSON.stringify(position[0][1]) == -1.5 && JSON.stringify(position[1][1]) == -1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = [prevArr[indexes[0][2]][1], prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2]];
@@ -1451,14 +1527,27 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'l': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.L.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.L.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][0]) == -1.5 && JSON.stringify(position[1][0]) == -1 && JSON.stringify(position[2][0]) == -1)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][0]) == -1 && JSON.stringify(position[1][0]) == -1.5) ||
+                        (JSON.stringify(position[0][0]) == -1.5 && JSON.stringify(position[1][0]) == -1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = [prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2], prevArr[indexes[0][1]][1]];
@@ -1498,14 +1587,27 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'L': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.L.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.L.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][0]) == -1.5 && JSON.stringify(position[1][0]) == -1 && JSON.stringify(position[2][0]) == -1)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][0]) == -1 && JSON.stringify(position[1][0]) == -1.5) ||
+                        (JSON.stringify(position[0][0]) == -1.5 && JSON.stringify(position[1][0]) == -1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = [prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2], prevArr[indexes[0][2]][1]];
@@ -1545,14 +1647,27 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'r': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.R.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.R.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][0]) == 1.5 && JSON.stringify(position[1][0]) == 1 && JSON.stringify(position[2][0]) == 1)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][0]) == 1 && JSON.stringify(position[1][0]) == 1.5) ||
+                        (JSON.stringify(position[0][0]) == 1.5 && JSON.stringify(position[1][0]) == 1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = [prevArr[indexes[0][2]][0], prevArr[indexes[0][2]][2], prevArr[indexes[0][2]][1]];
@@ -1592,14 +1707,27 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'R': {
-                for (let i = 0; i < 4; i++) {
-                    cornerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.R.CORNERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.R.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                cornerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][0]) == 1.5 && JSON.stringify(position[1][0]) == 1 && JSON.stringify(position[2][0]) == 1)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (
+                        (JSON.stringify(position[0][0]) == 1 && JSON.stringify(position[1][0]) == 1.5) ||
+                        (JSON.stringify(position[0][0]) == 1.5 && JSON.stringify(position[1][0]) == 1)
+                    )
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCornerPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = [prevArr[indexes[0][1]][0], prevArr[indexes[0][1]][2], prevArr[indexes[0][1]][1]];
@@ -1639,14 +1767,24 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'm': {
-                for (let i = 0; i < 4; i++) {
-                    centerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.M.CENTERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.M.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                centerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][0]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCenterPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = prevArr[indexes[0][3]];
@@ -1686,14 +1824,24 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'M': {
-                for (let i = 0; i < 4; i++) {
-                    centerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.M.CENTERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.M.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                centerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][0]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCenterPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = prevArr[indexes[0][2]];
@@ -1733,14 +1881,24 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'e': {
-                for (let i = 0; i < 4; i++) {
-                    centerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.E.CENTERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.E.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                centerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[1]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][1]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCenterPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = prevArr[indexes[0][2]];
@@ -1780,14 +1938,24 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'E': {
-                for (let i = 0; i < 4; i++) {
-                    centerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.E.CENTERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.E.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                centerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[1]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][1]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCenterPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = prevArr[indexes[0][3]];
@@ -1827,14 +1995,24 @@ export default function Cube3x3x3() {
                 break;
             }
             case 's': {
-                for (let i = 0; i < 4; i++) {
-                    centerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.S.CENTERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.S.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                centerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[2]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][2]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCenterPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = prevArr[indexes[0][2]];
@@ -1874,14 +2052,24 @@ export default function Cube3x3x3() {
                 break;
             }
             case 'S': {
-                for (let i = 0; i < 4; i++) {
-                    centerPiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.S.CENTERS.POSITIONS[i])) indexes[0][i] = index;
-                    });
-                    edgePiecesPositions.forEach((position, index) => {
-                        if (JSON.stringify(position) === JSON.stringify(SIDES.S.EDGES.POSITIONS[i])) indexes[1][i] = index;
-                    });
-                }
+                centerPiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[2]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[0][i] === -1) {
+                                indexes[0][i] = index;
+                                break;
+                            }
+                });
+
+                edgePiecesPositions.forEach((position, index) => {
+                    if (JSON.stringify(position[0][2]) == 0)
+                        for (let i = 0; i < 4; i++)
+                            if (indexes[1][i] === -1) {
+                                indexes[1][i] = index;
+                                break;
+                            }
+                });
+
                 setCenterPiecesPositions((prevArr) => {
                     let arr = [...prevArr];
                     arr[indexes[0][0]] = prevArr[indexes[0][3]];
