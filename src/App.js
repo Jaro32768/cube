@@ -17,7 +17,7 @@ function App() {
         });
     }, []);
     if (!isLoggedIn) {
-        return <LoginForm />;
+        return <LoginForm setIsLoggedIn={setIsLoggedIn} />;
     }
     return (
         <div className='canvas-container'>
