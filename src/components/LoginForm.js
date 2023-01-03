@@ -34,7 +34,7 @@ export default function LoginForm(props) {
                 </label>
                 <label>
                     Password:
-                    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type='current-password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
                 {error && <p>{error.message}</p>}
                 <button type='button' onClick={handleLogin}>
