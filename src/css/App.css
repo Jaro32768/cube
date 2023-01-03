@@ -5,9 +5,21 @@
 div .canvas-container {
     width: 99.8vw;
     height: 99.8vh;
-    margin: .1vh .1vw;
-    
+    margin: 0.1vh 0.1vw;
 }
 .canvas {
     background-color: black;
+}
+.logout-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1vh 1vw;
+    padding: 1vh 1vw;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

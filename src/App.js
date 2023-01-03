@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/App.css';
 import Cube3x3x3 from './components/Cube3x3x3';
 import { Canvas } from '@react-three/fiber';
@@ -9,9 +9,14 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    React.useEffect(() => {
+    const logoutClicked = () => {
+        firebase.auth().signOut();
+        setIsLoggedIn(false);
+    };
+
+    useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
             setIsLoggedIn(!!user);
         });
@@ -26,6 +31,10 @@ function App() {
                 <ambientLight intensity={0.5} />
                 <Cube3x3x3 />
             </Canvas>
+
+            <button className='logout-btn' onClick={logoutClicked}>
+                Logout
+            </button>
         </div>
     );
 }
