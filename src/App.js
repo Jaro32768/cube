@@ -41,6 +41,33 @@ function App() {
             <button className='logout-btn' onClick={logoutClicked}>
                 Logout
             </button>
+            <div className='toolbar'>
+                <button className='toolbar-btn'>F</button>
+                <button className='toolbar-btn'>U</button>
+                <button className='toolbar-btn'>B</button>
+                <button className='toolbar-btn'>D</button>
+                <button className='toolbar-btn'>R</button>
+                <button className='toolbar-btn'>L</button>
+                <button className='toolbar-btn'>M</button>
+                <button className='toolbar-btn'>E</button>
+                <button className='toolbar-btn'>S</button>
+                <button className='toolbar-btn'>x</button>
+                <button className='toolbar-btn'>y</button>
+                <button className='toolbar-btn'>z</button>
+
+                <button className='toolbar-btn'>F'</button>
+                <button className='toolbar-btn'>U'</button>
+                <button className='toolbar-btn'>B'</button>
+                <button className='toolbar-btn'>D'</button>
+                <button className='toolbar-btn'>R'</button>
+                <button className='toolbar-btn'>L'</button>
+                <button className='toolbar-btn'>M'</button>
+                <button className='toolbar-btn'>E'</button>
+                <button className='toolbar-btn'>S'</button>
+                <button className='toolbar-btn'>x'</button>
+                <button className='toolbar-btn'>y'</button>
+                <button className='toolbar-btn'>z'</button>
+            </div>
             <button className='info-btn' onClick={showInfo}>
                 i
             </button>
