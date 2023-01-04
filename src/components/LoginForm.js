@@ -27,23 +27,23 @@ export default function LoginForm(props) {
     };
     return (
         <>
-            <form class='login-form'>
-                <label class='login-label'>
+            <form className='login-form'>
+                <label className='login-label'>
                     Email:
-                    <input class='login-input' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input className='login-input' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
-                <label class='login-label'>
+                <label className='login-label'>
                     Password:
-                    <input class='login-input' type='current-password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input className='login-input' type='current-password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                {error && <p class='login-error'>{error.message}</p>}
-                <button class='login-button' type='button' onClick={handleLogin}>
+                {error && <p className='login-error'>{error.message}</p>}
+                <button className='login-button' type='button' onClick={handleLogin}>
                     Login
                 </button>
-                <button class='login-button' type='button' onClick={handleSignUp}>
+                <button className='login-button' type='button' onClick={handleSignUp}>
                     Sign Up
                 </button>
-                <button class='login-button secondary' type='button' onClick={() => props.setIsLoggedIn(true)}>
+                <button className='login-button secondary' type='button' onClick={() => props.setIsLoggedIn(true)}>
                     Continue as a guest
                 </button>
             </form>
