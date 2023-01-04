@@ -12,7 +12,7 @@
 }
 
 .alert-content {
-    background-color: white;
+    background-color: #333333;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -23,12 +23,14 @@
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #ffffff;
 }
 
 .alert-text {
     font-size: 14px;
     line-height: 1.5;
     margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .alert-buttons {
@@ -37,7 +39,7 @@
 }
 
 .alert-button {
-    background-color: #4caf50;
+    background-color: #2196f3;
     border: 0;
     border-radius: 3px;
     color: white;

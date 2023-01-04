@@ -8,7 +8,7 @@ div .canvas-container {
     margin: 0.1vh 0.1vw;
 }
 .canvas {
-    background-color: black;
+    background-color: #333333;
 }
 .logout-btn {
     position: absolute;

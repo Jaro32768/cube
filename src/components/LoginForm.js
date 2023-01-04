@@ -27,26 +27,26 @@ export default function LoginForm(props) {
     };
     return (
         <>
-            <form>
-                <label>
+            <form class='login-form'>
+                <label class='login-label'>
                     Email:
-                    <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input class='login-input' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
-                <label>
+                <label class='login-label'>
                     Password:
-                    <input type='current-password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input class='login-input' type='current-password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                {error && <p>{error.message}</p>}
-                <button type='button' onClick={handleLogin}>
+                {error && <p class='login-error'>{error.message}</p>}
+                <button class='login-button' type='button' onClick={handleLogin}>
                     Login
                 </button>
-                <button type='button' onClick={handleSignUp}>
+                <button class='login-button' type='button' onClick={handleSignUp}>
                     Sign Up
                 </button>
+                <button class='login-button secondary' type='button' onClick={() => props.setIsLoggedIn(true)}>
+                    Continue as a guest
+                </button>
             </form>
-            <button type='button' onClick={() => props.setIsLoggedIn(true)}>
-                Continue without logging in
-            </button>
         </>
     );
 }
