@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CenterPiece from './CenterPiece';
 import EdgePiece from './EdgePiece';
 import CornerPiece from './CornerPiece';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 
 export default function Cube3x3x3() {
     ////////////////////////////////////////////////////////////////
@@ -654,11 +656,134 @@ export default function Cube3x3x3() {
             );
         });
     };
+    const rotateSideNew = () => {};
     return (
         <>
-            {renderCenterPieces()}
-            {renderEdgePieces()}
-            {renderCornerPieces()}
+            <Canvas className='canvas'>
+                <OrbitControls enableZoom={false} enableDamping={false} enablePan={false} />
+                <ambientLight intensity={0.5} />
+                {renderCenterPieces()}
+                {renderEdgePieces()}
+                {renderCornerPieces()}
+            </Canvas>
+
+            <div className='toolbar'>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('f')}>
+                    F
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('u')}>
+                    U
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('b')}>
+                    B
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('d')}>
+                    D
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('r')}>
+                    R
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('l')}>
+                    L
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('m')}>
+                    M
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('e')}>
+                    E
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('s')}>
+                    S
+                </button>
+                <button
+                    className='toolbar-btn'
+                    onClick={() => {
+                        rotateSideNew('r');
+                        rotateSideNew('L');
+                        rotateSideNew('M');
+                    }}
+                >
+                    x
+                </button>
+                <button
+                    className='toolbar-btn'
+                    onClick={() => {
+                        rotateSideNew('U');
+                        rotateSideNew('d');
+                        rotateSideNew('e');
+                    }}
+                >
+                    y
+                </button>
+                <button
+                    className='toolbar-btn'
+                    onClick={() => {
+                        rotateSideNew('f');
+                        rotateSideNew('B');
+                        rotateSideNew('s');
+                    }}
+                >
+                    z
+                </button>
+
+                <button className='toolbar-btn' onClick={() => rotateSideNew('F')}>
+                    F'
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('U')}>
+                    U'
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('B')}>
+                    B'
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('D')}>
+                    D'
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('R')}>
+                    R'
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('L')}>
+                    L'
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('M')}>
+                    M'
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('E')}>
+                    E'
+                </button>
+                <button className='toolbar-btn' onClick={() => rotateSideNew('S')}>
+                    S'
+                </button>
+                <button
+                    className='toolbar-btn'
+                    onClick={() => {
+                        rotateSideNew('R');
+                        rotateSideNew('l');
+                        rotateSideNew('m');
+                    }}
+                >
+                    x'
+                </button>
+                <button
+                    className='toolbar-btn'
+                    onClick={() => {
+                        rotateSideNew('u');
+                        rotateSideNew('D');
+                        rotateSideNew('E');
+                    }}
+                >
+                    y'
+                </button>
+                <button
+                    className='toolbar-btn'
+                    onClick={() => {
+                        rotateSideNew('F');
+                        rotateSideNew('b');
+                        rotateSideNew('S');
+                    }}
+                >
+                    z'
+                </button>
+            </div>
         </>
     );
 }
