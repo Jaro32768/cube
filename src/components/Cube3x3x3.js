@@ -258,6 +258,32 @@ export default function Cube3x3x3() {
     const [cornerPiecesPositions, setCornerPiecesPositions] = useState(initValues.cornerPiecesPositions);
     const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
     let moveTimeline = '';
+    const buttons = [
+        { label: 'F', arg: 'f' },
+        { label: 'U', arg: 'u' },
+        { label: 'B', arg: 'b' },
+        { label: 'D', arg: 'd' },
+        { label: 'R', arg: 'r' },
+        { label: 'L', arg: 'l' },
+        { label: 'M', arg: 'm' },
+        { label: 'E', arg: 'e' },
+        { label: 'S', arg: 's' },
+        { label: 'x', arg: 'rLM' },
+        { label: 'y', arg: 'uDE' },
+        { label: 'z', arg: 'fBs' },
+        { label: "F'", arg: 'F' },
+        { label: "U'", arg: 'U' },
+        { label: "B'", arg: 'B' },
+        { label: "D'", arg: 'D' },
+        { label: "R'", arg: 'R' },
+        { label: "L'", arg: 'L' },
+        { label: "M'", arg: 'M' },
+        { label: "E'", arg: 'E' },
+        { label: "S'", arg: 'S' },
+        { label: "x'", arg: 'Rlm' },
+        { label: "y'", arg: 'Ude' },
+        { label: "z'", arg: 'FbS' },
+    ];
 
     useEffect(() => {
         let timeout = null;
@@ -679,121 +705,17 @@ export default function Cube3x3x3() {
             </Canvas>
 
             <div className='toolbar'>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('f')}>
-                    F
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('u')}>
-                    U
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('b')}>
-                    B
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('d')}>
-                    D
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('r')}>
-                    R
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('l')}>
-                    L
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('m')}>
-                    M
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('e')}>
-                    E
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('s')}>
-                    S
-                </button>
-                <button
-                    className='toolbar-btn'
-                    onClick={() => {
-                        handleToolbarClick('r');
-                        handleToolbarClick('L');
-                        handleToolbarClick('M');
-                    }}
-                >
-                    x
-                </button>
-                <button
-                    className='toolbar-btn'
-                    onClick={() => {
-                        handleToolbarClick('U');
-                        handleToolbarClick('d');
-                        handleToolbarClick('e');
-                    }}
-                >
-                    y
-                </button>
-                <button
-                    className='toolbar-btn'
-                    onClick={() => {
-                        handleToolbarClick('f');
-                        handleToolbarClick('B');
-                        handleToolbarClick('s');
-                    }}
-                >
-                    z
-                </button>
-
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('F')}>
-                    F'
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('U')}>
-                    U'
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('B')}>
-                    B'
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('D')}>
-                    D'
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('R')}>
-                    R'
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('L')}>
-                    L'
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('M')}>
-                    M'
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('E')}>
-                    E'
-                </button>
-                <button className='toolbar-btn' onClick={() => handleToolbarClick('S')}>
-                    S'
-                </button>
-                <button
-                    className='toolbar-btn'
-                    onClick={() => {
-                        handleToolbarClick('R');
-                        handleToolbarClick('l');
-                        handleToolbarClick('m');
-                    }}
-                >
-                    x'
-                </button>
-                <button
-                    className='toolbar-btn'
-                    onClick={() => {
-                        handleToolbarClick('u');
-                        handleToolbarClick('D');
-                        handleToolbarClick('E');
-                    }}
-                >
-                    y'
-                </button>
-                <button
-                    className='toolbar-btn'
-                    onClick={() => {
-                        handleToolbarClick('F');
-                        handleToolbarClick('b');
-                        handleToolbarClick('S');
-                    }}
-                >
-                    z'
-                </button>
+                {buttons.map(({ label, arg }) => (
+                    <button
+                        key={arg}
+                        className='toolbar-btn'
+                        onClick={() => {
+                            arg.split('').forEach((char) => handleToolbarClick(char));
+                        }}
+                    >
+                        {label}
+                    </button>
+                ))}
             </div>
         </>
     );
