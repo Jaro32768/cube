@@ -288,56 +288,37 @@ export default function Cube3x3x3() {
     useEffect(() => {
         let timeout = null;
 
+        const keyMap = {
+            f: 'f',
+            F: 'F',
+            b: 'b',
+            B: 'B',
+            u: 'u',
+            U: 'U',
+            d: 'd',
+            D: 'D',
+            l: 'l',
+            L: 'L',
+            r: 'r',
+            R: 'R',
+            m: 'm',
+            M: 'M',
+            e: 'e',
+            E: 'E',
+            s: 's',
+            S: 'S',
+            x: 'rLM',
+            X: 'Rlm',
+            y: 'uDE',
+            Y: 'Ude',
+            z: 'fBs',
+            Z: 'FbS',
+        };
+
         const handleKeyUp = (event) => {
             var key = event.key;
-            // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing, uppercase = counter-clockwise, lowercase = clockwise
-            if (key === 'f') rotateSideNew('f');
-            if (key === 'F') rotateSideNew('F');
-            if (key === 'b') rotateSideNew('b');
-            if (key === 'B') rotateSideNew('B');
-            if (key === 'u') rotateSideNew('u');
-            if (key === 'U') rotateSideNew('U');
-            if (key === 'd') rotateSideNew('d');
-            if (key === 'D') rotateSideNew('D');
-            if (key === 'l') rotateSideNew('l');
-            if (key === 'L') rotateSideNew('L');
-            if (key === 'r') rotateSideNew('r');
-            if (key === 'R') rotateSideNew('R');
-            if (key === 'm') rotateSideNew('m');
-            if (key === 'M') rotateSideNew('M');
-            if (key === 'e') rotateSideNew('e');
-            if (key === 'E') rotateSideNew('E');
-            if (key === 's') rotateSideNew('s');
-            if (key === 'S') rotateSideNew('S');
-            if (key === 'x') {
-                rotateSideNew('r');
-                rotateSideNew('L');
-                rotateSideNew('M');
-            }
-            if (key === 'X') {
-                rotateSideNew('R');
-                rotateSideNew('l');
-                rotateSideNew('m');
-            }
-            if (key === 'y') {
-                rotateSideNew('U');
-                rotateSideNew('d');
-                rotateSideNew('e');
-            }
-            if (key === 'Y') {
-                rotateSideNew('u');
-                rotateSideNew('D');
-                rotateSideNew('E');
-            }
-            if (key === 'z') {
-                rotateSideNew('f');
-                rotateSideNew('B');
-                rotateSideNew('s');
-            }
-            if (key === 'Z') {
-                rotateSideNew('F');
-                rotateSideNew('b');
-                rotateSideNew('S');
+            if (keyMap[key]) {
+                keyMap[key].split('').forEach((char) => rotateSideNew(char));
             }
             if (timeout) return;
             timeout = setTimeout(() => {
