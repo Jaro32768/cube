@@ -257,11 +257,12 @@ export default function Cube3x3x3() {
     const [cornerPiecesColors, setCornerPiecesColors] = useState(initValues.cornerPiecesColors);
     const [cornerPiecesPositions, setCornerPiecesPositions] = useState(initValues.cornerPiecesPositions);
     const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
+    let moveTimeline = '';
 
     useEffect(() => {
-        let moveTimeline = '';
+        let timeout = null;
 
-        document.addEventListener('keyup', (event) => {
+        const handleKeyUp = (event) => {
             var key = event.key;
             // f = front, b = back, u = up, d = down, l = left, r = right, m = middle, e = equator , s = standing, uppercase = counter-clockwise, lowercase = clockwise
             if (key === 'f') rotateSideNew('f');
@@ -312,309 +313,320 @@ export default function Cube3x3x3() {
                 rotateSideNew('b');
                 rotateSideNew('S');
             }
-        });
-
-        // threejs and react don't like each other and that causes moves to run in reverse, this function reverses them back
-        const rotateSideNew = (side) => {
-            moveTimeline += side;
-            let newMoveTimeline = moveTimeline.split('').reverse().join('');
-
-            setCenterPiecesColors(initValues.centerPiecesColors);
-            setCenterPiecesPositions(initValues.centerPiecesPositions);
-            setCenterPiecesRotations(initValues.centerPiecesRotations);
-            setEdgePiecesColors(initValues.edgePiecesColors);
-            setEdgePiecesPositions(initValues.edgePiecesPositions);
-            setEdgePiecesRotations(initValues.edgePiecesRotations);
-            setCornerPiecesColors(initValues.cornerPiecesColors);
-            setCornerPiecesPositions(initValues.cornerPiecesPositions);
-            setCornerPiecesRotations(initValues.cornerPiecesRotations);
-
-            for (let i = 0; i < newMoveTimeline.length; i++) {
-                rotateSide(newMoveTimeline[i]);
-            }
+            if (timeout) return;
+            timeout = setTimeout(() => {
+                timeout = null;
+            }, 1);
         };
 
-        const getCornerPiecesIndexes = (sharedIndex, values) => {
-            let indexes = [-1, -1, -1, -1];
-
-            cornerPiecesPositions.forEach((position, index) => {
-                if (
-                    Number(JSON.stringify(position[0][sharedIndex])) === values[0] &&
-                    Number(JSON.stringify(position[1][sharedIndex])) === values[1] &&
-                    Number(JSON.stringify(position[2][sharedIndex])) === values[2]
-                )
-                    for (let i = 0; i < 4; i++)
-                        if (indexes[i] === -1) {
-                            indexes[i] = index;
-                            break;
-                        }
-            });
-            return indexes;
-        };
-
-        const getEdgePiecesIndexes = (sharedIndex, values) => {
-            let indexes = [-1, -1, -1, -1];
-
-            edgePiecesPositions.forEach((position, index) => {
-                if (
-                    (Number(JSON.stringify(position[0][sharedIndex])) === values[0] && Number(JSON.stringify(position[1][sharedIndex])) === values[1]) ||
-                    (Number(JSON.stringify(position[0][sharedIndex])) === values[1] && Number(JSON.stringify(position[1][sharedIndex])) === values[0])
-                )
-                    for (let i = 0; i < 4; i++)
-                        if (indexes[i] === -1) {
-                            indexes[i] = index;
-                            break;
-                        }
-            });
-            return indexes;
-        };
-
-        const getCenterPiecesIndexes = (sharedIndex, values) => {
-            let indexes = [-1, -1, -1, -1];
-
-            centerPiecesPositions.forEach((position, index) => {
-                if (Number(JSON.stringify(position[sharedIndex])) === values)
-                    for (let i = 0; i < 4; i++)
-                        if (indexes[i] === -1) {
-                            indexes[i] = index;
-                            break;
-                        }
-            });
-            return indexes;
-        };
-
-        const updateCornerPieces = (indexes, sharedIndex, oldPositionIndexes, lastIndexes) => {
-            setCornerPiecesPositions((prevArr) => {
-                let arr = [...prevArr];
-                arr[indexes[sharedIndex][0]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[1]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[2]],
-                ];
-                arr[indexes[sharedIndex][1]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[1]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[2]],
-                ];
-                arr[indexes[sharedIndex][2]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[1]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[2]],
-                ];
-                arr[indexes[sharedIndex][3]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[1]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[2]],
-                ];
-                return arr;
-            });
-            setCornerPiecesRotations((prevArr) => {
-                let arr = [...prevArr];
-                arr[indexes[sharedIndex][0]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[1]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[2]],
-                ];
-                arr[indexes[sharedIndex][1]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[1]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[2]],
-                ];
-                arr[indexes[sharedIndex][2]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[1]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[2]],
-                ];
-                arr[indexes[sharedIndex][3]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[1]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[2]],
-                ];
-                return arr;
-            });
-        };
-
-        const updateEdgePieces = (indexes, sharedIndex, oldPositionIndexes, lastIndexes) => {
-            setEdgePiecesPositions((prevArr) => {
-                let arr = [...prevArr];
-                arr[indexes[sharedIndex][0]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[1]],
-                ];
-                arr[indexes[sharedIndex][1]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[1]],
-                ];
-                arr[indexes[sharedIndex][2]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[1]],
-                ];
-                arr[indexes[sharedIndex][3]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[1]],
-                ];
-                return arr;
-            });
-            setEdgePiecesRotations((prevArr) => {
-                let arr = [...prevArr];
-                arr[indexes[sharedIndex][0]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[1]],
-                ];
-                arr[indexes[sharedIndex][1]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[1]],
-                ];
-                arr[indexes[sharedIndex][2]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[1]],
-                ];
-                arr[indexes[sharedIndex][3]] = [
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[0]],
-                    prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[1]],
-                ];
-                return arr;
-            });
-        };
-
-        const updateCenterPieces = (indexes, sharedIndex, oldPositionIndexes) => {
-            setCenterPiecesPositions((prevArr) => {
-                let arr = [...prevArr];
-                arr[indexes[sharedIndex][0]] = prevArr[indexes[sharedIndex][oldPositionIndexes[0]]];
-                arr[indexes[sharedIndex][1]] = prevArr[indexes[sharedIndex][oldPositionIndexes[1]]];
-                arr[indexes[sharedIndex][2]] = prevArr[indexes[sharedIndex][oldPositionIndexes[2]]];
-                arr[indexes[sharedIndex][3]] = prevArr[indexes[sharedIndex][oldPositionIndexes[3]]];
-                return arr;
-            });
-            setCenterPiecesRotations((prevArr) => {
-                let arr = [...prevArr];
-                arr[indexes[sharedIndex][0]] = prevArr[indexes[sharedIndex][oldPositionIndexes[0]]];
-                arr[indexes[sharedIndex][1]] = prevArr[indexes[sharedIndex][oldPositionIndexes[1]]];
-                arr[indexes[sharedIndex][2]] = prevArr[indexes[sharedIndex][oldPositionIndexes[2]]];
-                arr[indexes[sharedIndex][3]] = prevArr[indexes[sharedIndex][oldPositionIndexes[3]]];
-                return arr;
-            });
-        };
-
-        const rotateSide = (side) => {
-            let indexes = [
-                [-1, -1, -1, -1],
-                [-1, -1, -1, -1],
-            ];
-
-            switch (String(side).toLowerCase()) {
-                case 'f': {
-                    indexes = [getCornerPiecesIndexes(2, [1, 1.5, 1]), getEdgePiecesIndexes(2, [1, 1.5])];
-                    break;
-                }
-                case 'b': {
-                    indexes = [getCornerPiecesIndexes(2, [-1, -1.5, -1]), getEdgePiecesIndexes(2, [-1, -1.5])];
-                    break;
-                }
-                case 'u': {
-                    indexes = [getCornerPiecesIndexes(1, [1, 1, 1.5]), getEdgePiecesIndexes(1, [1, 1.5])];
-                    break;
-                }
-                case 'd': {
-                    indexes = [getCornerPiecesIndexes(1, [-1, -1, -1.5]), getEdgePiecesIndexes(1, [-1, -1.5])];
-                    break;
-                }
-                case 'l': {
-                    indexes = [getCornerPiecesIndexes(0, [-1.5, -1, -1]), getEdgePiecesIndexes(0, [-1, -1.5])];
-                    break;
-                }
-                case 'r': {
-                    indexes = [getCornerPiecesIndexes(0, [1.5, 1, 1]), getEdgePiecesIndexes(0, [1, 1.5])];
-                    break;
-                }
-                case 'm': {
-                    indexes = [getCenterPiecesIndexes(0, 0), getEdgePiecesIndexes(0, [0, 0])];
-                    break;
-                }
-                case 'e': {
-                    indexes = [getCenterPiecesIndexes(1, 0), getEdgePiecesIndexes(1, [0, 0])];
-                    break;
-                }
-                case 's': {
-                    indexes = [getCenterPiecesIndexes(2, 0), getEdgePiecesIndexes(2, [0, 0])];
-                    break;
-                }
-                default:
-                    console.error('Invalid side');
-            }
-
-            switch (side) {
-                case 'f':
-                case 'B': {
-                    updateCornerPieces(indexes, 0, [2, 0, 3, 1], [2, 1, 0]);
-                    updateEdgePieces(indexes, 1, [3, 2, 0, 1], [1, 0]);
-                    break;
-                }
-                case 'b':
-                case 'F': {
-                    updateCornerPieces(indexes, 0, [1, 3, 0, 2], [2, 1, 0]);
-                    updateEdgePieces(indexes, 1, [2, 3, 1, 0], [1, 0]);
-                    break;
-                }
-                case 'u':
-                case 'D': {
-                    updateCornerPieces(indexes, 0, [1, 3, 0, 2], [1, 0, 2]);
-                    updateEdgePieces(indexes, 1, [2, 3, 1, 0], [0, 1]);
-                    break;
-                }
-                case 'U':
-                case 'd': {
-                    updateCornerPieces(indexes, 0, [2, 0, 3, 1], [1, 0, 2]);
-                    updateEdgePieces(indexes, 1, [3, 2, 0, 1], [0, 1]);
-                    break;
-                }
-                case 'l':
-                case 'R': {
-                    updateCornerPieces(indexes, 0, [1, 3, 0, 2], [0, 2, 1]);
-                    updateEdgePieces(indexes, 1, [2, 3, 1, 0], [0, 1]);
-                    break;
-                }
-                case 'L':
-                case 'r': {
-                    updateCornerPieces(indexes, 0, [2, 0, 3, 1], [0, 2, 1]);
-                    updateEdgePieces(indexes, 1, [3, 2, 0, 1], [0, 1]);
-                    break;
-                }
-                case 'm': {
-                    updateCenterPieces(indexes, 0, [3, 2, 0, 1]);
-                    updateEdgePieces(indexes, 1, [2, 0, 3, 1], [1, 0]);
-                    break;
-                }
-                case 'M': {
-                    updateCenterPieces(indexes, 0, [2, 3, 1, 0]);
-                    updateEdgePieces(indexes, 1, [1, 3, 0, 2], [1, 0]);
-                    break;
-                }
-                case 'e': {
-                    updateCenterPieces(indexes, 0, [2, 3, 1, 0]);
-                    updateEdgePieces(indexes, 1, [2, 0, 3, 1], [1, 0]);
-                    break;
-                }
-                case 'E': {
-                    updateCenterPieces(indexes, 0, [3, 2, 0, 1]);
-                    updateEdgePieces(indexes, 1, [1, 3, 0, 2], [1, 0]);
-                    break;
-                }
-                case 's': {
-                    updateCenterPieces(indexes, 0, [2, 3, 1, 0]);
-                    updateEdgePieces(indexes, 1, [2, 0, 3, 1], [1, 0]);
-                    break;
-                }
-                case 'S': {
-                    updateCenterPieces(indexes, 0, [3, 2, 0, 1]);
-                    updateEdgePieces(indexes, 1, [1, 3, 0, 2], [1, 0]);
-                    break;
-                }
-                default:
-                    console.error('Invalid side');
-            }
-        };
+        document.addEventListener('keyup', handleKeyUp, []);
+        return () => document.removeEventListener('keyup', handleKeyUp);
     }, []);
+
+    // threejs and react don't like each other and that causes moves to run in reverse, this function reverses them back
+    const rotateSideNew = (side) => {
+        moveTimeline += side;
+        let newMoveTimeline = moveTimeline.split('').reverse().join('');
+
+        setCenterPiecesColors(initValues.centerPiecesColors);
+        setCenterPiecesPositions(initValues.centerPiecesPositions);
+        setCenterPiecesRotations(initValues.centerPiecesRotations);
+        setEdgePiecesColors(initValues.edgePiecesColors);
+        setEdgePiecesPositions(initValues.edgePiecesPositions);
+        setEdgePiecesRotations(initValues.edgePiecesRotations);
+        setCornerPiecesColors(initValues.cornerPiecesColors);
+        setCornerPiecesPositions(initValues.cornerPiecesPositions);
+        setCornerPiecesRotations(initValues.cornerPiecesRotations);
+
+        for (let i = 0; i < newMoveTimeline.length; i++) {
+            rotateSide(newMoveTimeline[i]);
+        }
+    };
+
+    const getCornerPiecesIndexes = (sharedIndex, values) => {
+        let indexes = [-1, -1, -1, -1];
+
+        cornerPiecesPositions.forEach((position, index) => {
+            if (
+                Number(JSON.stringify(position[0][sharedIndex])) === values[0] &&
+                Number(JSON.stringify(position[1][sharedIndex])) === values[1] &&
+                Number(JSON.stringify(position[2][sharedIndex])) === values[2]
+            )
+                for (let i = 0; i < 4; i++)
+                    if (indexes[i] === -1) {
+                        indexes[i] = index;
+                        break;
+                    }
+        });
+        return indexes;
+    };
+
+    const getEdgePiecesIndexes = (sharedIndex, values) => {
+        let indexes = [-1, -1, -1, -1];
+
+        edgePiecesPositions.forEach((position, index) => {
+            if (
+                (Number(JSON.stringify(position[0][sharedIndex])) === values[0] && Number(JSON.stringify(position[1][sharedIndex])) === values[1]) ||
+                (Number(JSON.stringify(position[0][sharedIndex])) === values[1] && Number(JSON.stringify(position[1][sharedIndex])) === values[0])
+            )
+                for (let i = 0; i < 4; i++)
+                    if (indexes[i] === -1) {
+                        indexes[i] = index;
+                        break;
+                    }
+        });
+        return indexes;
+    };
+
+    const getCenterPiecesIndexes = (sharedIndex, values) => {
+        let indexes = [-1, -1, -1, -1];
+
+        centerPiecesPositions.forEach((position, index) => {
+            if (Number(JSON.stringify(position[sharedIndex])) === values)
+                for (let i = 0; i < 4; i++)
+                    if (indexes[i] === -1) {
+                        indexes[i] = index;
+                        break;
+                    }
+        });
+        return indexes;
+    };
+
+    const updateCornerPieces = (indexes, sharedIndex, oldPositionIndexes, lastIndexes) => {
+        setCornerPiecesPositions((prevArr) => {
+            let arr = [...prevArr];
+            arr[indexes[sharedIndex][0]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[1]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[2]],
+            ];
+            arr[indexes[sharedIndex][1]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[1]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[2]],
+            ];
+            arr[indexes[sharedIndex][2]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[1]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[2]],
+            ];
+            arr[indexes[sharedIndex][3]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[1]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[2]],
+            ];
+            return arr;
+        });
+        setCornerPiecesRotations((prevArr) => {
+            let arr = [...prevArr];
+            arr[indexes[sharedIndex][0]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[1]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[2]],
+            ];
+            arr[indexes[sharedIndex][1]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[1]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[2]],
+            ];
+            arr[indexes[sharedIndex][2]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[1]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[2]],
+            ];
+            arr[indexes[sharedIndex][3]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[1]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[2]],
+            ];
+            return arr;
+        });
+    };
+
+    const updateEdgePieces = (indexes, sharedIndex, oldPositionIndexes, lastIndexes) => {
+        setEdgePiecesPositions((prevArr) => {
+            let arr = [...prevArr];
+            arr[indexes[sharedIndex][0]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[1]],
+            ];
+            arr[indexes[sharedIndex][1]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[1]],
+            ];
+            arr[indexes[sharedIndex][2]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[1]],
+            ];
+            arr[indexes[sharedIndex][3]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[1]],
+            ];
+            return arr;
+        });
+        setEdgePiecesRotations((prevArr) => {
+            let arr = [...prevArr];
+            arr[indexes[sharedIndex][0]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[0]]][lastIndexes[1]],
+            ];
+            arr[indexes[sharedIndex][1]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[1]]][lastIndexes[1]],
+            ];
+            arr[indexes[sharedIndex][2]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[2]]][lastIndexes[1]],
+            ];
+            arr[indexes[sharedIndex][3]] = [
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[0]],
+                prevArr[indexes[sharedIndex][oldPositionIndexes[3]]][lastIndexes[1]],
+            ];
+            return arr;
+        });
+    };
+
+    const updateCenterPieces = (indexes, sharedIndex, oldPositionIndexes) => {
+        setCenterPiecesPositions((prevArr) => {
+            let arr = [...prevArr];
+            arr[indexes[sharedIndex][0]] = prevArr[indexes[sharedIndex][oldPositionIndexes[0]]];
+            arr[indexes[sharedIndex][1]] = prevArr[indexes[sharedIndex][oldPositionIndexes[1]]];
+            arr[indexes[sharedIndex][2]] = prevArr[indexes[sharedIndex][oldPositionIndexes[2]]];
+            arr[indexes[sharedIndex][3]] = prevArr[indexes[sharedIndex][oldPositionIndexes[3]]];
+            return arr;
+        });
+        setCenterPiecesRotations((prevArr) => {
+            let arr = [...prevArr];
+            arr[indexes[sharedIndex][0]] = prevArr[indexes[sharedIndex][oldPositionIndexes[0]]];
+            arr[indexes[sharedIndex][1]] = prevArr[indexes[sharedIndex][oldPositionIndexes[1]]];
+            arr[indexes[sharedIndex][2]] = prevArr[indexes[sharedIndex][oldPositionIndexes[2]]];
+            arr[indexes[sharedIndex][3]] = prevArr[indexes[sharedIndex][oldPositionIndexes[3]]];
+            return arr;
+        });
+    };
+
+    const rotateSide = (side) => {
+        let indexes = [
+            [-1, -1, -1, -1],
+            [-1, -1, -1, -1],
+        ];
+
+        switch (String(side).toLowerCase()) {
+            case 'f': {
+                indexes = [getCornerPiecesIndexes(2, [1, 1.5, 1]), getEdgePiecesIndexes(2, [1, 1.5])];
+                break;
+            }
+            case 'b': {
+                indexes = [getCornerPiecesIndexes(2, [-1, -1.5, -1]), getEdgePiecesIndexes(2, [-1, -1.5])];
+                break;
+            }
+            case 'u': {
+                indexes = [getCornerPiecesIndexes(1, [1, 1, 1.5]), getEdgePiecesIndexes(1, [1, 1.5])];
+                break;
+            }
+            case 'd': {
+                indexes = [getCornerPiecesIndexes(1, [-1, -1, -1.5]), getEdgePiecesIndexes(1, [-1, -1.5])];
+                break;
+            }
+            case 'l': {
+                indexes = [getCornerPiecesIndexes(0, [-1.5, -1, -1]), getEdgePiecesIndexes(0, [-1, -1.5])];
+                break;
+            }
+            case 'r': {
+                indexes = [getCornerPiecesIndexes(0, [1.5, 1, 1]), getEdgePiecesIndexes(0, [1, 1.5])];
+                break;
+            }
+            case 'm': {
+                indexes = [getCenterPiecesIndexes(0, 0), getEdgePiecesIndexes(0, [0, 0])];
+                break;
+            }
+            case 'e': {
+                indexes = [getCenterPiecesIndexes(1, 0), getEdgePiecesIndexes(1, [0, 0])];
+                break;
+            }
+            case 's': {
+                indexes = [getCenterPiecesIndexes(2, 0), getEdgePiecesIndexes(2, [0, 0])];
+                break;
+            }
+            default:
+                console.error('Invalid side');
+        }
+
+        switch (side) {
+            case 'f':
+            case 'B': {
+                updateCornerPieces(indexes, 0, [2, 0, 3, 1], [2, 1, 0]);
+                updateEdgePieces(indexes, 1, [3, 2, 0, 1], [1, 0]);
+                break;
+            }
+            case 'b':
+            case 'F': {
+                updateCornerPieces(indexes, 0, [1, 3, 0, 2], [2, 1, 0]);
+                updateEdgePieces(indexes, 1, [2, 3, 1, 0], [1, 0]);
+                break;
+            }
+            case 'u':
+            case 'D': {
+                updateCornerPieces(indexes, 0, [1, 3, 0, 2], [1, 0, 2]);
+                updateEdgePieces(indexes, 1, [2, 3, 1, 0], [0, 1]);
+                break;
+            }
+            case 'U':
+            case 'd': {
+                updateCornerPieces(indexes, 0, [2, 0, 3, 1], [1, 0, 2]);
+                updateEdgePieces(indexes, 1, [3, 2, 0, 1], [0, 1]);
+                break;
+            }
+            case 'l':
+            case 'R': {
+                updateCornerPieces(indexes, 0, [1, 3, 0, 2], [0, 2, 1]);
+                updateEdgePieces(indexes, 1, [2, 3, 1, 0], [0, 1]);
+                break;
+            }
+            case 'L':
+            case 'r': {
+                updateCornerPieces(indexes, 0, [2, 0, 3, 1], [0, 2, 1]);
+                updateEdgePieces(indexes, 1, [3, 2, 0, 1], [0, 1]);
+                break;
+            }
+            case 'm': {
+                updateCenterPieces(indexes, 0, [3, 2, 0, 1]);
+                updateEdgePieces(indexes, 1, [2, 0, 3, 1], [1, 0]);
+                break;
+            }
+            case 'M': {
+                updateCenterPieces(indexes, 0, [2, 3, 1, 0]);
+                updateEdgePieces(indexes, 1, [1, 3, 0, 2], [1, 0]);
+                break;
+            }
+            case 'e': {
+                updateCenterPieces(indexes, 0, [2, 3, 1, 0]);
+                updateEdgePieces(indexes, 1, [2, 0, 3, 1], [1, 0]);
+                break;
+            }
+            case 'E': {
+                updateCenterPieces(indexes, 0, [3, 2, 0, 1]);
+                updateEdgePieces(indexes, 1, [1, 3, 0, 2], [1, 0]);
+                break;
+            }
+            case 's': {
+                updateCenterPieces(indexes, 0, [2, 3, 1, 0]);
+                updateEdgePieces(indexes, 1, [2, 0, 3, 1], [1, 0]);
+                break;
+            }
+            case 'S': {
+                updateCenterPieces(indexes, 0, [3, 2, 0, 1]);
+                updateEdgePieces(indexes, 1, [1, 3, 0, 2], [1, 0]);
+                break;
+            }
+            default:
+                console.error('Invalid side');
+        }
+    };
+
+    const handleToolbarClick = (side) => {
+        document.dispatchEvent(new KeyboardEvent('keyup', { key: side }));
+    };
 
     const renderCenterPieces = () => {
         return centerPiecesColors.map((color, index) => {
@@ -656,7 +668,6 @@ export default function Cube3x3x3() {
             );
         });
     };
-    const rotateSideNew = () => {};
     return (
         <>
             <Canvas className='canvas'>
@@ -668,39 +679,39 @@ export default function Cube3x3x3() {
             </Canvas>
 
             <div className='toolbar'>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('f')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('f')}>
                     F
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('u')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('u')}>
                     U
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('b')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('b')}>
                     B
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('d')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('d')}>
                     D
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('r')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('r')}>
                     R
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('l')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('l')}>
                     L
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('m')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('m')}>
                     M
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('e')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('e')}>
                     E
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('s')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('s')}>
                     S
                 </button>
                 <button
                     className='toolbar-btn'
                     onClick={() => {
-                        rotateSideNew('r');
-                        rotateSideNew('L');
-                        rotateSideNew('M');
+                        handleToolbarClick('r');
+                        handleToolbarClick('L');
+                        handleToolbarClick('M');
                     }}
                 >
                     x
@@ -708,9 +719,9 @@ export default function Cube3x3x3() {
                 <button
                     className='toolbar-btn'
                     onClick={() => {
-                        rotateSideNew('U');
-                        rotateSideNew('d');
-                        rotateSideNew('e');
+                        handleToolbarClick('U');
+                        handleToolbarClick('d');
+                        handleToolbarClick('e');
                     }}
                 >
                     y
@@ -718,47 +729,47 @@ export default function Cube3x3x3() {
                 <button
                     className='toolbar-btn'
                     onClick={() => {
-                        rotateSideNew('f');
-                        rotateSideNew('B');
-                        rotateSideNew('s');
+                        handleToolbarClick('f');
+                        handleToolbarClick('B');
+                        handleToolbarClick('s');
                     }}
                 >
                     z
                 </button>
 
-                <button className='toolbar-btn' onClick={() => rotateSideNew('F')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('F')}>
                     F'
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('U')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('U')}>
                     U'
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('B')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('B')}>
                     B'
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('D')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('D')}>
                     D'
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('R')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('R')}>
                     R'
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('L')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('L')}>
                     L'
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('M')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('M')}>
                     M'
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('E')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('E')}>
                     E'
                 </button>
-                <button className='toolbar-btn' onClick={() => rotateSideNew('S')}>
+                <button className='toolbar-btn' onClick={() => handleToolbarClick('S')}>
                     S'
                 </button>
                 <button
                     className='toolbar-btn'
                     onClick={() => {
-                        rotateSideNew('R');
-                        rotateSideNew('l');
-                        rotateSideNew('m');
+                        handleToolbarClick('R');
+                        handleToolbarClick('l');
+                        handleToolbarClick('m');
                     }}
                 >
                     x'
@@ -766,9 +777,9 @@ export default function Cube3x3x3() {
                 <button
                     className='toolbar-btn'
                     onClick={() => {
-                        rotateSideNew('u');
-                        rotateSideNew('D');
-                        rotateSideNew('E');
+                        handleToolbarClick('u');
+                        handleToolbarClick('D');
+                        handleToolbarClick('E');
                     }}
                 >
                     y'
@@ -776,9 +787,9 @@ export default function Cube3x3x3() {
                 <button
                     className='toolbar-btn'
                     onClick={() => {
-                        rotateSideNew('F');
-                        rotateSideNew('b');
-                        rotateSideNew('S');
+                        handleToolbarClick('F');
+                        handleToolbarClick('b');
+                        handleToolbarClick('S');
                     }}
                 >
                     z'
