@@ -20,6 +20,13 @@ function App() {
         setIsInfoVisible(true);
     };
 
+    const resetCube = () => {
+        setIsLoggedIn(false);
+        setTimeout(() => {
+            setIsLoggedIn(true);
+        }, 1);
+    };
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
             setIsLoggedIn(!!user);
@@ -30,7 +37,7 @@ function App() {
     }
     return (
         <div className='canvas-container'>
-            <Cube3x3x3 />
+            <Cube3x3x3 resetCube={resetCube} />
 
             <button className='logout-btn' onClick={logoutClicked}>
                 Logout

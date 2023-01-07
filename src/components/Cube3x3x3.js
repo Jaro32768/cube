@@ -5,7 +5,7 @@ import CornerPiece from './CornerPiece';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 
-export default function Cube3x3x3() {
+export default function Cube3x3x3(props) {
     ////////////////////////////////////////////////////////////////
     //                                                            //
     // f = front, b = back, u = up, d = down, l = left, r = right //
@@ -684,6 +684,9 @@ export default function Cube3x3x3() {
                 {renderEdgePieces()}
                 {renderCornerPieces()}
             </Canvas>
+            <button className='reset-btn' onClick={props.resetCube}>
+                Reset
+            </button>
 
             <div className='toolbar'>
                 {buttons.map(({ label, arg }) => (
