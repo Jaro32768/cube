@@ -631,6 +631,11 @@ export default function Cube3x3x3(props) {
         }
     };
 
+    const shuffleCube = () => {
+        const moves = ['f', 'b', 'u', 'd', 'l', 'r', 'm', 'e', 's', 'F', 'B', 'U', 'D', 'L', 'R', 'M', 'E', 'S'];
+        for (let i = 0; i < 100; i++) handleToolbarClick(moves[Math.floor(Math.random() * moves.length)]);
+    };
+
     const handleToolbarClick = (side) => {
         document.dispatchEvent(new KeyboardEvent('keyup', { key: side }));
     };
@@ -686,6 +691,9 @@ export default function Cube3x3x3(props) {
             </Canvas>
             <button className='reset-btn' onClick={props.resetCube}>
                 Reset
+            </button>
+            <button className='shuffle-btn' onClick={shuffleCube}>
+                Shuffle
             </button>
 
             <div className='toolbar'>

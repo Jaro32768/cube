@@ -72,10 +72,23 @@ div .canvas-container {
     position: absolute;
     bottom: 101px;
     right: 0;
-
     margin: 1vh 1vw;
     padding: 1vh 1vw;
     background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.shuffle-btn {
+    position: absolute;
+    bottom: 101px;
+    left: 0;
+    margin: 1vh 1vw;
+    padding: 1vh 1vw;
+    background-color: #2196f3;
     color: white;
     border: none;
     border-radius: 5px;
