@@ -33,6 +33,7 @@ div .canvas-container {
     left: 0;
     margin: 1vh 1vw;
     padding: 1vh 1vw;
+    min-width: 50px;
     background-color: #2196f3;
     color: white;
     border: none;
