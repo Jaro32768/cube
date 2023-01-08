@@ -4,7 +4,6 @@ import EdgePiece from './EdgePiece';
 import CornerPiece from './CornerPiece';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import initValues from '../data/initValues.json';
 
 export default function Cube3x3x3(props) {
     ////////////////////////////////////////////////////////////////
@@ -12,6 +11,242 @@ export default function Cube3x3x3(props) {
     // f = front, b = back, u = up, d = down, l = left, r = right //
     //                                                            //
     ////////////////////////////////////////////////////////////////
+
+    const initValues = {
+        // f b u d l r
+        centerPiecesColors: ['#0f0', '#00f', '#fff', '#ff0', '#f00', '#f90'],
+        centerPiecesPositions: [
+            [0, 0, 1.5],
+            [0, 0, -1.5],
+            [0, 1.5, 0],
+            [0, -1.5, 0],
+            [1.5, 0, 0],
+            [-1.5, 0, 0],
+        ],
+        centerPiecesRotations: [
+            [0, Math.PI / 2, 0],
+            [0, Math.PI / 2, 0],
+            [0, 0, Math.PI / 2],
+            [0, 0, Math.PI / 2],
+            [0, 0, 0],
+            [0, 0, 0],
+        ],
+
+        // ru lu rd ld
+        // rf lf rb lb
+        // fu bu fd bd
+        edgePiecesColors: [
+            ['#f00', '#fff'],
+            ['#f90', '#fff'],
+            ['#f00', '#ff0'],
+            ['#f90', '#ff0'],
+            ['#f00', '#0f0'],
+            ['#f90', '#0f0'],
+            ['#f00', '#00f'],
+            ['#f90', '#00f'],
+            ['#0f0', '#fff'],
+            ['#00f', '#fff'],
+            ['#0f0', '#ff0'],
+            ['#00f', '#ff0'],
+        ],
+        edgePiecesPositions: [
+            [
+                [1.5, 1, 0],
+                [1, 1.5, 0],
+            ],
+            [
+                [-1.5, 1, 0],
+                [-1, 1.5, 0],
+            ],
+            [
+                [1.5, -1, 0],
+                [1, -1.5, 0],
+            ],
+            [
+                [-1.5, -1, 0],
+                [-1, -1.5, 0],
+            ],
+            [
+                [1.5, 0, 1],
+                [1, 0, 1.5],
+            ],
+            [
+                [-1.5, 0, 1],
+                [-1, 0, 1.5],
+            ],
+            [
+                [1.5, 0, -1],
+                [1, 0, -1.5],
+            ],
+            [
+                [-1.5, 0, -1],
+                [-1, 0, -1.5],
+            ],
+            [
+                [0, 1, 1.5],
+                [0, 1.5, 1],
+            ],
+            [
+                [0, 1, -1.5],
+                [0, 1.5, -1],
+            ],
+            [
+                [0, -1, 1.5],
+                [0, -1.5, 1],
+            ],
+            [
+                [0, -1, -1.5],
+                [0, -1.5, -1],
+            ],
+        ],
+        edgePiecesRotations: [
+            [
+                [0, 0, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, 0, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, 0, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, 0, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, 0, 0],
+                [0, Math.PI / 2, 0],
+            ],
+            [
+                [0, 0, 0],
+                [0, Math.PI / 2, 0],
+            ],
+            [
+                [0, 0, 0],
+                [0, Math.PI / 2, 0],
+            ],
+            [
+                [0, 0, 0],
+                [0, Math.PI / 2, 0],
+            ],
+            [
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+        ],
+
+        // rfu lfu rfd lfd
+        // rbu lbu rbd lbd
+        cornerPiecesColors: [
+            ['#f00', '#0f0', '#fff'],
+            ['#f90', '#0f0', '#fff'],
+            ['#f00', '#0f0', '#ff0'],
+            ['#f90', '#0f0', '#ff0'],
+            ['#f00', '#00f', '#fff'],
+            ['#f90', '#00f', '#fff'],
+            ['#f00', '#00f', '#ff0'],
+            ['#f90', '#00f', '#ff0'],
+        ],
+        cornerPiecesPositions: [
+            [
+                [1.5, 1, 1],
+                [1, 1, 1.5],
+                [1, 1.5, 1],
+            ],
+            [
+                [-1.5, 1, 1],
+                [-1, 1, 1.5],
+                [-1, 1.5, 1],
+            ],
+            [
+                [1.5, -1, 1],
+                [1, -1, 1.5],
+                [1, -1.5, 1],
+            ],
+            [
+                [-1.5, -1, 1],
+                [-1, -1, 1.5],
+                [-1, -1.5, 1],
+            ],
+            [
+                [1.5, 1, -1],
+                [1, 1, -1.5],
+                [1, 1.5, -1],
+            ],
+            [
+                [-1.5, 1, -1],
+                [-1, 1, -1.5],
+                [-1, 1.5, -1],
+            ],
+            [
+                [1.5, -1, -1],
+                [1, -1, -1.5],
+                [1, -1.5, -1],
+            ],
+            [
+                [-1.5, -1, -1],
+                [-1, -1, -1.5],
+                [-1, -1.5, -1],
+            ],
+        ],
+        cornerPiecesRotations: [
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+            [
+                [Math.PI / 2, 0, 0],
+                [0, Math.PI / 2, 0],
+                [0, 0, Math.PI / 2],
+            ],
+        ],
+    };
 
     const [centerPiecesColors, setCenterPiecesColors] = useState(initValues.centerPiecesColors);
     const [centerPiecesPositions, setCenterPiecesPositions] = useState(initValues.centerPiecesPositions);
@@ -22,6 +257,7 @@ export default function Cube3x3x3(props) {
     const [cornerPiecesColors, setCornerPiecesColors] = useState(initValues.cornerPiecesColors);
     const [cornerPiecesPositions, setCornerPiecesPositions] = useState(initValues.cornerPiecesPositions);
     const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
+    const [wasChangedAtlestOnce, setWasChangedAtlestOnce] = useState(false);
     let moveTimeline = '';
     const buttons = [
         { label: 'F', arg: 'f' },
@@ -49,6 +285,22 @@ export default function Cube3x3x3(props) {
         { label: "y'", arg: 'Ude' },
         { label: "z'", arg: 'FbS' },
     ];
+
+    useEffect(() => {
+        if (
+            JSON.stringify(initValues.centerPiecesPositions) === JSON.stringify(centerPiecesPositions) &&
+            JSON.stringify(initValues.centerPiecesRotations) === JSON.stringify(centerPiecesRotations) &&
+            JSON.stringify(initValues.edgePiecesPositions) === JSON.stringify(edgePiecesPositions) &&
+            JSON.stringify(initValues.edgePiecesRotations) === JSON.stringify(edgePiecesRotations) &&
+            JSON.stringify(initValues.cornerPiecesPositions) === JSON.stringify(cornerPiecesPositions) &&
+            JSON.stringify(initValues.cornerPiecesRotations) === JSON.stringify(cornerPiecesRotations) &&
+            wasChangedAtlestOnce
+        ) {
+            setTimeout(() => {
+                alert('Congratulation! You solved the cube!');
+            }, 1);
+        }
+    }, [centerPiecesPositions, centerPiecesRotations, edgePiecesPositions, edgePiecesRotations, cornerPiecesPositions, cornerPiecesRotations]);
 
     useEffect(() => {
         let timeout = null;
@@ -89,6 +341,7 @@ export default function Cube3x3x3(props) {
             timeout = setTimeout(() => {
                 timeout = null;
             }, 1);
+            setWasChangedAtlestOnce(true);
         };
 
         document.addEventListener('keyup', handleKeyUp, []);
