@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../css/LoginForm.css';
-import firebaseConfig from '../firebaseConfig.json';
+import firebaseConfig from '../data/firebaseConfig.json';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
