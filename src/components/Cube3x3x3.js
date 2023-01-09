@@ -298,7 +298,7 @@ export default function Cube3x3x3(props) {
         ) {
             setTimeout(() => {
                 alert('Congratulation! You solved the cube!');
-            }, 1);
+            }, 10);
         }
     }, [centerPiecesPositions, centerPiecesRotations, edgePiecesPositions, edgePiecesRotations, cornerPiecesPositions, cornerPiecesRotations]);
 
