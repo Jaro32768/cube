@@ -296,9 +296,7 @@ export default function Cube3x3x3(props) {
             JSON.stringify(initValues.cornerPiecesRotations) === JSON.stringify(cornerPiecesRotations) &&
             wasChangedAtlestOnce
         ) {
-            setTimeout(() => {
-                alert('Congratulation! You solved the cube!');
-            }, 10);
+            props.showSolved();
         }
     }, [centerPiecesPositions, centerPiecesRotations, edgePiecesPositions, edgePiecesRotations, cornerPiecesPositions, cornerPiecesRotations]);
 
