@@ -287,17 +287,14 @@ export default function Cube3x3x3(props) {
     ];
 
     useEffect(() => {
+        // TODO: 24 combinations (6 possibilities on top, 4 horizontal rotations of cube)
         if (
             JSON.stringify(initValues.centerPiecesPositions) === JSON.stringify(centerPiecesPositions) &&
             JSON.stringify(initValues.centerPiecesRotations) === JSON.stringify(centerPiecesRotations) &&
             JSON.stringify(initValues.edgePiecesPositions) === JSON.stringify(edgePiecesPositions) &&
-            JSON.stringify(initValues.edgePiecesRotations) === JSON.stringify(edgePiecesRotations) &&
-            JSON.stringify(initValues.cornerPiecesPositions) === JSON.stringify(cornerPiecesPositions) &&
-            JSON.stringify(initValues.cornerPiecesRotations) === JSON.stringify(cornerPiecesRotations) &&
             wasChangedAtlestOnce
-        ) {
+        )
             props.showSolved();
-        }
     }, [centerPiecesPositions, centerPiecesRotations, edgePiecesPositions, edgePiecesRotations, cornerPiecesPositions, cornerPiecesRotations]);
 
     useEffect(() => {
