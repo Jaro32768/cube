@@ -30,11 +30,17 @@ export default function LoginForm(props) {
             <form className='login-form'>
                 <label className='login-label'>
                     Email:
-                    <input className='login-input' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input className='login-input' type='email' autoComplete='username' value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
                 <label className='login-label'>
                     Password:
-                    <input className='login-input' type='current-password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input
+                        className='login-input'
+                        type='password'
+                        autoComplete='current-password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </label>
                 {error && <p className='login-error'>{error.message}</p>}
                 <button className='login-button' type='button' onClick={handleLogin}>
