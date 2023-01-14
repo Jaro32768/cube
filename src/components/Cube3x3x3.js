@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CenterPiece from './CenterPiece';
 import EdgePiece from './EdgePiece';
 import initValues from '../data/initValues.json';
+import indexes from '../data/indexes.json';
 import CornerPiece from './CornerPiece';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
@@ -53,99 +54,6 @@ export default function Cube3x3x3(props) {
 
     useEffect(() => {
         if (!wasChangedAtlestOnce) return;
-
-        const indexes = {
-            GREEN: {
-                CENTER: [0],
-                EDGE: [
-                    [4, 1],
-                    [5, 1],
-                    [8, 0],
-                    [10, 0],
-                ],
-                CORNER: [
-                    [0, 1],
-                    [1, 1],
-                    [2, 1],
-                    [3, 1],
-                ],
-            },
-            BLUE: {
-                CENTER: [1],
-                EDGE: [
-                    [6, 1],
-                    [7, 1],
-                    [9, 0],
-                    [11, 0],
-                ],
-                CORNER: [
-                    [4, 1],
-                    [5, 1],
-                    [6, 1],
-                    [7, 1],
-                ],
-            },
-            WHITE: {
-                CENTER: [2],
-                EDGE: [
-                    [0, 1],
-                    [1, 1],
-                    [8, 1],
-                    [9, 1],
-                ],
-                CORNER: [
-                    [0, 2],
-                    [1, 2],
-                    [4, 2],
-                    [5, 2],
-                ],
-            },
-            YELLOW: {
-                CENTER: [3],
-                EDGE: [
-                    [2, 1],
-                    [3, 1],
-                    [10, 1],
-                    [11, 1],
-                ],
-                CORNER: [
-                    [2, 2],
-                    [3, 2],
-                    [6, 2],
-                    [7, 2],
-                ],
-            },
-            RED: {
-                CENTER: [4],
-                EDGE: [
-                    [0, 0],
-                    [2, 0],
-                    [4, 0],
-                    [6, 0],
-                ],
-                CORNER: [
-                    [0, 0],
-                    [2, 0],
-                    [4, 0],
-                    [6, 0],
-                ],
-            },
-            ORANGE: {
-                CENTER: [5],
-                EDGE: [
-                    [1, 0],
-                    [3, 0],
-                    [5, 0],
-                    [7, 0],
-                ],
-                CORNER: [
-                    [1, 0],
-                    [3, 0],
-                    [5, 0],
-                    [7, 0],
-                ],
-            },
-        };
         for (const [, SIDE] of Object.entries(indexes)) {
             let index, value;
             for (let i = 0; i < 3; i++) {
