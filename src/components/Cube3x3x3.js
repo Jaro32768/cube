@@ -52,14 +52,115 @@ export default function Cube3x3x3(props) {
     ];
 
     useEffect(() => {
-        // TODO: 24 combinations (6 possibilities on top, 4 horizontal rotations of cube)
-        if (
-            JSON.stringify(initValues.centerPiecesPositions) === JSON.stringify(centerPiecesPositions) &&
-            JSON.stringify(initValues.centerPiecesRotations) === JSON.stringify(centerPiecesRotations) &&
-            JSON.stringify(initValues.edgePiecesPositions) === JSON.stringify(edgePiecesPositions) &&
-            wasChangedAtlestOnce
-        )
-            props.showSolved();
+        if (!wasChangedAtlestOnce) return;
+
+        const indexes = {
+            GREEN: {
+                CENTER: [0],
+                EDGE: [
+                    [4, 1],
+                    [5, 1],
+                    [8, 0],
+                    [10, 0],
+                ],
+                CORNER: [
+                    [0, 1],
+                    [1, 1],
+                    [2, 1],
+                    [3, 1],
+                ],
+            },
+            BLUE: {
+                CENTER: [1],
+                EDGE: [
+                    [6, 1],
+                    [7, 1],
+                    [9, 0],
+                    [11, 0],
+                ],
+                CORNER: [
+                    [4, 1],
+                    [5, 1],
+                    [6, 1],
+                    [7, 1],
+                ],
+            },
+            WHITE: {
+                CENTER: [2],
+                EDGE: [
+                    [0, 1],
+                    [1, 1],
+                    [8, 1],
+                    [9, 1],
+                ],
+                CORNER: [
+                    [0, 2],
+                    [1, 2],
+                    [4, 2],
+                    [5, 2],
+                ],
+            },
+            YELLOW: {
+                CENTER: [3],
+                EDGE: [
+                    [2, 1],
+                    [3, 1],
+                    [10, 1],
+                    [11, 1],
+                ],
+                CORNER: [
+                    [2, 2],
+                    [3, 2],
+                    [6, 2],
+                    [7, 2],
+                ],
+            },
+            RED: {
+                CENTER: [4],
+                EDGE: [
+                    [0, 0],
+                    [2, 0],
+                    [4, 0],
+                    [6, 0],
+                ],
+                CORNER: [
+                    [0, 0],
+                    [2, 0],
+                    [4, 0],
+                    [6, 0],
+                ],
+            },
+            ORANGE: {
+                CENTER: [5],
+                EDGE: [
+                    [1, 0],
+                    [3, 0],
+                    [5, 0],
+                    [7, 0],
+                ],
+                CORNER: [
+                    [1, 0],
+                    [3, 0],
+                    [5, 0],
+                    [7, 0],
+                ],
+            },
+        };
+        for (const [, SIDE] of Object.entries(indexes)) {
+            let index, value;
+            for (let i = 0; i < 3; i++) {
+                if (centerPiecesPositions[SIDE.CENTER[0]][i] === 1.5 || centerPiecesPositions[SIDE.CENTER[0]][i] === -1.5) {
+                    index = i;
+                    value = centerPiecesPositions[SIDE.CENTER[0]][i];
+                }
+            }
+            for (let i = 0; i < 4; i++) {
+                if (edgePiecesPositions[SIDE.EDGE[i][0]][SIDE.EDGE[i][1]][index] !== value) return;
+                if (cornerPiecesPositions[SIDE.CORNER[i][0]][SIDE.CORNER[i][1]][index] !== value) return;
+            }
+        }
+
+        props.showSolved();
     }, [centerPiecesPositions, centerPiecesRotations, edgePiecesPositions, edgePiecesRotations, cornerPiecesPositions, cornerPiecesRotations]);
 
     useEffect(() => {
