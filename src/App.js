@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/App.css';
 import Cube3x3x3 from './components/Cube3x3x3';
+import Settings from './components/Settings';
 import InfoPopup from './components/popups/InfoPopup';
 import SolvedPopup from './components/popups/SolvedPopup';
 import LoginForm from './components/LoginForm';
@@ -12,6 +13,7 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isInfoVisible, setIsInfoVisible] = useState(false);
     const [isSolvedVisible, setIsSolvedVisible] = useState(false);
+    const [areSettingsVisible, setAreSettingsVisible] = useState(false);
 
     const logoutClicked = () => {
         firebase.auth().signOut();
@@ -29,17 +31,22 @@ function App() {
         }, 1);
     };
 
+    const showSettings = () => {
+        setAreSettingsVisible(true);
+    };
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
             setIsLoggedIn(!!user);
         });
     }, []);
-    if (!isLoggedIn) {
-        return <LoginForm setIsLoggedIn={setIsLoggedIn} />;
-    }
+    if (!isLoggedIn) return <LoginForm setIsLoggedIn={setIsLoggedIn} />;
+
+    if (areSettingsVisible) return <Settings areSettingsVisible={areSettingsVisible} setAreSettingsVisible={setAreSettingsVisible} />;
+
     return (
         <div className='canvas-container'>
-            <Cube3x3x3 resetCube={resetCube} showSolved={showSolved} />
+            <Cube3x3x3 resetCube={resetCube} showSolved={showSolved} showSettings={showSettings} />
 
             <button className='logout-btn' onClick={logoutClicked}>
                 Logout

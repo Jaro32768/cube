@@ -482,6 +482,9 @@ export default function Cube3x3x3(props) {
             <button className='shuffle-btn' onClick={shuffleCube}>
                 Shuffle
             </button>
+            <button className='settings-btn' onClick={props.showSettings}>
+                Settings
+            </button>
 
             <div className='toolbar'>
                 {buttons.map(({ label, arg }) => (

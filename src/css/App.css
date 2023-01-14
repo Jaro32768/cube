@@ -96,3 +96,17 @@ div .canvas-container {
     font-size: 1.5rem;
     cursor: pointer;
 }
+
+.settings-btn {
+    position: absolute;
+    top: 0;
+    right: calc(50vw - 50px);
+    margin: 1vh 1vw;
+    padding: 1vh 1vw;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
