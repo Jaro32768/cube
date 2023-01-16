@@ -24,7 +24,7 @@ export default function Settings(props) {
                 <option value='ollpll'>OLL and PLL</option>
             </select>
             <p>Keep in mind that as a guest you won't be able to restore your settings on your future site visit.</p>
-            <button className='close-bttn' onClick={() => props.setAreSettingsVisible(false)}>
+            <button className='close-btn' onClick={() => props.setAreSettingsVisible(false)}>
                 Back
             </button>
             <button className='save-btn' onClick={() => {}}>
