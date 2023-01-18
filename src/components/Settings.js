@@ -2,8 +2,34 @@ import React, { useState } from 'react';
 import '../css/Settings.css';
 
 export default function Settings(props) {
+    const [method, setMethod] = useState('beginner');
     const [f2l, setF2l] = useState('lbl');
     const [ll, setLl] = useState('beginner');
+
+    const presetChange = (e) => {
+        switch (e.target.value) {
+            case 'beginner':
+                setMethod('beginner');
+                setF2l('lbl');
+                setLl('beginner');
+                break;
+            case 'bcfop':
+                setMethod('bcfop');
+                setF2l('bf2l');
+                setLl('bollpll');
+                break;
+            case 'cfop':
+                setMethod('cfop');
+                setF2l('f2l');
+                setLl('ollpll');
+                break;
+            case 'custom':
+                setMethod('custom');
+                break;
+            default:
+                break;
+        }
+    };
 
     const f2lChange = (e) => {
         setF2l(e.target.value);
@@ -67,25 +93,29 @@ export default function Settings(props) {
         <>
             <h1>Settings</h1>
             <h2>Presets</h2>
-            <select name='method'>
+            <select name='preset' onChange={presetChange}>
                 <option value='beginner'>Beginner method</option>
                 <option value='bcfop'>Beginner CFOP</option>
                 <option value='cfop'>CFOP</option>
                 <option value='custom'>Custom</option>
             </select>
             <h2>First two layers</h2>
-            <select name='f2l' onChange={f2lChange}>
-                <option value='lbl'>Layer by layer</option>
-                <option value='bf2l'>Beginner F2L</option>
-                <option value='f2l'>F2L</option>
-            </select>
+            {method === 'custom' && (
+                <select name='f2l' onChange={f2lChange}>
+                    <option value='lbl'>Layer by layer</option>
+                    <option value='bf2l'>Beginner F2L</option>
+                    <option value='f2l'>F2L</option>
+                </select>
+            )}
             {renderF2l()}
             <h2>Last layer</h2>
-            <select name='ll' onChange={llChange}>
-                <option value='beginner'>Beginner method</option>
-                <option value='bollpll'>Beginner OLL and PLL</option>
-                <option value='ollpll'>OLL and PLL</option>
-            </select>
+            {method === 'custom' && (
+                <select name='ll' onChange={llChange}>
+                    <option value='beginner'>Beginner method</option>
+                    <option value='bollpll'>Beginner OLL and PLL</option>
+                    <option value='ollpll'>OLL and PLL</option>
+                </select>
+            )}
             {renderLl()}
             <p>Keep in mind that as a guest you won't be able to restore your settings on your future site visit.</p>
             <button className='close-btn' onClick={() => props.setAreSettingsVisible(false)}>
