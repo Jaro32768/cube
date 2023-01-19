@@ -24,6 +24,7 @@ export default function Cube3x3x3(props) {
     const [cornerPiecesPositions, setCornerPiecesPositions] = useState(initValues.cornerPiecesPositions);
     const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
     const [wasChangedAtlestOnce, setWasChangedAtlestOnce] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
     let moveTimeline = '';
     const buttons = [
         { label: 'F', arg: 'f' },
@@ -498,6 +499,10 @@ export default function Cube3x3x3(props) {
                         {label}
                     </button>
                 ))}
+            </div>
+
+            <div className='hint-box'>
+                <p className='hint-text'>FRUR'U'F'</p>
             </div>
         </>
     );
