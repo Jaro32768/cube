@@ -25,6 +25,7 @@ export default function Cube3x3x3(props) {
     const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
     const [wasChangedAtlestOnce, setWasChangedAtlestOnce] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
+    const [hintText, setHintText] = useState('Press any key to start solving');
     let moveTimeline = '';
     const buttons = [
         { label: 'F', arg: 'f' },
@@ -54,6 +55,15 @@ export default function Cube3x3x3(props) {
     ];
 
     useEffect(() => {
+        console.log(centerPiecesPositions[2]);
+        if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) setHintText('X');
+        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) setHintText("X'");
+        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) setHintText('X2');
+        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) setHintText('Z');
+        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([1.5, 0, 0])) setHintText("Z'");
+        else setHintText('white center is on the bottom');
+
+        return;
         if (!wasChangedAtlestOnce) return;
         for (const [, SIDE] of Object.entries(indexes)) {
             let index, value;
@@ -502,7 +512,7 @@ export default function Cube3x3x3(props) {
             </div>
 
             <div className='hint-box'>
-                <p className='hint-text'>FRUR'U'F'</p>
+                <p className='hint-text'>{hintText}</p>
             </div>
         </>
     );
