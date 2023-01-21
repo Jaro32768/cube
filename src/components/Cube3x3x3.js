@@ -60,8 +60,15 @@ export default function Cube3x3x3(props) {
         else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) setHintText('get white center on the bottom (X2)');
         else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([1.5, 0, 0])) setHintText('get white center on the bottom (Z)');
         else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) setHintText("get white center on the bottom (Z')");
-        else setHintText('white center is on the bottom');
-
+        else {
+            // get blue center on the front causing entire cube being oriented correctly
+            console.log(centerPiecesPositions[0]);
+            if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) setHintText('get blue center on the front (Y)');
+            else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) setHintText('get blue center on the front (Y2)');
+            else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) setHintText('get blue center on the front (Y)');
+            else {
+            }
+        }
         if (!wasChangedAtlestOnce) return;
         for (const [, SIDE] of Object.entries(indexes)) {
             let index, value;
