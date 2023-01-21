@@ -24,7 +24,6 @@ export default function Cube3x3x3(props) {
     const [cornerPiecesPositions, setCornerPiecesPositions] = useState(initValues.cornerPiecesPositions);
     const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
     const [wasChangedAtlestOnce, setWasChangedAtlestOnce] = useState(false);
-    const [isHidden, setIsHidden] = useState(false);
     const [hintText, setHintText] = useState('Press any key to start solving');
     let moveTimeline = '';
     const buttons = [
