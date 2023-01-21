@@ -55,15 +55,14 @@ export default function Cube3x3x3(props) {
     ];
 
     useEffect(() => {
-        console.log(centerPiecesPositions[2]);
-        if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) setHintText('X');
-        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) setHintText("X'");
-        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) setHintText('X2');
-        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) setHintText('Z');
-        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([1.5, 0, 0])) setHintText("Z'");
+        // get white center on the bottom
+        if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) setHintText('get white center on the bottom (X)');
+        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) setHintText("get white center on the bottom (X')");
+        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) setHintText('get white center on the bottom (X2)');
+        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([1.5, 0, 0])) setHintText('get white center on the bottom (Z)');
+        else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) setHintText("get white center on the bottom (Z')");
         else setHintText('white center is on the bottom');
 
-        return;
         if (!wasChangedAtlestOnce) return;
         for (const [, SIDE] of Object.entries(indexes)) {
             let index, value;
