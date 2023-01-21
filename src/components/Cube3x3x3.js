@@ -62,13 +62,203 @@ export default function Cube3x3x3(props) {
         else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) setHintText("get white center on the bottom (Z')");
         else {
             // get blue center on the front causing entire cube being oriented correctly
-            console.log(centerPiecesPositions[0]);
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) setHintText('get blue center on the front (Y)');
             else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) setHintText('get blue center on the front (Y2)');
-            else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) setHintText('get blue center on the front (Y)');
+            else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) setHintText("get blue center on the front (Y')");
             else {
+                // insert white-blue edge on the front
+                console.log(JSON.stringify(edgePiecesPositions[9]));
+                if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [1, 0, 1.5],
+                        [1.5, 0, 1],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (F)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (F2)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [-1, 0, 1.5],
+                        [-1.5, 0, 1],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (F')");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [-1.5, -1, 0],
+                        [-1, -1.5, 0],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (D)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, -1, -1.5],
+                        [0, -1.5, -1],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (D2)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [1.5, -1, 0],
+                        [1, -1.5, 0],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (D')");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [-1.5, 0, 1],
+                        [-1, 0, 1.5],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (L D)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (L2 D)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [-1.5, 0, -1],
+                        [-1, 0, -1.5],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (L' D)");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [1.5, 0, -1],
+                        [1, 0, -1.5],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (R D')");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (R2 D')");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [1.5, 0, 1],
+                        [1, 0, 1.5],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (R' D')");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [1, 0, -1.5],
+                        [1.5, 0, -1],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (B D2)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (B2 D2)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [-1, 0, -1.5],
+                        [-1.5, 0, -1],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (B' D2)");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, -1.5, 1],
+                        [0, -1, 1.5],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (F L D)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [-1, -1.5, 0],
+                        [-1.5, -1, 0],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (D F L D)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [1, -1.5, 0],
+                        [1.5, -1, 0],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (D' F L D)");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, -1.5, -1],
+                        [0, -1, -1.5],
+                    ])
+                )
+                    setHintText('insert white-blue edge on the front (D2 F L D)');
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, 1.5, 1],
+                        [0, 1, 1.5],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (F' L D)");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [1, 1.5, 0],
+                        [1.5, 1, 0],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (U F' L D)");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, 1.5, -1],
+                        [0, 1, -1.5],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (U2 F' L D)");
+                else if (
+                    JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [-1, 1.5, 0],
+                        [-1.5, 1, 0],
+                    ])
+                )
+                    setHintText("insert white-blue edge on the front (U' F' L D)");
+                else {
+                    setHintText('done');
+                }
             }
         }
+
+        return;
         if (!wasChangedAtlestOnce) return;
         for (const [, SIDE] of Object.entries(indexes)) {
             let index, value;
