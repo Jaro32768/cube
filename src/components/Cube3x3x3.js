@@ -253,6 +253,7 @@ export default function Cube3x3x3(props) {
                     setHintText("insert white-blue edge on the front (U' F' L D)");
                 else {
                     // insert white-green edge on the back
+                    console.log(JSON.stringify(edgePiecesPositions[8]));
                     if (
                         JSON.stringify(edgePiecesPositions[8]) ===
                         JSON.stringify([
@@ -416,8 +417,8 @@ export default function Cube3x3x3(props) {
                     else if (
                         JSON.stringify(edgePiecesPositions[8]) ===
                         JSON.stringify([
-                            [0, -1, -1.5],
-                            [0, -1.5, -1],
+                            [0, 1.5, 1],
+                            [0, 1, 1.5],
                         ])
                     )
                         setHintText("insert white-green edge on the back (U L' B)");
