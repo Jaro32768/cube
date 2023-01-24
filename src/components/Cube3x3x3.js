@@ -25,6 +25,7 @@ export default function Cube3x3x3(props) {
     const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
     const [wasChangedAtlestOnce, setWasChangedAtlestOnce] = useState(false);
     const [hintText, setHintText] = useState('Press any key to start solving');
+    const [isHintTextVisible, setIsHintTextVisible] = useState(true);
     let moveTimeline = '';
     const buttons = [
         { label: 'F', arg: 'f' },
@@ -939,9 +940,11 @@ export default function Cube3x3x3(props) {
                 ))}
             </div>
 
-            <div className='hint-box'>
-                <p className='hint-text'>{hintText}</p>
-            </div>
+            {isHintTextVisible ? (
+                <div className='hint-box'>
+                    <p className='hint-text'>{hintText}</p>
+                </div>
+            ) : null}
         </>
     );
 }
