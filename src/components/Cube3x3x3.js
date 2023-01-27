@@ -26,6 +26,8 @@ export default function Cube3x3x3(props) {
     const [wasChangedAtlestOnce, setWasChangedAtlestOnce] = useState(false);
     const [hintText, setHintText] = useState('Press any key to start solving');
     const [isHintTextVisible, setIsHintTextVisible] = useState(true);
+    const [bruteforceCross, setBruteforceCross] = useState(false);
+    const [savedPositionsAndRotation, setSavedPositionsAndRotations] = useState([]);
     let moveTimeline = '';
     const buttons = [
         { label: 'F', arg: 'f' },
@@ -53,6 +55,15 @@ export default function Cube3x3x3(props) {
         { label: "y'", arg: 'Ude' },
         { label: "z'", arg: 'FbS' },
     ];
+    const possibleMoves = ['f', 'u', 'b', 'd', 'r', 'l', 'm', 'e', 's', 'F', 'U', 'B', 'D', 'R', 'L', 'M', 'E', 'S'];
+
+    useEffect(() => {
+        setSavedPositionsAndRotations([
+            { centerPiecesPositions: [...centerPiecesPositions], centerPiecesRotations: [...centerPiecesRotations] },
+            { edgePiecesPositions: [...edgePiecesPositions], edgePiecesRotations: [...edgePiecesRotations] },
+            { cornerPiecesPositions: [...cornerPiecesPositions], cornerPiecesRotations: [...cornerPiecesRotations] },
+        ]);
+    }, [bruteforceCross]);
 
     useEffect(() => {
         // get white center on the bottom
@@ -67,7 +78,8 @@ export default function Cube3x3x3(props) {
             else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) setHintText('get blue center on the front (Y2)');
             else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) setHintText("get blue center on the front (Y')");
             else {
-                // cross can be done in 5 moves from any scramble, let's try combining 12 moves in 12^5 way until it is solved
+                // cross can be done in 5 moves from any scramble, let's try combining 12 moves in 12^5 way until it is solved7
+                setBruteforceCross(true);
             }
         }
 
