@@ -58,12 +58,26 @@ export default function Cube3x3x3(props) {
     const possibleMoves = ['f', 'u', 'b', 'd', 'r', 'l', 'm', 'e', 's', 'F', 'U', 'B', 'D', 'R', 'L', 'M', 'E', 'S'];
 
     useEffect(() => {
+        if (!bruteforceCross) return;
         setSavedPositionsAndRotations([
             { centerPiecesPositions: [...centerPiecesPositions], centerPiecesRotations: [...centerPiecesRotations] },
             { edgePiecesPositions: [...edgePiecesPositions], edgePiecesRotations: [...edgePiecesRotations] },
             { cornerPiecesPositions: [...cornerPiecesPositions], cornerPiecesRotations: [...cornerPiecesRotations] },
+            { moveTimeline: [...moveTimeline] },
         ]);
+        rotateSideNew('f');
     }, [bruteforceCross]);
+
+    useEffect(() => {
+        console.log(savedPositionsAndRotation);
+        setCenterPiecesPositions(savedPositionsAndRotation[0]?.centerPiecesPositions);
+        setCenterPiecesRotations(savedPositionsAndRotation[0]?.centerPiecesRotations);
+        setEdgePiecesPositions(savedPositionsAndRotation[1]?.edgePiecesPositions);
+        setEdgePiecesRotations(savedPositionsAndRotation[1]?.edgePiecesRotations);
+        setCornerPiecesPositions(savedPositionsAndRotation[2]?.cornerPiecesPositions);
+        setCornerPiecesRotations(savedPositionsAndRotation[2]?.cornerPiecesRotations);
+        moveTimeline = savedPositionsAndRotation[3]?.moveTimeline;
+    }, [savedPositionsAndRotation]);
 
     useEffect(() => {
         // get white center on the bottom
