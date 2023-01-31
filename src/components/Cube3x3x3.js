@@ -135,8 +135,26 @@ export default function Cube3x3x3(props) {
                 setHintText("get white edges on the bottom (D')");
                 return;
             }
-            // TODO: swap opposite edges, then swap adjacent edges
-            setHintText('get white edges on the bottom (unknown permutation)');
+            if (
+                JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
+                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])
+            ) {
+                setHintText('get white edges on the bottom (R2 L2 U2 R2 L2)');
+                return;
+            }
+            if (
+                JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
+                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])
+            ) {
+                setHintText('get white edges on the bottom (R2 L2 U2 R2 L2)');
+                return;
+            }
+            // TODO: swap adjacent edges
+            setHintText('get white edges on the bottom (try to align at least 2 edges using D moves)');
             return;
         }
 
