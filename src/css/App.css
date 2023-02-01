@@ -100,7 +100,7 @@ div .canvas-container {
 
 .settings-btn {
     position: absolute;
-    top: calc(50vw);
+    top: 100px;
     right: 0;
     margin: 1vh 1vw;
     padding: 1vh 1vw;
