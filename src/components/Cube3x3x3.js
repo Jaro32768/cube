@@ -28,24 +28,24 @@ export default function Cube3x3x3(props) {
     const [isHintTextVisible, setIsHintTextVisible] = useState(true);
     let moveTimeline = '';
     const buttons = [
-        { label: 'F', arg: 'f' },
-        { label: 'U', arg: 'u' },
-        { label: 'B', arg: 'b' },
-        { label: 'D', arg: 'd' },
-        { label: 'R', arg: 'r' },
-        { label: 'L', arg: 'l' },
+        { label: 'F', arg: 'f', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, 0, 1.5].toString())] },
+        { label: 'U', arg: 'u', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, 1.5, 0].toString())] },
+        { label: 'B', arg: 'b', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, 0, -1.5].toString())] },
+        { label: 'D', arg: 'd', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, -1.5, 0].toString())] },
+        { label: 'R', arg: 'r', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [1.5, 0, 0].toString())] },
+        { label: 'L', arg: 'l', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [-1.5, 0, 0].toString())] },
         { label: 'M', arg: 'm' },
         { label: 'E', arg: 'e' },
         { label: 'S', arg: 's' },
         { label: 'x', arg: 'rLM' },
         { label: 'y', arg: 'uDE' },
         { label: 'z', arg: 'fBs' },
-        { label: "F'", arg: 'F' },
-        { label: "U'", arg: 'U' },
-        { label: "B'", arg: 'B' },
-        { label: "D'", arg: 'D' },
-        { label: "R'", arg: 'R' },
-        { label: "L'", arg: 'L' },
+        { label: "F'", arg: 'F', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, 0, 1.5].toString())] },
+        { label: "U'", arg: 'U', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, 1.5, 0].toString())] },
+        { label: "B'", arg: 'B', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, 0, -1.5].toString())] },
+        { label: "D'", arg: 'D', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, -1.5, 0].toString())] },
+        { label: "R'", arg: 'R', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [1.5, 0, 0].toString())] },
+        { label: "L'", arg: 'L', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [-1.5, 0, 0].toString())] },
         { label: "M'", arg: 'M' },
         { label: "E'", arg: 'E' },
         { label: "S'", arg: 'S' },
@@ -619,10 +619,11 @@ export default function Cube3x3x3(props) {
             </button>
 
             <div className='toolbar'>
-                {buttons.map(({ label, arg }) => (
+                {buttons.map(({ label, arg, color }) => (
                     <button
                         key={arg}
                         className='toolbar-btn'
+                        style={{ backgroundColor: color }}
                         onClick={() => {
                             arg.split('').forEach((char) => handleToolbarClick(char));
                         }}
