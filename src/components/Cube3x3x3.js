@@ -83,11 +83,6 @@ export default function Cube3x3x3(props) {
             setHintText("get blue center on the front (Y')");
             return;
         }
-        console.log(edgePiecesColors[0][0], JSON.stringify(edgePiecesPositions[0][1])); //red
-        console.log(edgePiecesColors[1][0], JSON.stringify(edgePiecesPositions[1][1])); //orange
-        console.log(edgePiecesColors[8][0], JSON.stringify(edgePiecesPositions[8][1])); //green
-        console.log(edgePiecesColors[9][0], JSON.stringify(edgePiecesPositions[9][1])); //blue
-
         // if all white edges are not on the bottom
         if (
             (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
