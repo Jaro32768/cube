@@ -6,6 +6,9 @@ h1,
 h2 {
     margin: 20px 0;
 }
+div {
+    color: white;
+}
 
 select {
     margin: 10px 0;
