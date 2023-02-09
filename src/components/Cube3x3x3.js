@@ -26,6 +26,7 @@ export default function Cube3x3x3(props) {
     const [wasChangedAtlestOnce, setWasChangedAtlestOnce] = useState(false);
     const [hintText, setHintText] = useState('Press any key to start solving');
     const [isHintTextVisible, setIsHintTextVisible] = useState(true);
+    const [progress, setProgress] = useState(0);
     let moveTimeline = '';
     const buttons = [
         { label: 'F', arg: 'f', color: centerPiecesColors[centerPiecesPositions.findIndex((subArr) => subArr.toString() === [0, 0, 1.5].toString())] },
@@ -55,368 +56,385 @@ export default function Cube3x3x3(props) {
     ];
     const getHintText = () => {
         // get white center on the bottom
-        if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) {
-            setHintText('get white center on the bottom (X)');
-            return;
-        } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
-            setHintText("get white center on the bottom (X')");
-            return;
-        } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) {
-            setHintText('get white center on the bottom (X2)');
-            return;
-        } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([1.5, 0, 0])) {
-            setHintText('get white center on the bottom (Z)');
-            return;
-        } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) {
-            setHintText("get white center on the bottom (Z')");
-            return;
+        if (progress === 0) {
+            if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) {
+                setHintText('get white center on the bottom (X)');
+                return;
+            } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
+                setHintText("get white center on the bottom (X')");
+                return;
+            } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) {
+                setHintText('get white center on the bottom (X2)');
+                return;
+            } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([1.5, 0, 0])) {
+                setHintText('get white center on the bottom (Z)');
+                return;
+            } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) {
+                setHintText("get white center on the bottom (Z')");
+                return;
+            } else {
+                setProgress(1);
+                setHintText('get blue center on the front');
+                return;
+            }
         }
-
         // get blue center on the front causing entire cube being oriented correctly
-        if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) {
-            setHintText('get blue center on the front (Y)');
-            return;
-        } else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
-            setHintText('get blue center on the front (Y2)');
-            return;
-        } else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
-            setHintText("get blue center on the front (Y')");
-            return;
+        if (progress === 1) {
+            if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) {
+                setHintText('get blue center on the front (Y)');
+                return;
+            } else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
+                setHintText('get blue center on the front (Y2)');
+                return;
+            } else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
+                setHintText("get blue center on the front (Y')");
+                return;
+            } else {
+                setProgress(2);
+                setHintText('align white edges on the bottom');
+                return;
+            }
         }
         // if all white edges are not on the bottom
-        if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 0, 1.5]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 0, 1.5]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (L)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (L2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, -1.5]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 0, -1.5]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (R L2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (R2 L2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, 1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, 1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (U R2 L2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (U2 R2 L2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 0, -1.5]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 0, -1.5]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (L U2 R2 L2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (L2 U2 R2 L2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 0, 1.5]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, 1.5]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
-        ) {
-            setHintText('align white edges on the bottom (R L2 U2 R2 L2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, -1.5]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, 0, -1.5])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 0, -1.5]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 0, -1.5]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
-        ) {
-            setHintText('align white edges on the bottom (R)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, 1.5, 0])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
-        ) {
-            setHintText('align white edges on the bottom (R2)');
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, 1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, 1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, 1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
-        ) {
-            setHintText("align white edges on the bottom (U' R2)");
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1.5, 0, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1.5, 0, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1.5, 0, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1.5, 0, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1.5, 0, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1.5, 0, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1.5, 0, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1.5, 0, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
-        ) {
-            setHintText("align white edges on the bottom (F U' R2)");
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, 1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, 1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, 1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
-        ) {
-            setHintText("align white edges on the bottom (F2 U' R2)");
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, 1.5, 0])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
-        ) {
-            setHintText("align white edges on the bottom (U F2 U' R2)");
-            return;
-        } else if (
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, 0, 1.5])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 0, 1.5]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 0, 1.5]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
-            (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, 1.5]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
-        ) {
-            setHintText("align white edges on the bottom (R U F2 U' R2)");
-            return;
-        } else if (
-            !(
-                edgePiecesPositions[0][1][1] === -1.5 &&
-                edgePiecesPositions[1][1][1] === -1.5 &&
-                edgePiecesPositions[8][1][1] === -1.5 &&
-                edgePiecesPositions[9][1][1] === -1.5
-            )
-        ) {
-            setHintText('get white edges on the bottom (use intuition)');
-            return;
-        }
-        if (
-            !(
-                JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])
-            )
-        ) {
+        if (progress === 2) {
             if (
-                JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0])
-            ) {
-                setHintText('align white edges on the bottom (D)');
-                return;
-            }
-            if (
-                JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])
-            ) {
-                setHintText('align white edges on the bottom (D2)');
-                return;
-            }
-            if (
-                JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
-                JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, -1.5, 0])
-            ) {
-                setHintText("align white edges on the bottom (D')");
-                return;
-            }
-            if (
-                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
-                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 0, 1.5]) &&
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 0, 1.5]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+            ) {
+                setHintText('align white edges on the bottom (L)');
+                return;
+            } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+            ) {
+                setHintText('align white edges on the bottom (L2)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, -1.5]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 0, -1.5]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+            ) {
+                setHintText('align white edges on the bottom (R L2)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+            ) {
+                setHintText('align white edges on the bottom (R2 L2)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, 1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, 1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+            ) {
+                setHintText('align white edges on the bottom (U R2 L2)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+            ) {
+                setHintText('align white edges on the bottom (U2 R2 L2)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 0, -1.5]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, 0, -1.5]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+            ) {
+                setHintText('align white edges on the bottom (L U2 R2 L2)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
                     JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (R2 L2 U2 R2 L2)');
+                setHintText('align white edges on the bottom (L2 U2 R2 L2)');
                 return;
-            }
-            if (
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 0, 1.5]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, 1.5]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+            ) {
+                setHintText('align white edges on the bottom (R L2 U2 R2 L2)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, -1.5]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, 0, -1.5])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 0, -1.5]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 0, -1.5]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
+            ) {
+                setHintText('align white edges on the bottom (R)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, 1.5, 0])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
+            ) {
+                setHintText('align white edges on the bottom (R2)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, 1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, 1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, 1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
+            ) {
+                setHintText("align white edges on the bottom (U' R2)");
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1.5, 0, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1.5, 0, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1.5, 0, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1.5, 0, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1.5, 0, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1.5, 0, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1.5, 0, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1.5, 0, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
+            ) {
+                setHintText("align white edges on the bottom (F U' R2)");
+                return;
+            } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
-                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, -1.5, 0])) ||
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, 1.5, 1])) ||
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
-                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, 1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
                     JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
-                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, 1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
-                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
             ) {
-                setHintText("align white edges on the bottom (R2 U F2 U' R2)");
+                setHintText("align white edges on the bottom (F2 U' R2)");
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, 1.5, 0])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
+            ) {
+                setHintText("align white edges on the bottom (U F2 U' R2)");
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, 0, 1.5])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, 0, 1.5]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 0, 1.5]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
+                (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, 1.5]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
+            ) {
+                setHintText("align white edges on the bottom (R U F2 U' R2)");
+                return;
+            } else if (
+                !(
+                    edgePiecesPositions[0][1][1] === -1.5 &&
+                    edgePiecesPositions[1][1][1] === -1.5 &&
+                    edgePiecesPositions[8][1][1] === -1.5 &&
+                    edgePiecesPositions[9][1][1] === -1.5
+                )
+            ) {
+                setHintText('get white edges on the bottom (use intuition)');
                 return;
             }
-            setHintText('align white edges on the bottom (try to align at least 2 edges using D moves)');
-            return;
+            if (
+                !(
+                    JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])
+                )
+            ) {
+                if (
+                    JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0])
+                ) {
+                    setHintText('align white edges on the bottom (D)');
+                    return;
+                }
+                if (
+                    JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])
+                ) {
+                    setHintText('align white edges on the bottom (D2)');
+                    return;
+                }
+                if (
+                    JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
+                    JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
+                    JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                    JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, -1.5, 0])
+                ) {
+                    setHintText("align white edges on the bottom (D')");
+                    return;
+                }
+                if (
+                    (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                        JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                    (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                        JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
+                ) {
+                    setHintText('align white edges on the bottom (R2 L2 U2 R2 L2)');
+                    return;
+                }
+                if (
+                    (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
+                        JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, -1]) &&
+                        JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, -1.5, 0])) ||
+                    (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, -1]) &&
+                        JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, 1])) ||
+                    (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, 1]) &&
+                        JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])) ||
+                    (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
+                        JSON.stringify(edgePiecesPositions[1][1]) === JSON.stringify([0, -1.5, -1]) &&
+                        JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
+                        JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
+                ) {
+                    setHintText("align white edges on the bottom (R2 U F2 U' R2)");
+                    return;
+                }
+                setHintText('align white edges on the bottom (try to align at least 2 edges using D moves)');
+                return;
+            } else {
+                setProgress(3);
+                setHintText('--');
+                return;
+            }
         }
 
-        setHintText('Solved!');
+        //setHintText('Solved!');
         return;
     };
 
@@ -791,6 +809,7 @@ export default function Cube3x3x3(props) {
     const shuffleCube = () => {
         const moves = ['f', 'b', 'u', 'd', 'l', 'r', 'm', 'e', 's', 'F', 'B', 'U', 'D', 'L', 'R', 'M', 'E', 'S'];
         for (let i = 0; i < 100; i++) handleToolbarClick(moves[Math.floor(Math.random() * moves.length)]);
+        setProgress(0);
     };
 
     const handleToolbarClick = (side) => {
