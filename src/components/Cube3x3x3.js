@@ -54,6 +54,10 @@ export default function Cube3x3x3(props) {
         { label: "y'", arg: 'Ude' },
         { label: "z'", arg: 'FbS' },
     ];
+
+    useEffect(() => {
+        getHintText();
+    }, [progress]);
     const getHintText = () => {
         // get white center on the bottom
         if (progress === 0) {
@@ -74,8 +78,7 @@ export default function Cube3x3x3(props) {
                 return;
             } else {
                 setProgress(1);
-                setHintText('get blue center on the front');
-                return;
+                setHintText('-');
             }
         }
         // get blue center on the front causing entire cube being oriented correctly
@@ -91,8 +94,7 @@ export default function Cube3x3x3(props) {
                 return;
             } else {
                 setProgress(2);
-                setHintText('align white edges on the bottom');
-                return;
+                setHintText('--');
             }
         }
         // if all white edges are not on the bottom
@@ -429,8 +431,7 @@ export default function Cube3x3x3(props) {
                 return;
             } else {
                 setProgress(3);
-                setHintText('--');
-                return;
+                setHintText('---');
             }
         }
 
