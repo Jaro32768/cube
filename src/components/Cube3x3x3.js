@@ -436,10 +436,6 @@ export default function Cube3x3x3(props) {
         }
         // first layer
         if (progress === 3) {
-            // 0 - TODO: everything
-            // 1 - TODO: everything
-            // 5 - TODO: everything
-            console.log(JSON.stringify(cornerPiecesPositions[4]));
             if (
                 JSON.stringify(cornerPiecesPositions[4]) ===
                 JSON.stringify([
@@ -448,7 +444,8 @@ export default function Cube3x3x3(props) {
                     [1, -1.5, 1],
                 ])
             ) {
-                setHintText('solved');
+                setHintText('-');
+                setProgress(4);
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1.5, -1, 1])) ||
@@ -474,7 +471,64 @@ export default function Cube3x3x3(props) {
                 return;
             }
         }
-
+        if (progress === 4) {
+            setHintText('rotate entire cube (y)');
+            if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
+                setProgress(5);
+                setHintText('-');
+                return;
+            }
+        }
+        if (progress === 5) {
+            console.log(JSON.stringify(cornerPiecesPositions[0]));
+            console.log(JSON.stringify(cornerPiecesColors[0]));
+            if (
+                JSON.stringify(cornerPiecesPositions[0]) ===
+                JSON.stringify([
+                    [1, -1, 1.5],
+                    [1.5, -1, 1],
+                    [1, -1.5, 1],
+                ])
+            ) {
+                setHintText('-');
+                console.log('done');
+                setProgress(6);
+                return;
+            } else if (
+                JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, -1, 1])) ||
+                JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, 1, 1])) ||
+                JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1, 1, 1.5]))
+            ) {
+                setHintText("insert white-red-green corner on the bottom (repeat R U R' U')");
+                return;
+            } else if (
+                JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1.5, 1, -1])) ||
+                JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1, 1, -1.5]))
+            ) {
+                setHintText('insert white-red-green corner on the bottom (rotate top (U))');
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1, -1, 1.5]))) {
+                setHintText("get white-red-green corner out of incorrect slot (rotate top (L' U L))");
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1, -1, -1.5]))) {
+                setHintText("get white-red-green corner out of incorrect slot (rotate top (B U B'))");
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1.5, -1, -1]))) {
+                setHintText("get white-red-green corner out of incorrect slot (rotate top (L U L'))");
+                return;
+            }
+        }
+        if (progress === 6) {
+            setHintText('rotate entire cube (y)');
+            console.log(JSON.stringify(centerPiecesPositions));
+            if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
+                setProgress(7);
+                setHintText('-');
+                return;
+            }
+        }
+        // 1 - TODO: everything
+        // 5 - TODO: everything
         //setHintText('Solved!');
         return;
     };
