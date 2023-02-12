@@ -524,8 +524,6 @@ export default function Cube3x3x3(props) {
             }
         }
         if (progress === 7) {
-            console.log(JSON.stringify(cornerPiecesPositions[1]));
-            console.log(JSON.stringify(cornerPiecesColors[1]));
             if (
                 JSON.stringify(cornerPiecesPositions[1]) ===
                 JSON.stringify([
@@ -535,7 +533,6 @@ export default function Cube3x3x3(props) {
                 ])
             ) {
                 setHintText('-');
-                console.log('done');
                 setProgress(8);
                 return;
             } else if (
@@ -564,12 +561,50 @@ export default function Cube3x3x3(props) {
         }
         if (progress === 8) {
             setHintText('rotate entire cube (y)');
-            console.log(JSON.stringify(centerPiecesPositions));
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) {
                 setProgress(9);
                 setHintText('-');
                 return;
             }
+        }
+        if (progress === 9) {
+            if (
+                JSON.stringify(cornerPiecesPositions[5]) ===
+                JSON.stringify([
+                    [1, -1, 1.5],
+                    [1.5, -1, 1],
+                    [1, -1.5, 1],
+                ])
+            ) {
+                setHintText('-');
+                setProgress(10);
+                return;
+            } else if (
+                JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1.5, -1, 1])) ||
+                JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1.5, 1, 1])) ||
+                JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1, 1, 1.5]))
+            ) {
+                setHintText("insert white-orange-blue corner on the bottom (repeat R U R' U')");
+                return;
+            } else if (
+                JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1.5, 1, -1])) ||
+                JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1, 1, -1.5]))
+            ) {
+                setHintText('insert white-orange-blue corner on the bottom (rotate top (U))');
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1, -1, 1.5]))) {
+                setHintText("get white-orange-blue corner out of incorrect slot (rotate top (L' U L))");
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1, -1, -1.5]))) {
+                setHintText("get white-orange-blue corner out of incorrect slot (rotate top (B U B'))");
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1.5, -1, -1]))) {
+                setHintText("get white-orange-blue corner out of incorrect slot (rotate top (L U L'))");
+                return;
+            }
+        }
+        // second layer
+        if (progress === 10) {
         }
         return;
     };
