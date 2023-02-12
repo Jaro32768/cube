@@ -436,10 +436,8 @@ export default function Cube3x3x3(props) {
         }
         // first layer
         if (progress === 3) {
-            // white-blue-red corner
             // 0 - TODO: everything
             // 1 - TODO: everything
-            // 4 - TODO: does not check all slots (only 3 slots are involved by R U R' U' algorithm; top layer)
             // 5 - TODO: everything
             console.log(JSON.stringify(cornerPiecesPositions[4]));
             if (
@@ -452,20 +450,27 @@ export default function Cube3x3x3(props) {
             ) {
                 setHintText('solved');
                 return;
-            }
-            if (
+            } else if (
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1.5, -1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1.5, 1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1, 1, 1.5]))
             ) {
                 setHintText("insert white-blue-red corner on the bottom (repeat R U R' U')");
-                console.log('true');
-                //return;
+                return;
             } else if (
-                JSON.stringify(cornerPiecesPositions[4].includes(JSON.stringify([-1.5, 1, -1]))) ||
-                JSON.stringify(cornerPiecesPositions[4].includes(JSON.stringify([1, 1, -1.5])))
+                JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1.5, 1, -1])) ||
+                JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1, 1, -1.5]))
             ) {
                 setHintText('insert white-blue-red corner on the bottom (rotate top (U))');
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1, -1, 1.5]))) {
+                setHintText("get white-blue-red corner out of incorrect slot (rotate top (L' U L))");
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1, -1, -1.5]))) {
+                setHintText("get white-blue-red corner out of incorrect slot (rotate top (B U B'))");
+                return;
+            } else if (JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1.5, -1, -1]))) {
+                setHintText("get white-blue-red corner out of incorrect slot (rotate top (L U L'))");
                 return;
             }
         }
