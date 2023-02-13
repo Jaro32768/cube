@@ -1064,7 +1064,12 @@ export default function Cube3x3x3(props) {
             </div>
 
             {isHintTextVisible ? (
-                <div className='hint-box'>
+                <div
+                    className='hint-box'
+                    onClick={() => {
+                        setProgress(0);
+                    }}
+                >
                     <p className='hint-text'>{hintText}</p>
                 </div>
             ) : null}
