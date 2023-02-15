@@ -25,7 +25,7 @@ export default function Cube3x3x3(props) {
     const [cornerPiecesRotations, setCornerPiecesRotations] = useState(initValues.cornerPiecesRotations);
     const [wasChangedAtlestOnce, setWasChangedAtlestOnce] = useState(false);
     const [hintText, setHintText] = useState('Press any key to start solving');
-    const [isHintTextVisible, setIsHintTextVisible] = useState(true);
+    const [isHintTextVisible, setIsHintTextVisible] = useState(false);
     const [progress, setProgress] = useState(0);
     let moveTimeline = '';
     const buttons = [
@@ -476,7 +476,6 @@ export default function Cube3x3x3(props) {
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
                 setProgress(5);
                 setHintText('-');
-                return;
             }
         }
         if (progress === 5) {
@@ -520,7 +519,6 @@ export default function Cube3x3x3(props) {
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
                 setProgress(7);
                 setHintText('-');
-                return;
             }
         }
         if (progress === 7) {
@@ -564,7 +562,6 @@ export default function Cube3x3x3(props) {
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) {
                 setProgress(9);
                 setHintText('-');
-                return;
             }
         }
         if (progress === 9) {
