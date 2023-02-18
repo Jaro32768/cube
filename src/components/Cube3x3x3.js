@@ -603,11 +603,6 @@ export default function Cube3x3x3(props) {
         // second layer
         if (progress === 10) {
             // orange-blue edge
-            console.log(JSON.stringify(edgePiecesPositions[7]));
-            console.log(JSON.stringify(edgePiecesColors[7]));
-            console.log(JSON.stringify(cornerPiecesPositions[5]));
-            console.log(JSON.stringify(edgePiecesPositions[1]));
-            console.log(JSON.stringify(edgePiecesPositions[9]));
             if (
                 JSON.stringify(edgePiecesPositions[7]) ===
                     JSON.stringify([
@@ -1088,11 +1083,14 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])
             ) {
                 setHintText('-');
+                setProgress(11);
                 return;
             } else {
                 setHintText("get orange-blue edge out (R U R' U' F' U' F)");
                 return;
             }
+        }
+        if (progress === 11) {
         }
         return;
     };
