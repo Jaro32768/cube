@@ -664,6 +664,9 @@ export default function Cube3x3x3(props) {
             ) {
                 setHintText('get orange-blue edge out (y)');
                 return;
+            } else if (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([-1.5, 0, 0])) {
+                setHintText("get orange-blue edge out (R U R' U' F' U' F ) and repeat (y)");
+                return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
                 JSON.stringify([
