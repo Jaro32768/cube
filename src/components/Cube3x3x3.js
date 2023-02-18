@@ -619,50 +619,6 @@ export default function Cube3x3x3(props) {
                 setHintText("insert orange-blue edge (U' F' U F R' F R F')");
                 return;
             } else if (
-                (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([-1.5, 0, 0]) &&
-                    (JSON.stringify(edgePiecesPositions[7]) ===
-                        JSON.stringify([
-                            [-1.5, 0, 1],
-                            [-1, 0, 1.5],
-                        ]) ||
-                        JSON.stringify(edgePiecesPositions[7]) ===
-                            JSON.stringify([
-                                [-1, 0, -1.5],
-                                [-1.5, 0, -1],
-                            ]) ||
-                        JSON.stringify(edgePiecesPositions[7]) ===
-                            JSON.stringify([
-                                [1.5, 0, -1],
-                                [1, 0, -1.5],
-                            ]) ||
-                        JSON.stringify(edgePiecesPositions[7]) ===
-                            JSON.stringify([
-                                [-1, 0, 1.5],
-                                [-1.5, 0, 1],
-                            ]) ||
-                        JSON.stringify(edgePiecesPositions[7]) ===
-                            JSON.stringify([
-                                [-1.5, 0, -1],
-                                [-1, 0, -1.5],
-                            ]) ||
-                        JSON.stringify(edgePiecesPositions[7]) ===
-                            JSON.stringify([
-                                [1, 0, -1.5],
-                                [1.5, 0, -1],
-                            ]))) ||
-                (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0]) &&
-                    JSON.stringify(edgePiecesPositions[7]) !==
-                        JSON.stringify([
-                            [1, 0, 1.5],
-                            [1.5, 0, 1],
-                        ]))
-            ) {
-                setHintText('get orange-blue edge out (y)');
-                return;
-            } else if (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([-1.5, 0, 0])) {
-                setHintText("get orange-blue edge out (R U R' U' F' U' F ) and repeat (y)");
-                return;
-            } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
                 JSON.stringify([
                     [1.5, 0, 1],
@@ -1037,40 +993,42 @@ export default function Cube3x3x3(props) {
                 setHintText('insert orange-blue edge (R))');
                 return;
             } else if (
-                JSON.stringify(edgePiecesPositions[7]) ===
+                (JSON.stringify(edgePiecesPositions[7]) ===
                     JSON.stringify([
                         [0, 1.5, 1],
                         [0, 1, 1.5],
                     ]) ||
-                JSON.stringify(edgePiecesPositions[7]) ===
-                    JSON.stringify([
-                        [-1, 1.5, 0],
-                        [-1.5, 1, 0],
-                    ])
+                    JSON.stringify(edgePiecesPositions[7]) ===
+                        JSON.stringify([
+                            [-1, 1.5, 0],
+                            [-1.5, 1, 0],
+                        ])) &&
+                JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])
             ) {
                 setHintText('get orange-blue edge to better spot (U)');
                 return;
             } else if (
-                JSON.stringify(edgePiecesPositions[7]) ===
+                (JSON.stringify(edgePiecesPositions[7]) ===
                     JSON.stringify([
                         [0, 1.5, 1],
                         [0, 1, 1.5],
                     ]) ||
-                JSON.stringify(edgePiecesPositions[7]) ===
-                    JSON.stringify([
-                        [-1, 1.5, 0],
-                        [-1.5, 1, 0],
-                    ]) ||
-                JSON.stringify(edgePiecesPositions[7]) ===
-                    JSON.stringify([
-                        [1.5, 1, 0],
-                        [1, 1.5, 0],
-                    ]) ||
-                JSON.stringify(edgePiecesPositions[7]) ===
-                    JSON.stringify([
-                        [0, 1, -1.5],
-                        [0, 1.5, -1],
-                    ])
+                    JSON.stringify(edgePiecesPositions[7]) ===
+                        JSON.stringify([
+                            [-1, 1.5, 0],
+                            [-1.5, 1, 0],
+                        ]) ||
+                    JSON.stringify(edgePiecesPositions[7]) ===
+                        JSON.stringify([
+                            [1.5, 1, 0],
+                            [1, 1.5, 0],
+                        ]) ||
+                    JSON.stringify(edgePiecesPositions[7]) ===
+                        JSON.stringify([
+                            [0, 1, -1.5],
+                            [0, 1.5, -1],
+                        ])) &&
+                JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])
             ) {
                 setHintText('get orange-blue edge to better spot (U)');
                 return;
@@ -1083,7 +1041,51 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])
             ) {
                 setHintText('-');
-                setProgress(11);
+                //setProgress(11);
+                return;
+            } else if (
+                (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([-1.5, 0, 0]) &&
+                    (JSON.stringify(edgePiecesPositions[7]) ===
+                        JSON.stringify([
+                            [-1.5, 0, 1],
+                            [-1, 0, 1.5],
+                        ]) ||
+                        JSON.stringify(edgePiecesPositions[7]) ===
+                            JSON.stringify([
+                                [-1, 0, -1.5],
+                                [-1.5, 0, -1],
+                            ]) ||
+                        JSON.stringify(edgePiecesPositions[7]) ===
+                            JSON.stringify([
+                                [1.5, 0, -1],
+                                [1, 0, -1.5],
+                            ]) ||
+                        JSON.stringify(edgePiecesPositions[7]) ===
+                            JSON.stringify([
+                                [-1, 0, 1.5],
+                                [-1.5, 0, 1],
+                            ]) ||
+                        JSON.stringify(edgePiecesPositions[7]) ===
+                            JSON.stringify([
+                                [-1.5, 0, -1],
+                                [-1, 0, -1.5],
+                            ]) ||
+                        JSON.stringify(edgePiecesPositions[7]) ===
+                            JSON.stringify([
+                                [1, 0, -1.5],
+                                [1.5, 0, -1],
+                            ]))) ||
+                (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0]) &&
+                    JSON.stringify(edgePiecesPositions[7]) !==
+                        JSON.stringify([
+                            [1, 0, 1.5],
+                            [1.5, 0, 1],
+                        ]))
+            ) {
+                setHintText('get orange-blue edge out (y)');
+                return;
+            } else if (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([-1.5, 0, 0])) {
+                setHintText("get orange-blue edge out (R U R' U' F' U' F ) and repeat (y)");
                 return;
             } else {
                 setHintText("get orange-blue edge out (R U R' U' F' U' F)");
