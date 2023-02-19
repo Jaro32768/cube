@@ -2004,7 +2004,7 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])
             ) {
                 setHintText('-');
-                //setProgress(15);
+                setProgress(15);
                 return;
             } else if (
                 (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([1.5, 0, 0]) &&
@@ -2054,6 +2054,17 @@ export default function Cube3x3x3(props) {
                 setHintText("get red-green edge out (R U R' U' F' U' F)");
                 return;
             }
+        }
+        if (progress === 15) {
+            setHintText('rotate entire cube (y)');
+            if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
+                setProgress(16);
+                setHintText('-');
+            }
+        }
+        if (progress === 16) {
+            // green-orange edge
+            setHintText('insert green-orange edge');
         }
         return;
     };
