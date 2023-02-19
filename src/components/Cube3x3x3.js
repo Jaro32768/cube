@@ -1577,7 +1577,7 @@ export default function Cube3x3x3(props) {
                 setHintText("get blue-red edge out (R U R' U' F' U' F ) and repeat (y)");
                 return;
             } else {
-                setHintText("get orange-blue edge out (R U R' U' F' U' F)");
+                setHintText("get blue-red edge out (R U R' U' F' U' F)");
                 return;
             }
         }
