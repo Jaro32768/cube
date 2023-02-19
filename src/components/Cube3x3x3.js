@@ -1581,6 +1581,14 @@ export default function Cube3x3x3(props) {
                 return;
             }
         }
+        if (progress === 13) {
+            setHintText('rotate entire cube (y)');
+            console.log(JSON.stringify(centerPiecesPositions[0]));
+            if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
+                setProgress(12);
+                setHintText('-');
+            }
+        }
         return;
     };
 
