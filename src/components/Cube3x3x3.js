@@ -2604,6 +2604,155 @@ export default function Cube3x3x3(props) {
                 return;
             }
         }
+        if (progress === 18) {
+            console.log(JSON.stringify(edgePiecesPositions[2]));
+            console.log(JSON.stringify(edgePiecesPositions[3]));
+            console.log(JSON.stringify(edgePiecesPositions[10]));
+            console.log(JSON.stringify(edgePiecesPositions[11]));
+            console.log('------------------------------------');
+
+            if (
+                JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[3]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[10]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[11]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ])
+            ) {
+                setHintText('-');
+                setProgress(19);
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [1.5, 1, 0],
+                            [1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 0],
+                            [-1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [0, 1, -1.5],
+                            [0, 1.5, -1],
+                        ])) ||
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [0, 1, -1.5],
+                            [0, 1.5, -1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 0],
+                            [-1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [0, 1, 1.5],
+                            [0, 1.5, 1],
+                        ])) ||
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [0, 1, 1.5],
+                            [0, 1.5, 1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [1.5, 1, 0],
+                            [1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 0],
+                            [-1, 1.5, 0],
+                        ])) ||
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 0],
+                            [-1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [0, 1, -1.5],
+                            [0, 1.5, -1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [1.5, 1, 0],
+                            [1, 1.5, 0],
+                        ])) ||
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [0, 1, -1.5],
+                            [0, 1.5, -1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [0, 1, 1.5],
+                            [0, 1.5, 1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [1.5, 1, 0],
+                            [1, 1.5, 0],
+                        ]))
+            ) {
+                setHintText("align yellow edges on the top (R U R' U R U2 R')");
+                return;
+            } else if (
+                JSON.stringify(edgePiecesPositions[2]).includes(',1.5,') &&
+                JSON.stringify(edgePiecesPositions[3]).includes(',1.5,') &&
+                JSON.stringify(edgePiecesPositions[10]).includes(',1.5,') &&
+                JSON.stringify(edgePiecesPositions[11]).includes(',1.5,')
+            ) {
+                setHintText('align yellow edges on the top (U)');
+                return;
+            } else {
+                setHintText("align yellow edges on the top (R U R' U R U2 R')");
+                return;
+            }
+        }
         return;
     };
 
