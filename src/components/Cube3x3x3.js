@@ -2521,6 +2521,120 @@ export default function Cube3x3x3(props) {
                 return;
             }
         }
+        if (progress === 17) {
+            console.log(JSON.stringify(edgePiecesPositions[2]));
+            console.log(JSON.stringify(edgePiecesPositions[3]));
+            console.log(JSON.stringify(edgePiecesPositions[10]));
+            console.log(JSON.stringify(edgePiecesPositions[11]));
+            console.log('------------------------------------');
+
+            if ((
+                !JSON.stringify(edgePiecesPositions[2][1]).includes(',1.5,') &&
+                !JSON.stringify(edgePiecesPositions[3][1]).includes(',1.5,') &&
+                !JSON.stringify(edgePiecesPositions[10][1]).includes(',1.5,') &&
+                !JSON.stringify(edgePiecesPositions[11][1]).includes(',1.5,') &&
+                JSON.stringify(edgePiecesPositions[2][0]).includes(',1.5,') &&
+                JSON.stringify(edgePiecesPositions[3][0]).includes(',1.5,') &&
+                JSON.stringify(edgePiecesPositions[10][0]).includes(',1.5,') &&
+                JSON.stringify(edgePiecesPositions[11][0]).includes(',1.5,')) || 
+                ((
+                    JSON.stringify(edgePiecesPositions[2][1]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[3][1]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[10][1]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[11][1]) === JSON.stringify([0,1.5,-1]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][1]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[3][1]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[10][1]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[11][1]) === JSON.stringify([-1,1.5,0]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][0]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[3][0]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[10][0]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[11][0]) === JSON.stringify([0,1.5,1]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][0]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[3][0]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[10][0]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[11][0]) === JSON.stringify([1,1.5,0]) 
+                )) || 
+                ((
+                    JSON.stringify(edgePiecesPositions[2][1]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[3][1]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[10][1]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[11][1]) === JSON.stringify([0,1.5,1]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][1]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[3][1]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[10][1]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[11][1]) === JSON.stringify([1,1.5,0]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][0]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[3][0]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[10][0]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[11][0]) === JSON.stringify([0,1.5,-1]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][0]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[3][0]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[10][0]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[11][0]) === JSON.stringify([-1,1.5,0]) 
+                )) || 
+                ((
+                    JSON.stringify(edgePiecesPositions[2][1]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[3][1]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[10][1]) === JSON.stringify([1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[11][1]) === JSON.stringify([1,1.5,0]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][1]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[3][1]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[10][1]) === JSON.stringify([-1,1.5,0]) ||
+                    JSON.stringify(edgePiecesPositions[11][1]) === JSON.stringify([-1,1.5,0]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][0]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[3][0]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[10][0]) === JSON.stringify([0,1.5,-1]) ||
+                    JSON.stringify(edgePiecesPositions[11][0]) === JSON.stringify([0,1.5,-1]) 
+                ) &&
+                (
+                    JSON.stringify(edgePiecesPositions[2][0]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[3][0]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[10][0]) === JSON.stringify([0,1.5,1]) ||
+                    JSON.stringify(edgePiecesPositions[11][0]) === JSON.stringify([0,1.5,1]) 
+                ))
+            ) {
+                setHintText("make cross on the top (F R U R' U' F')");
+                return;
+            } 
+            else if (JSON.stringify(edgePiecesPositions[2][1]).includes(',1.5,') &&
+            JSON.stringify(edgePiecesPositions[3][1]).includes(',1.5,') &&
+            JSON.stringify(edgePiecesPositions[10][1]).includes(',1.5,') &&
+            JSON.stringify(edgePiecesPositions[11][1]).includes(',1.5,')) {
+                setHintText("-");
+                setProgress(18);
+                return;
+            }
+            else if ( JSON.stringify(edgePiecesPositions[2]).includes(',1.5,') &&
+                        JSON.stringify(edgePiecesPositions[3]).includes(',1.5,') &&
+                        JSON.stringify(edgePiecesPositions[10]).includes(',1.5,') &&
+                        JSON.stringify(edgePiecesPositions[11]).includes(',1.5,'))
+            {
+                setHintText('make cross on the top (U)');
+                return;
+            }
+            
+            else {
+                setHintText("make cross on the top (F R U R' U' F')");
+                return;
+            }
+        }
         return;
     };
 
