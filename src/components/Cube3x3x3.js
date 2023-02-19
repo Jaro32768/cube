@@ -1584,13 +1584,6 @@ export default function Cube3x3x3(props) {
         }
         if (progress === 14) {
             // red-green edge
-            console.log('4: ' + JSON.stringify(edgePiecesPositions[4])); // 7
-            console.log('0: ' + JSON.stringify(cornerPiecesPositions[0])); // 5
-            console.log('0: ' + JSON.stringify(edgePiecesPositions[0])); // 1
-            console.log('8: ' + JSON.stringify(edgePiecesPositions[8])); // 9
-            console.log('0: ' + JSON.stringify(centerPiecesPositions[0]));
-            console.log('----');
-
             if (
                 JSON.stringify(edgePiecesPositions[4]) ===
                     JSON.stringify([
@@ -2064,13 +2057,6 @@ export default function Cube3x3x3(props) {
         }
         if (progress === 16) {
             // green-orange edge
-            console.log('5: ' + JSON.stringify(edgePiecesPositions[5])); // 7
-            console.log('1: ' + JSON.stringify(cornerPiecesPositions[1])); // 5
-            console.log('8: ' + JSON.stringify(edgePiecesPositions[8])); // 1
-            console.log('1: ' + JSON.stringify(edgePiecesPositions[1])); // 9
-            console.log('0: ' + JSON.stringify(centerPiecesPositions[0]));
-            console.log('--------------------');
-
             if (
                 JSON.stringify(edgePiecesPositions[5]) ===
                     JSON.stringify([
@@ -2461,7 +2447,6 @@ export default function Cube3x3x3(props) {
                 setHintText('insert green-orange edge (R))');
                 return;
             } else if (
-                ///////////////////////////////////////////////////////////////////////////////////////////
                 (JSON.stringify(edgePiecesPositions[5]) ===
                     JSON.stringify([
                         [0, 1, 1.5],
@@ -2485,7 +2470,7 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])
             ) {
                 setHintText('-');
-                //setProgress(17);
+                setProgress(17);
                 return;
             } else if (
                 (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([0, 0, 1.5]) &&
