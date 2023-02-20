@@ -2605,12 +2605,6 @@ export default function Cube3x3x3(props) {
             }
         }
         if (progress === 18) {
-            console.log(JSON.stringify(edgePiecesPositions[2]));
-            console.log(JSON.stringify(edgePiecesPositions[3]));
-            console.log(JSON.stringify(edgePiecesPositions[10]));
-            console.log(JSON.stringify(edgePiecesPositions[11]));
-            console.log('------------------------------------');
-
             if (
                 JSON.stringify(edgePiecesPositions[2]) ===
                     JSON.stringify([
@@ -2754,7 +2748,6 @@ export default function Cube3x3x3(props) {
             }
         }
         if (progress === 19) {
-            console.log(JSON.stringify(centerPiecesPositions[2]));
             if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
                 setHintText('get white center on the bottom (X)');
                 return;
@@ -2770,13 +2763,45 @@ export default function Cube3x3x3(props) {
                 return;
             }
         }
+        if (progress === 20) {
+            if (
+                JSON.stringify(cornerPiecesPositions[2][2]).includes(',-1.5,') &&
+                JSON.stringify(cornerPiecesPositions[3][2]).includes(',-1.5,') &&
+                JSON.stringify(cornerPiecesPositions[6][2]).includes(',-1.5,') &&
+                JSON.stringify(cornerPiecesPositions[7][2]).includes(',-1.5,') &&
+                JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ])
+            ) {
+                setHintText('-');
+                setProgress(21);
+                return;
+            } else if (
+                (JSON.stringify(cornerPiecesPositions[2][2]) === JSON.stringify([1, -1.5, 1]) ||
+                    JSON.stringify(cornerPiecesPositions[3][2]) === JSON.stringify([1, -1.5, 1]) ||
+                    JSON.stringify(cornerPiecesPositions[6][2]) === JSON.stringify([1, -1.5, 1]) ||
+                    JSON.stringify(cornerPiecesPositions[7][2]) === JSON.stringify([1, -1.5, 1])) &&
+                JSON.stringify(edgePiecesPositions[9]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ])
+            ) {
+                setHintText('rotate yellow corners (D)');
+                return;
+            } else {
+                setHintText("rotate yellow corners (R U R' U')");
+                return;
+            }
+        }
         return;
     };
 
     useEffect(() => {
         getHintText();
         if (!wasChangedAtlestOnce);
-        return;
         for (const [, SIDE] of Object.entries(indexes)) {
             let index, value;
             for (let i = 0; i < 3; i++) {
@@ -2790,8 +2815,8 @@ export default function Cube3x3x3(props) {
                 if (cornerPiecesPositions[SIDE.CORNER[i][0]][SIDE.CORNER[i][1]][index] !== value) return;
             }
         }
-
-        props.showSolved();
+        //setHintText('SOLVED!');
+        //props.showSolved();
     }, [centerPiecesPositions, centerPiecesRotations, edgePiecesPositions, edgePiecesRotations, cornerPiecesPositions, cornerPiecesRotations]);
 
     useEffect(() => {
