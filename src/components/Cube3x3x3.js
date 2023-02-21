@@ -2812,6 +2812,379 @@ export default function Cube3x3x3(props) {
                 return;
             }
         }
+        if (progress === 22) {
+            console.log(JSON.stringify(cornerPiecesPositions[2])); //cervena zelena
+            console.log(JSON.stringify(cornerPiecesPositions[3])); //oranzova zelena
+            console.log(JSON.stringify(cornerPiecesPositions[6])); //cervena modra
+            console.log(JSON.stringify(cornerPiecesPositions[7])); //oranzova modra
+            console.log('----');
+            console.log(JSON.stringify(edgePiecesPositions[2]));
+            console.log(JSON.stringify(edgePiecesPositions[3]));
+            console.log(JSON.stringify(edgePiecesPositions[10]));
+            console.log(JSON.stringify(edgePiecesPositions[11]));
+
+            if (
+                JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[3]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[10]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[11]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[2]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 1],
+                        [-1, 1, 1.5],
+                        [-1, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[3]) ===
+                    JSON.stringify([
+                        [1.5, 1, 1],
+                        [1, 1, 1.5],
+                        [1, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[6]) ===
+                    JSON.stringify([
+                        [-1.5, 1, -1],
+                        [-1, 1, -1.5],
+                        [-1, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[7]) ===
+                    JSON.stringify([
+                        [1.5, 1, -1],
+                        [1, 1, -1.5],
+                        [1, 1.5, -1],
+                    ])
+            ) {
+                setHintText('SOLVED');
+                //setProgress(23);
+                return;
+            } else if (
+                JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[3]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[10]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[11]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[2]) ===
+                    JSON.stringify([
+                        [-1, 1, -1.5],
+                        [-1.5, 1, -1],
+                        [-1, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[3]) ===
+                    JSON.stringify([
+                        [-1, 1, 1.5],
+                        [-1.5, 1, 1],
+                        [-1, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[6]) ===
+                    JSON.stringify([
+                        [1, 1, -1.5],
+                        [1.5, 1, -1],
+                        [1, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[7]) ===
+                    JSON.stringify([
+                        [1, 1, 1.5],
+                        [1.5, 1, 1],
+                        [1, 1.5, 1],
+                    ])
+            ) {
+                setHintText("solve the cube (U')");
+                return;
+            } else if (
+                JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[3]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[10]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[11]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[2]) ===
+                    JSON.stringify([
+                        [1.5, 1, -1],
+                        [1, 1, -1.5],
+                        [1, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[3]) ===
+                    JSON.stringify([
+                        [-1.5, 1, -1],
+                        [-1, 1, -1.5],
+                        [-1, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[6]) ===
+                    JSON.stringify([
+                        [1.5, 1, 1],
+                        [1, 1, 1.5],
+                        [1, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[7]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 1],
+                        [-1, 1, 1.5],
+                        [-1, 1.5, 1],
+                    ])
+            ) {
+                setHintText('solve the cube (U2)');
+                return;
+            } else if (
+                JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[3]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[10]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[11]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[2]) ===
+                    JSON.stringify([
+                        [1, 1, 1.5],
+                        [1.5, 1, 1],
+                        [1, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[3]) ===
+                    JSON.stringify([
+                        [1, 1, -1.5],
+                        [1.5, 1, -1],
+                        [1, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[6]) ===
+                    JSON.stringify([
+                        [-1, 1, 1.5],
+                        [-1.5, 1, 1],
+                        [-1, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[7]) ===
+                    JSON.stringify([
+                        [-1, 1, -1.5],
+                        [-1.5, 1, -1],
+                        [-1, 1.5, -1],
+                    ])
+            ) {
+                setHintText('solve the cube (U)');
+                return;
+            } else if (
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [1.5, 1, 0],
+                            [1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [0, 1, 1.5],
+                            [0, 1.5, 1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [0, 1, -1.5],
+                            [0, 1.5, -1],
+                        ]) &&
+                    JSON.stringify(cornerPiecesPositions[2]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 1],
+                            [-1, 1, 1.5],
+                            [-1, 1.5, 1],
+                        ])) ||
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [0, 1, 1.5],
+                            [0, 1.5, 1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 0],
+                            [-1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [1.5, 1, 0],
+                            [1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(cornerPiecesPositions[3]) ===
+                        JSON.stringify([
+                            [-1, 1, 1.5],
+                            [-1.5, 1, 1],
+                            [-1, 1.5, 1],
+                        ])) ||
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [0, 1, -1.5],
+                            [0, 1.5, -1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [1.5, 1, 0],
+                            [1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 0],
+                            [-1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(cornerPiecesPositions[6]) ===
+                        JSON.stringify([
+                            [-1, 1, 1.5],
+                            [-1.5, 1, 1],
+                            [-1, 1.5, 1],
+                        ])) ||
+                (JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ]) &&
+                    JSON.stringify(edgePiecesPositions[3]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 0],
+                            [-1, 1.5, 0],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[10]) ===
+                        JSON.stringify([
+                            [0, 1, -1.5],
+                            [0, 1.5, -1],
+                        ]) &&
+                    JSON.stringify(edgePiecesPositions[11]) ===
+                        JSON.stringify([
+                            [0, 1, 1.5],
+                            [0, 1.5, 1],
+                        ]) &&
+                    JSON.stringify(cornerPiecesPositions[7]) ===
+                        JSON.stringify([
+                            [-1.5, 1, 1],
+                            [-1, 1, 1.5],
+                            [-1, 1.5, 1],
+                        ]))
+            ) {
+                setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)");
+                return;
+            } else if (
+                JSON.stringify(edgePiecesPositions[2]) ===
+                    JSON.stringify([
+                        [-1.5, 1, 0],
+                        [-1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[3]) ===
+                    JSON.stringify([
+                        [1.5, 1, 0],
+                        [1, 1.5, 0],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[10]) ===
+                    JSON.stringify([
+                        [0, 1, 1.5],
+                        [0, 1.5, 1],
+                    ]) &&
+                JSON.stringify(edgePiecesPositions[11]) ===
+                    JSON.stringify([
+                        [0, 1, -1.5],
+                        [0, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[2]) !==
+                    JSON.stringify([
+                        [-1.5, 1, 1],
+                        [-1, 1, 1.5],
+                        [-1, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[3]) !==
+                    JSON.stringify([
+                        [1.5, 1, 1],
+                        [1, 1, 1.5],
+                        [1, 1.5, 1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[6]) !==
+                    JSON.stringify([
+                        [-1.5, 1, -1],
+                        [-1, 1, -1.5],
+                        [-1, 1.5, -1],
+                    ]) &&
+                JSON.stringify(cornerPiecesPositions[7]) !==
+                    JSON.stringify([
+                        [1.5, 1, -1],
+                        [1, 1, -1.5],
+                        [1, 1.5, -1],
+                    ])
+            ) {
+                setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)");
+                return;
+            } else if (
+                JSON.stringify(cornerPiecesPositions[2][2]).includes(',1.5,') &&
+                JSON.stringify(cornerPiecesPositions[3][2]).includes(',1.5,') &&
+                JSON.stringify(cornerPiecesPositions[6][2]).includes(',1.5,') &&
+                JSON.stringify(cornerPiecesPositions[7][2]).includes(',1.5,')
+            ) {
+                setHintText('solve the cube (U)');
+                return;
+            } else {
+                setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)");
+                return;
+            }
+        }
         return;
     };
 
