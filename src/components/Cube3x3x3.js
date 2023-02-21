@@ -2813,16 +2813,6 @@ export default function Cube3x3x3(props) {
             }
         }
         if (progress === 22) {
-            console.log(JSON.stringify(cornerPiecesPositions[2])); //cervena zelena
-            console.log(JSON.stringify(cornerPiecesPositions[3])); //oranzova zelena
-            console.log(JSON.stringify(cornerPiecesPositions[6])); //cervena modra
-            console.log(JSON.stringify(cornerPiecesPositions[7])); //oranzova modra
-            console.log('----');
-            console.log(JSON.stringify(edgePiecesPositions[2]));
-            console.log(JSON.stringify(edgePiecesPositions[3]));
-            console.log(JSON.stringify(edgePiecesPositions[10]));
-            console.log(JSON.stringify(edgePiecesPositions[11]));
-
             if (
                 JSON.stringify(edgePiecesPositions[2]) ===
                     JSON.stringify([
@@ -2869,8 +2859,8 @@ export default function Cube3x3x3(props) {
                         [1, 1.5, -1],
                     ])
             ) {
-                setHintText('SOLVED');
-                //setProgress(23);
+                setHintText('SOLVED!');
+                setProgress(23);
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[2]) ===
@@ -3204,8 +3194,8 @@ export default function Cube3x3x3(props) {
                 if (cornerPiecesPositions[SIDE.CORNER[i][0]][SIDE.CORNER[i][1]][index] !== value) return;
             }
         }
-        //setHintText('SOLVED!');
-        //props.showSolved();
+        setHintText('SOLVED!');
+        props.showSolved();
     }, [centerPiecesPositions, centerPiecesRotations, edgePiecesPositions, edgePiecesRotations, cornerPiecesPositions, cornerPiecesRotations]);
 
     useEffect(() => {

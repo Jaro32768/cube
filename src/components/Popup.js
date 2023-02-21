@@ -13,10 +13,10 @@ export default function Popup(props) {
                 {props.text.map((text) => {
                     {
                         return (
-                            <>
+                            <div key={text}>
                                 <p>{text}</p>
                                 <br />
-                            </>
+                            </div>
                         );
                     }
                 })}
