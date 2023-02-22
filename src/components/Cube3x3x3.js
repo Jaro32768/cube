@@ -2476,6 +2476,16 @@ export default function Cube3x3x3(props) {
                         JSON.stringify([
                             [-1.5, 1, 0],
                             [-1, 1.5, 0],
+                        ]) ||
+                    JSON.stringify(edgePiecesPositions[5]) ===
+                        JSON.stringify([
+                            [0, 1.5, -1],
+                            [0, 1, -1.5],
+                        ]) ||
+                    JSON.stringify(edgePiecesPositions[5]) ===
+                        JSON.stringify([
+                            [1, 1.5, 0],
+                            [1.5, 1, 0],
                         ])) &&
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])
             ) {
