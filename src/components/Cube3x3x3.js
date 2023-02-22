@@ -491,6 +491,15 @@ export default function Cube3x3x3(props) {
                 setProgress(6);
                 return;
             } else if (
+                !(
+                    edgePiecesPositions[0][1][1] === -1.5 &&
+                    edgePiecesPositions[1][1][1] === -1.5 &&
+                    edgePiecesPositions[8][1][1] === -1.5 &&
+                    edgePiecesPositions[9][1][1] === -1.5
+                )
+            ) {
+                return;
+            } else if (
                 JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, -1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, 1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1, 1, 1.5]))
@@ -534,6 +543,15 @@ export default function Cube3x3x3(props) {
                 setProgress(8);
                 return;
             } else if (
+                !(
+                    edgePiecesPositions[0][1][1] === -1.5 &&
+                    edgePiecesPositions[1][1][1] === -1.5 &&
+                    edgePiecesPositions[8][1][1] === -1.5 &&
+                    edgePiecesPositions[9][1][1] === -1.5
+                )
+            ) {
+                return;
+            } else if (
                 JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1.5, -1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1.5, 1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([-1, 1, 1.5]))
@@ -575,6 +593,15 @@ export default function Cube3x3x3(props) {
             ) {
                 setHintText('-');
                 setProgress(10);
+                return;
+            } else if (
+                !(
+                    edgePiecesPositions[0][1][1] === -1.5 &&
+                    edgePiecesPositions[1][1][1] === -1.5 &&
+                    edgePiecesPositions[8][1][1] === -1.5 &&
+                    edgePiecesPositions[9][1][1] === -1.5
+                )
+            ) {
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1.5, -1, 1])) ||
