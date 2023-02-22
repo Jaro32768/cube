@@ -62,19 +62,19 @@ export default function Cube3x3x3(props) {
         // get white center on the bottom
         if (progress === 0) {
             if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) {
-                setHintText('get white center on the bottom (X)');
+                setHintText('get white center on the bottom (x)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
-                setHintText("get white center on the bottom (X')");
+                setHintText("get white center on the bottom (x')");
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) {
-                setHintText('get white center on the bottom (X2)');
+                setHintText('get white center on the bottom (x2)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([1.5, 0, 0])) {
-                setHintText('get white center on the bottom (Z)');
+                setHintText('get white center on the bottom (z)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) {
-                setHintText("get white center on the bottom (Z')");
+                setHintText("get white center on the bottom (z')");
                 return;
             } else {
                 setProgress(1);
@@ -84,13 +84,13 @@ export default function Cube3x3x3(props) {
         // get blue center on the front causing entire cube being oriented correctly
         if (progress === 1) {
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) {
-                setHintText('get blue center on the front (Y)');
+                setHintText('get blue center on the front (y)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
-                setHintText('get blue center on the front (Y2)');
+                setHintText('get blue center on the front (y2)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
-                setHintText("get blue center on the front (Y')");
+                setHintText("get blue center on the front (y')");
                 return;
             } else {
                 setProgress(2);
@@ -2779,13 +2779,13 @@ export default function Cube3x3x3(props) {
         }
         if (progress === 19) {
             if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
-                setHintText('get white center on the bottom (X)');
+                setHintText('get white center on the bottom (x)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) {
-                setHintText("get white center on the bottom (X')");
+                setHintText("get white center on the bottom (x')");
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, -1.5, 0])) {
-                setHintText('get white center on the bottom (X2)');
+                setHintText('get white center on the bottom (x2)');
                 return;
             } else {
                 setHintText('-');
@@ -2828,13 +2828,13 @@ export default function Cube3x3x3(props) {
         }
         if (progress === 21) {
             if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
-                setHintText("get white center on the bottom (X')");
+                setHintText("get white center on the bottom (x')");
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) {
-                setHintText('get white center on the bottom (X)');
+                setHintText('get white center on the bottom (x)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) {
-                setHintText('get white center on the bottom (X2)');
+                setHintText('get white center on the bottom (x2)');
                 return;
             } else {
                 setHintText('-');
