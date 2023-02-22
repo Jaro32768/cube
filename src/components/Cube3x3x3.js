@@ -3180,7 +3180,7 @@ export default function Cube3x3x3(props) {
 
     useEffect(() => {
         getHintText();
-        if (!wasChangedAtlestOnce);
+        if (!wasChangedAtlestOnce) return;
         for (const [, SIDE] of Object.entries(indexes)) {
             let index, value;
             for (let i = 0; i < 3; i++) {
