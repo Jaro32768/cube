@@ -447,10 +447,19 @@ export default function Cube3x3x3(props) {
                 setHintText('-');
                 setProgress(4);
                 return;
+            } else if (JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1, 1, 1.5]))) return;
+            else if (
+                !(
+                    edgePiecesPositions[0][1][1] === -1.5 &&
+                    edgePiecesPositions[1][1][1] === -1.5 &&
+                    edgePiecesPositions[8][1][1] === -1.5 &&
+                    edgePiecesPositions[9][1][1] === -1.5
+                )
+            ) {
+                return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1.5, -1, 1])) ||
-                JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1.5, 1, 1])) ||
-                JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1, 1, 1.5]))
+                JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1.5, 1, 1]))
             ) {
                 setHintText("insert white-blue-red corner on the bottom (repeat R U R' U')");
                 return;
@@ -475,7 +484,7 @@ export default function Cube3x3x3(props) {
             setHintText('rotate entire cube (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
                 setProgress(5);
-                setHintText('-');
+                setHintText('insert white-red-green corner on the bottom (rotate top (U))');
             }
         }
         if (progress === 5) {
@@ -490,7 +499,8 @@ export default function Cube3x3x3(props) {
                 setHintText('-');
                 setProgress(6);
                 return;
-            } else if (
+            } else if (JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1, 1, 1.5]))) return;
+            else if (
                 !(
                     edgePiecesPositions[0][1][1] === -1.5 &&
                     edgePiecesPositions[1][1][1] === -1.5 &&
@@ -501,8 +511,7 @@ export default function Cube3x3x3(props) {
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, -1, 1])) ||
-                JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, 1, 1])) ||
-                JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1, 1, 1.5]))
+                JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, 1, 1]))
             ) {
                 setHintText("insert white-red-green corner on the bottom (repeat R U R' U')");
                 return;
@@ -527,7 +536,7 @@ export default function Cube3x3x3(props) {
             setHintText('rotate entire cube (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
                 setProgress(7);
-                setHintText('-');
+                setHintText('insert white-green-orange corner on the bottom (rotate top (U))');
             }
         }
         if (progress === 7) {
@@ -542,7 +551,8 @@ export default function Cube3x3x3(props) {
                 setHintText('-');
                 setProgress(8);
                 return;
-            } else if (
+            } else if (JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([-1, 1, 1.5]))) return;
+            else if (
                 !(
                     edgePiecesPositions[0][1][1] === -1.5 &&
                     edgePiecesPositions[1][1][1] === -1.5 &&
@@ -553,8 +563,7 @@ export default function Cube3x3x3(props) {
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1.5, -1, 1])) ||
-                JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1.5, 1, 1])) ||
-                JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([-1, 1, 1.5]))
+                JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1.5, 1, 1]))
             ) {
                 setHintText("insert white-green-orange corner on the bottom (repeat R U R' U')");
                 return;
@@ -579,7 +588,7 @@ export default function Cube3x3x3(props) {
             setHintText('rotate entire cube (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) {
                 setProgress(9);
-                setHintText('-');
+                setHintText('insert white-orange-blue corner on the bottom (rotate top (U))');
             }
         }
         if (progress === 9) {
@@ -594,7 +603,8 @@ export default function Cube3x3x3(props) {
                 setHintText('-');
                 setProgress(10);
                 return;
-            } else if (
+            } else if (JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1, 1, 1.5]))) return;
+            else if (
                 !(
                     edgePiecesPositions[0][1][1] === -1.5 &&
                     edgePiecesPositions[1][1][1] === -1.5 &&
@@ -605,8 +615,7 @@ export default function Cube3x3x3(props) {
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1.5, -1, 1])) ||
-                JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1.5, 1, 1])) ||
-                JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1, 1, 1.5]))
+                JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1.5, 1, 1]))
             ) {
                 setHintText("insert white-orange-blue corner on the bottom (repeat R U R' U')");
                 return;
