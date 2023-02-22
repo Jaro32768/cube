@@ -1485,10 +1485,20 @@ export default function Cube3x3x3(props) {
                         JSON.stringify([
                             [-1.5, 1, 0],
                             [-1, 1.5, 0],
+                        ]) ||
+                    JSON.stringify(edgePiecesPositions[6]) ===
+                        JSON.stringify([
+                            [0, 1.5, -1],
+                            [0, 1, -1.5],
+                        ]) ||
+                    JSON.stringify(edgePiecesPositions[6]) ===
+                        JSON.stringify([
+                            [1, 1.5, 0],
+                            [1.5, 1, 0],
                         ])) &&
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, -1.5])
             ) {
-                setHintText('get orange-blue edge to better spot (U)');
+                setHintText('get blue-red edge to better spot (U)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[7]) ===
