@@ -8,8 +8,6 @@ export default function Settings(props) {
     const [f2l, setF2l] = useState('lbl');
     const [ll, setLl] = useState('beginner');
 
-    useEffect(() => {}, [language]);
-
     const languageChange = (e) => {
         setLanguage(e.target.value);
         console.log(firebase.auth().currentUser == null);
@@ -138,7 +136,12 @@ export default function Settings(props) {
             <button className='close-btn' onClick={() => props.setAreSettingsVisible(false)}>
                 Back
             </button>
-            <button className='save-btn' onClick={() => {}}>
+            <button
+                className='save-btn'
+                onClick={() => {
+                    props.language = language;
+                }}
+            >
                 Save
             </button>
         </>

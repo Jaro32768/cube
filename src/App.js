@@ -14,6 +14,7 @@ function App() {
     const [isInfoVisible, setIsInfoVisible] = useState(false);
     const [isSolvedVisible, setIsSolvedVisible] = useState(false);
     const [areSettingsVisible, setAreSettingsVisible] = useState(false);
+    const [language, setLanguage] = useState('english');
 
     const logoutClicked = () => {
         firebase.auth().signOut();
@@ -42,7 +43,7 @@ function App() {
     }, []);
     if (!isLoggedIn) return <LoginForm setIsLoggedIn={setIsLoggedIn} />;
 
-    if (areSettingsVisible) return <Settings areSettingsVisible={areSettingsVisible} setAreSettingsVisible={setAreSettingsVisible} />;
+    if (areSettingsVisible) return <Settings areSettingsVisible={areSettingsVisible} setAreSettingsVisible={setAreSettingsVisible} setLanguage={setLanguage} />;
 
     return (
         <div className='canvas-container'>
