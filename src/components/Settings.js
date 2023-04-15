@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/Settings.css';
+import firebase from 'firebase/compat/app';
 
 export default function Settings(props) {
+    const [language, setLanguage] = useState('english');
     const [method, setMethod] = useState('beginner');
     const [f2l, setF2l] = useState('lbl');
     const [ll, setLl] = useState('beginner');
 
+    useEffect(() => {}, [language]);
+
+    const languageChange = (e) => {
+        setLanguage(e.target.value);
+        console.log(firebase.auth().currentUser == null);
+    };
     const presetChange = (e) => {
         switch (e.target.value) {
             case 'beginner':
@@ -92,6 +100,11 @@ export default function Settings(props) {
     return (
         <>
             <h1>Settings</h1>
+            <h2>Languages</h2>
+            <select name='language' onChange={languageChange}>
+                <option value='english'>English</option>
+                <option value='slovak'>Slovak</option>
+            </select>
             <h2>Presets</h2>
             <select name='preset' onChange={presetChange}>
                 <option value='beginner'>Beginner method</option>
@@ -117,7 +130,11 @@ export default function Settings(props) {
                 </select>
             )}
             {renderLl()}
-            <p>Keep in mind that as a guest you won't be able to restore your settings on your future site visit.</p>
+            {firebase.auth().currentUser == null ? (
+                <p>
+                    <strong>Keep in mind that as a guest you won't be able to restore your settings on your future site visit.</strong>
+                </p>
+            ) : null}
             <button className='close-btn' onClick={() => props.setAreSettingsVisible(false)}>
                 Back
             </button>
