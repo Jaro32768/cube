@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../css/Settings.css';
 import firebase from 'firebase/compat/app';
 
 export default function Settings(props) {
-    const [language, setLanguage] = useState('english');
+    const [language, setLanguage] = useState(props.language);
     const [method, setMethod] = useState('beginner');
     const [f2l, setF2l] = useState('lbl');
     const [ll, setLl] = useState('beginner');
 
     const languageChange = (e) => {
         setLanguage(e.target.value);
-        console.log(firebase.auth().currentUser == null);
     };
     const presetChange = (e) => {
         switch (e.target.value) {
@@ -75,7 +74,7 @@ export default function Settings(props) {
             case 'beginner':
                 return (
                     <>
-                        <div>beginner</div>
+                        <div>{props.language === 'english' ? 'beginner' : 'začiatočnícka'}</div>
                     </>
                 );
             case 'bollpll':
@@ -97,52 +96,66 @@ export default function Settings(props) {
 
     return (
         <>
-            <h1>Settings</h1>
-            <h2>Languages</h2>
+            <h1>{props.language === 'english' ? 'Settings' : 'Nastavenia'}</h1>
+            <h2>{props.language === 'english' ? 'Languages' : 'Jazyky'}</h2>
             <select name='language' onChange={languageChange}>
-                <option value='english'>English</option>
-                <option value='slovak'>Slovak</option>
+                {props.language === 'english' ? (
+                    <>
+                        <option value='english'>English</option>
+                        <option value='slovak'>Slovak</option>
+                    </>
+                ) : (
+                    <>
+                        <option value='slovak'>Slovenský</option>
+                        <option value='english'>Anglický</option>
+                    </>
+                )}
             </select>
-            <h2>Presets</h2>
+            <h2>{props.language === 'english' ? 'Presets' : 'Prednastavenia'}</h2>
             <select name='preset' onChange={presetChange}>
-                <option value='beginner'>Beginner method</option>
-                <option value='bcfop'>Beginner CFOP</option>
+                <option value='beginner'>{props.language === 'english' ? 'Beginner method' : 'Začiatočnícka metóda'}</option>
+                <option value='bcfop'>{props.language === 'english' ? 'Beginner CFOP' : 'Začiatočnícke CFOP'}</option>
                 <option value='cfop'>CFOP</option>
-                <option value='custom'>Custom</option>
+                <option value='custom'>{props.language === 'english' ? 'Custom' : 'Vlastné'}</option>
             </select>
-            <h2>First two layers</h2>
+            <h2>{props.language === 'english' ? 'First two layers' : 'Prvé dve vrstvy'}</h2>
             {method === 'custom' && (
                 <select name='f2l' onChange={f2lChange}>
-                    <option value='lbl'>Layer by layer</option>
-                    <option value='bf2l'>Beginner F2L</option>
+                    <option value='lbl'>{props.language === 'english' ? 'Layer by layer' : 'Po vrstvách'}</option>
+                    <option value='bf2l'>{props.language === 'english' ? 'Beginner F2L' : 'Začiatočnícke F2L'}</option>
                     <option value='f2l'>F2L</option>
                 </select>
             )}
             {renderF2l()}
-            <h2>Last layer</h2>
+            <h2>{props.language === 'english' ? 'Last layer' : 'Posledná vrstva'}</h2>
             {method === 'custom' && (
                 <select name='ll' onChange={llChange}>
-                    <option value='beginner'>Beginner method</option>
-                    <option value='bollpll'>Beginner OLL and PLL</option>
-                    <option value='ollpll'>OLL and PLL</option>
+                    <option value='beginner'>{props.language === 'english' ? 'Beginner method' : 'Začiatočnícka metóda'}</option>
+                    <option value='bollpll'>{props.language === 'english' ? 'Beginner OLL and PLL' : 'Začiatočnícke OLL a PLL'}</option>
+                    <option value='ollpll'>{props.language === 'english' ? 'OLL and PLL' : 'OLL a PLL'}</option>
                 </select>
             )}
             {renderLl()}
             {firebase.auth().currentUser == null ? (
-                <p>
-                    <strong>Keep in mind that as a guest you won't be able to restore your settings on your future site visit.</strong>
-                </p>
+                <h1>
+                    <strong>
+                        {props.language === 'english'
+                            ? "Keep in mind that as a guest you won't be able to restore your settings on your future site visit."
+                            : 'Pamätaj, že ako hosť nebudeš mať obnovené tvoje nastavenia pri ďalšej návšteve'}
+                    </strong>
+                </h1>
             ) : null}
             <button className='close-btn' onClick={() => props.setAreSettingsVisible(false)}>
-                Back
+                {props.language === 'english' ? 'Back' : 'Späť'}
             </button>
             <button
                 className='save-btn'
                 onClick={() => {
-                    props.language = language;
+                    props.setLanguage(language);
+                    props.setAreSettingsVisible(false);
                 }}
             >
-                Save
+                {props.language === 'english' ? 'Save' : 'Uložiť'}
             </button>
         </>
     );

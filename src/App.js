@@ -41,22 +41,23 @@ function App() {
             setIsLoggedIn(!!user);
         });
     }, []);
-    if (!isLoggedIn) return <LoginForm setIsLoggedIn={setIsLoggedIn} />;
+    if (!isLoggedIn) return <LoginForm setIsLoggedIn={setIsLoggedIn} language={language} />;
 
-    if (areSettingsVisible) return <Settings areSettingsVisible={areSettingsVisible} setAreSettingsVisible={setAreSettingsVisible} setLanguage={setLanguage} />;
+    if (areSettingsVisible)
+        return <Settings areSettingsVisible={areSettingsVisible} setAreSettingsVisible={setAreSettingsVisible} setLanguage={setLanguage} language={language} />;
 
     return (
         <div className='canvas-container'>
-            <Cube3x3x3 resetCube={resetCube} showSolved={showSolved} showSettings={showSettings} />
+            <Cube3x3x3 resetCube={resetCube} showSolved={showSolved} showSettings={showSettings} language={language} />
 
             <button className='logout-btn' onClick={logoutClicked}>
-                Logout
+                {language === 'english' ? 'Logout' : 'Odhlásiť sa'}
             </button>
             <button className='info-btn' onClick={showInfo}>
                 i
             </button>
-            <InfoPopup isInfoVisible={isInfoVisible} setIsInfoVisible={setIsInfoVisible} />
-            <SolvedPopup isSolvedVisible={isSolvedVisible} setIsSolvedVisible={setIsSolvedVisible} />
+            <InfoPopup isInfoVisible={isInfoVisible} setIsInfoVisible={setIsInfoVisible} language={language} />
+            <SolvedPopup isSolvedVisible={isSolvedVisible} setIsSolvedVisible={setIsSolvedVisible} language={language} />
         </div>
     );
 }

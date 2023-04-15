@@ -33,7 +33,7 @@ export default function LoginForm(props) {
                     <input className='login-input' type='email' autoComplete='username' value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
                 <label className='login-label'>
-                    Password:
+                    {props.language === 'english' ? 'Password:' : 'Heslo:'}
                     <input
                         className='login-input'
                         type='password'
@@ -44,13 +44,13 @@ export default function LoginForm(props) {
                 </label>
                 {error && <p className='login-error'>{error.message}</p>}
                 <button className='login-button' type='button' onClick={handleLogin}>
-                    Login
+                    {props.language === 'english' ? 'Login' : 'Prihlásiť sa'}
                 </button>
                 <button className='login-button' type='button' onClick={handleSignUp}>
-                    Sign Up
+                    {props.language === 'english' ? 'Sign up' : 'Registrovať sa'}
                 </button>
                 <button className='login-button secondary' type='button' onClick={() => props.setIsLoggedIn(true)}>
-                    Continue as a guest
+                    {props.language === 'english' ? 'Continue as a guest' : 'Pokračovať ako hosť'}
                 </button>
             </form>
         </>

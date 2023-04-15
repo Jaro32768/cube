@@ -8,7 +8,12 @@ export default function SolvedPopup(props) {
 
     return (
         <div className='alert' style={{ display: props.isSolvedVisible ? 'flex' : 'none' }}>
-            <Popup title='Congratulation!' text={['You have solved the cube']} clicked={() => hideAlert()} />
+            <Popup
+                title={props.language === 'english' ? ['Congratulations!'] : ['Gratulujem!']}
+                text={props.language === 'english' ? ['You have solved the cube!'] : ['Rubiková kocka bola zložená!']}
+                clicked={() => hideAlert()}
+                language={props.language}
+            />
         </div>
     );
 }
