@@ -62,19 +62,19 @@ export default function Cube3x3x3(props) {
         // get white center on the bottom
         if (progress === 0) {
             if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) {
-                setHintText('get white center on the bottom (x)');
+                props.language === 'english' ? setHintText('get white center on the bottom (x)') : setHintText('dostaň biely stred na spodok (x)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
-                setHintText("get white center on the bottom (x')");
+                props.language === 'english' ? setHintText("get white center on the bottom (x')") : setHintText("dostaň biely stred na spodok (x')");
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) {
-                setHintText('get white center on the bottom (x2)');
+                props.language === 'english' ? setHintText('get white center on the bottom (x2)') : setHintText('dostaň biely stred na spodok (x2)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([1.5, 0, 0])) {
-                setHintText('get white center on the bottom (z)');
+                props.language === 'english' ? setHintText('get white center on the bottom (z)') : setHintText('dostaň biely stred na spodok (z)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([-1.5, 0, 0])) {
-                setHintText("get white center on the bottom (z')");
+                props.language === 'english' ? setHintText("get white center on the bottom (z')") : setHintText("dostaň biely stred na spodok (z')");
                 return;
             } else {
                 setProgress(1);
@@ -84,13 +84,13 @@ export default function Cube3x3x3(props) {
         // get blue center on the front causing entire cube being oriented correctly
         if (progress === 1) {
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) {
-                setHintText('get blue center on the front (y)');
+                props.language === 'english' ? setHintText('get blue center on the front (y)') : setHintText('dostaň modrý stred na predok (y)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
-                setHintText('get blue center on the front (y2)');
+                props.language === 'english' ? setHintText('get blue center on the front (y2)') : setHintText('dostaň modrý stred na predok (y2)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
-                setHintText("get blue center on the front (y')");
+                props.language === 'english' ? setHintText("get blue center on the front (y')") : setHintText("dostaň modrý stred na predok (y')");
                 return;
             } else {
                 setProgress(2);
@@ -109,7 +109,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (L)');
+                props.language === 'english' ? setHintText('align white edges on the bottom (L)') : setHintText('zarovnaj biele hrany na spodku (L)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, -1.5, 0]) &&
@@ -121,7 +121,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (L2)');
+                props.language === 'english' ? setHintText('align white edges on the bottom (L2)') : setHintText('zarovnaj biele hrany na spodku (L2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, -1.5]) &&
@@ -133,7 +133,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (R L2)');
+                props.language === 'english' ? setHintText('align white edges on the bottom (R L2)') : setHintText('zarovnaj biele hrany na spodku (R L2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
@@ -145,7 +145,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (R2 L2)');
+                props.language === 'english' ? setHintText('align white edges on the bottom (R2 L2)') : setHintText('zarovnaj biele hrany na spodku (R2 L2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, -1]) &&
@@ -157,7 +157,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (U R2 L2)');
+                props.language === 'english'
+                    ? setHintText('align white edges on the bottom (U R2 L2)')
+                    : setHintText('zarovnaj biele hrany na spodku (U R2 L2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 1.5, 0]) &&
@@ -169,7 +171,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (U2 R2 L2)');
+                props.language === 'english'
+                    ? setHintText('align white edges on the bottom (U2 R2 L2)')
+                    : setHintText('zarovnaj biele hrany na spodku (U2 R2 L2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, 0, -1.5]) &&
@@ -181,7 +185,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (L U2 R2 L2)');
+                props.language === 'english'
+                    ? setHintText('align white edges on the bottom (L U2 R2 L2)')
+                    : setHintText('zarovnaj biele hrany na spodku (L U2 R2 L2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
@@ -193,7 +199,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (L2 U2 R2 L2)');
+                props.language === 'english'
+                    ? setHintText('align white edges on the bottom (L2 U2 R2 L2)')
+                    : setHintText('zarovnaj biele hrany na spodku (L2 U2 R2 L2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1, -1.5, 0]) &&
@@ -205,7 +213,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
             ) {
-                setHintText('align white edges on the bottom (R L2 U2 R2 L2)');
+                props.language === 'english'
+                    ? setHintText('align white edges on the bottom (R L2 U2 R2 L2)')
+                    : setHintText('zarovnaj biele hrany na spodku (R L2 U2 R2 L2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 0, -1.5]) &&
@@ -225,7 +235,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 0, -1.5]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
             ) {
-                setHintText('align white edges on the bottom (R)');
+                props.language === 'english' ? setHintText('align white edges on the bottom (R)') : setHintText('zarovnaj biele hrany na spodku (R)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([1, 1.5, 0]) &&
@@ -245,7 +255,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, 1.5, 0]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
             ) {
-                setHintText('align white edges on the bottom (R2)');
+                props.language === 'english' ? setHintText('align white edges on the bottom (R2)') : setHintText('zarovnaj biele hrany na spodku (R2)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, 1.5, 1]) &&
@@ -266,6 +276,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
             ) {
                 setHintText("align white edges on the bottom (U' R2)");
+                props.language === 'english' ? setHintText("align white edges on the bottom (U' R2)") : setHintText("zarovnaj biele hrany na spodku (U' R2)");
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([-1.5, 0, 1]) &&
@@ -285,7 +296,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1.5, 0, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
             ) {
-                setHintText("align white edges on the bottom (F U' R2)");
+                props.language === 'english'
+                    ? setHintText("align white edges on the bottom (F U' R2)")
+                    : setHintText("zarovnaj biele hrany na spodku (F U' R2)");
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
@@ -305,7 +318,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
             ) {
-                setHintText("align white edges on the bottom (F2 U' R2)");
+                props.language === 'english'
+                    ? setHintText("align white edges on the bottom (F2 U' R2)")
+                    : setHintText("zarovnaj biele hrany na spodku (F2 U' R2)");
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
@@ -325,7 +340,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
             ) {
-                setHintText("align white edges on the bottom (U F2 U' R2)");
+                props.language === 'english'
+                    ? setHintText("align white edges on the bottom (U F2 U' R2)")
+                    : setHintText("zarovnaj biele hrany na spodku (U F2 U' R2)");
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[0][1]) === JSON.stringify([0, -1.5, 1]) &&
@@ -345,7 +362,9 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
             ) {
-                setHintText("align white edges on the bottom (R U F2 U' R2)");
+                props.language === 'english'
+                    ? setHintText("align white edges on the bottom (R U F2 U' R2)")
+                    : setHintText("zarovnaj biele hrany na spodku (R U F2 U' R2)");
                 return;
             } else if (
                 !(
@@ -355,7 +374,9 @@ export default function Cube3x3x3(props) {
                     edgePiecesPositions[9][1][1] === -1.5
                 )
             ) {
-                setHintText('get white edges on the bottom (use intuition)');
+                props.language === 'english'
+                    ? setHintText('get white edges on the bottom (use intuition)')
+                    : setHintText('dostaň biele hrany na spodok (použi intuíciu)');
                 return;
             }
             if (
@@ -372,7 +393,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([1, -1.5, 0]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0])
                 ) {
-                    setHintText('align white edges on the bottom (D)');
+                    props.language === 'english' ? setHintText('align white edges on the bottom (D)') : setHintText('zarovnaj biele hrany na spodku (D)');
                     return;
                 }
                 if (
@@ -381,7 +402,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1])
                 ) {
-                    setHintText('align white edges on the bottom (D2)');
+                    props.language === 'english' ? setHintText('align white edges on the bottom (D2)') : setHintText('zarovnaj biele hrany na spodku (D2)');
                     return;
                 }
                 if (
@@ -390,7 +411,7 @@ export default function Cube3x3x3(props) {
                     JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([-1, -1.5, 0]) &&
                     JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([1, -1.5, 0])
                 ) {
-                    setHintText("align white edges on the bottom (D')");
+                    props.language === 'english' ? setHintText("align white edges on the bottom (D')") : setHintText("zarovnaj biele hrany na spodku (D')");
                     return;
                 }
                 if (
@@ -403,7 +424,9 @@ export default function Cube3x3x3(props) {
                         JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                         JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([0, -1.5, -1]))
                 ) {
-                    setHintText('align white edges on the bottom (R2 L2 U2 R2 L2)');
+                    props.language === 'english'
+                        ? setHintText('align white edges on the bottom (R2 L2 U2 R2 L2)')
+                        : setHintText('zarovnaj biele hrany na spodku (R2 L2 U2 R2 L2)');
                     return;
                 }
                 if (
@@ -424,10 +447,14 @@ export default function Cube3x3x3(props) {
                         JSON.stringify(edgePiecesPositions[8][1]) === JSON.stringify([0, -1.5, 1]) &&
                         JSON.stringify(edgePiecesPositions[9][1]) === JSON.stringify([-1, -1.5, 0]))
                 ) {
-                    setHintText("align white edges on the bottom (R2 U F2 U' R2)");
+                    props.language === 'english'
+                        ? setHintText("align white edges on the bottom (R2 U F2 U' R2)")
+                        : setHintText("zarovnaj biele hrany na spodku (R2 U F2 U' R2)");
                     return;
                 }
-                setHintText('align white edges on the bottom (try to align at least 2 edges using D moves)');
+                props.language === 'english'
+                    ? setHintText('align white edges on the bottom (try to align at least 2 edges using D moves)')
+                    : setHintText('zarovnaj biele hrany na spodku (skús zarovnať aspoň 2 hrany pomocou D pohybov)');
                 return;
             } else {
                 setProgress(3);
@@ -461,30 +488,43 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1.5, -1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1.5, 1, 1]))
             ) {
-                setHintText("insert white-blue-red corner on the bottom (repeat R U R' U')");
+                props.language === 'english'
+                    ? setHintText("insert white-blue-red corner on the bottom (repeat R U R' U')")
+                    : setHintText("vlož bielo-modro-červenú rohovú kocku na spodok (opakuj R U R' U')");
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1.5, 1, -1])) ||
                 JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1, 1, -1.5]))
             ) {
-                setHintText('insert white-blue-red corner on the bottom (rotate top (U))');
+                props.language === 'english'
+                    ? setHintText('insert white-blue-red corner on the bottom (U)')
+                    : setHintText('vlož bielo-modro-červenú rohovú kocku na spodok (U)');
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1, -1, 1.5]))) {
-                setHintText("get white-blue-red corner out of incorrect slot (rotate top (L' U L))");
+                setHintText("get white-blue-red corner out of incorrect slot (L' U L)");
+                props.language === 'english'
+                    ? setHintText("get white-blue-red corner out of incorrect slot (L' U L)")
+                    : setHintText("vyber bielo-modro-červenú rohovú kocku z nesprávneho slotu (L' U L)");
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([1, -1, -1.5]))) {
-                setHintText("get white-blue-red corner out of incorrect slot (rotate top (B U B'))");
+                props.language === 'english'
+                    ? setHintText("get white-blue-red corner out of incorrect slot (B U B')")
+                    : setHintText("vyber bielo-modro-červenú rohovú kocku z nesprávneho slotu (B U B')");
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[4]).includes(JSON.stringify([-1.5, -1, -1]))) {
-                setHintText("get white-blue-red corner out of incorrect slot (rotate top (L U L'))");
+                props.language === 'english'
+                    ? setHintText("get white-blue-red corner out of incorrect slot (L U L')")
+                    : setHintText("vyber bielo-modro-červenú rohovú kocku z nesprávneho slotu (L U L')");
                 return;
             }
         }
         if (progress === 4) {
-            setHintText('rotate entire cube (y)');
+            props.language === 'english' ? setHintText('rotate entire cube (y)') : setHintText('otoč celú kocku (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
                 setProgress(5);
-                setHintText('insert white-red-green corner on the bottom (rotate top (U))');
+                props.language === 'english'
+                    ? setHintText('insert white-red-green corner on the bottom (U)')
+                    : setHintText('vlož bielo-červeno-zelenú rohovú kocku na spodok (U)');
             }
         }
         if (progress === 5) {
@@ -513,30 +553,42 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, -1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1.5, 1, 1]))
             ) {
-                setHintText("insert white-red-green corner on the bottom (repeat R U R' U')");
+                props.language === 'english'
+                    ? setHintText("insert white-red-green corner on the bottom (repeat R U R' U')")
+                    : setHintText("vlož bielo-červeno-zelenú rohovú kocku na spodok (opakuj R U R' U')");
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1.5, 1, -1])) ||
                 JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1, 1, -1.5]))
             ) {
-                setHintText('insert white-red-green corner on the bottom (rotate top (U))');
+                props.language === 'english'
+                    ? setHintText('insert white-red-green corner on the bottom (U)')
+                    : setHintText('vlož bielo-červeno-zelenú rohovú kocku na spodok (U)');
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1, -1, 1.5]))) {
-                setHintText("get white-red-green corner out of incorrect slot (rotate top (L' U L))");
+                props.language === 'english'
+                    ? setHintText("get white-red-green corner out of incorrect slot (L' U L)")
+                    : setHintText("vyber bielo-červeno-zelenú rohovú kocku z nesprávneho slotu (L' U L)");
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([1, -1, -1.5]))) {
-                setHintText("get white-red-green corner out of incorrect slot (rotate top (B U B'))");
+                props.language === 'english'
+                    ? setHintText("get white-red-green corner out of incorrect slot (B U B')")
+                    : setHintText("vyber bielo-červeno-zelenú rohovú kocku z nesprávneho slotu (B U B')");
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[0]).includes(JSON.stringify([-1.5, -1, -1]))) {
-                setHintText("get white-red-green corner out of incorrect slot (rotate top (L U L'))");
+                props.language === 'english'
+                    ? setHintText("get white-red-green corner out of incorrect slot (L U L')")
+                    : setHintText("vyber bielo-červeno-zelenú rohovú kocku z nesprávneho slotu (L U L')");
                 return;
             }
         }
         if (progress === 6) {
-            setHintText('rotate entire cube (y)');
+            props.language === 'english' ? setHintText('rotate entire cube (y)') : setHintText('otoč celú kocku (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
                 setProgress(7);
-                setHintText('insert white-green-orange corner on the bottom (rotate top (U))');
+                props.language === 'english'
+                    ? setHintText('insert white-green-orange corner on the bottom (U)')
+                    : setHintText('vlož bielo-zeleno-oranžovú rohovú kocku na spodok (U)');
             }
         }
         if (progress === 7) {
@@ -565,30 +617,42 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1.5, -1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1.5, 1, 1]))
             ) {
-                setHintText("insert white-green-orange corner on the bottom (repeat R U R' U')");
+                props.language === 'english'
+                    ? setHintText("insert white-green-orange corner on the bottom (repeat R U R' U')")
+                    : setHintText("vlož bielo-zeleno-oranžovú rohovú kocku na spodok (opakuj R U R' U')");
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([-1.5, 1, -1])) ||
                 JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1, 1, -1.5]))
             ) {
-                setHintText('insert white-green-orange corner on the bottom (rotate top (U))');
+                props.language === 'english'
+                    ? setHintText('insert white-green-orange corner on the bottom (U)')
+                    : setHintText('vlož bielo-zeleno-oranžovú rohovú kocku na spodok (U)');
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([-1, -1, 1.5]))) {
-                setHintText("get white-green-orange corner out of incorrect slot (rotate top (L' U L))");
+                props.language === 'english'
+                    ? setHintText("get white-green-orange corner out of incorrect slot (L' U L)")
+                    : setHintText("vyber bielo-zeleno-oranžovú rohovú kocku z nesprávneho slotu (L' U L)");
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([1, -1, -1.5]))) {
-                setHintText("get white-green-orange corner out of incorrect slot (rotate top (B U B'))");
+                props.language === 'english'
+                    ? setHintText("get white-green-orange corner out of incorrect slot (B U B')")
+                    : setHintText("vyber bielo-zeleno-oranžovú rohovú kocku z nesprávneho slotu (B U B')");
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[1]).includes(JSON.stringify([-1.5, -1, -1]))) {
-                setHintText("get white-green-orange corner out of incorrect slot (rotate top (L U L'))");
+                props.language === 'english'
+                    ? setHintText("get white-green-orange corner out of incorrect slot (L U L')")
+                    : setHintText("vyber bielo-zeleno-oranžovú rohovú kocku z nesprávneho slotu (L U L')");
                 return;
             }
         }
         if (progress === 8) {
-            setHintText('rotate entire cube (y)');
+            props.language === 'english' ? setHintText('rotate entire cube (y)') : setHintText('otoč celú kocku (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])) {
                 setProgress(9);
-                setHintText('insert white-orange-blue corner on the bottom (rotate top (U))');
+                props.language === 'english'
+                    ? setHintText('insert white-orange-blue corner on the bottom (U)')
+                    : setHintText('vlož bielo-oranžovo-modrou rohovú kocku na spodok (U)');
             }
         }
         if (progress === 9) {
@@ -617,22 +681,32 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1.5, -1, 1])) ||
                 JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1.5, 1, 1]))
             ) {
-                setHintText("insert white-orange-blue corner on the bottom (repeat R U R' U')");
+                props.language === 'english'
+                    ? setHintText("insert white-orange-blue corner on the bottom (repeat R U R' U')")
+                    : setHintText("vlož bielo-oranžovo-modrou rohovú kocku na spodok (opakuj R U R' U')");
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1.5, 1, -1])) ||
                 JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1, 1, -1.5]))
             ) {
-                setHintText('insert white-orange-blue corner on the bottom (rotate top (U))');
+                props.language === 'english'
+                    ? setHintText('insert white-orange-blue corner on the bottom (U)')
+                    : setHintText('vlož bielo-oranžovo-modrou rohovú kocku na spodok (U)');
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1, -1, 1.5]))) {
-                setHintText("get white-orange-blue corner out of incorrect slot (rotate top (L' U L))");
+                props.language === 'english'
+                    ? setHintText("get white-orange-blue corner out of incorrect slot (L' U L)")
+                    : setHintText("vyber bielo-oranžovo-modrou rohovú kocku z nesprávneho slotu (L' U L)");
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([1, -1, -1.5]))) {
-                setHintText("get white-orange-blue corner out of incorrect slot (rotate top (B U B'))");
+                props.language === 'english'
+                    ? setHintText("get white-orange-blue corner out of incorrect slot (B U B')")
+                    : setHintText("vyber bielo-oranžovo-modrou rohovú kocku z nesprávneho slotu (B U B')");
                 return;
             } else if (JSON.stringify(cornerPiecesPositions[5]).includes(JSON.stringify([-1.5, -1, -1]))) {
-                setHintText("get white-orange-blue corner out of incorrect slot (rotate top (L U L'))");
+                props.language === 'english'
+                    ? setHintText("get white-orange-blue corner out of incorrect slot (L U L')")
+                    : setHintText("vyber bielo-oranžovo-modrou rohovú kocku z nesprávneho slotu (L U L')");
                 return;
             }
         }
@@ -652,7 +726,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (U' F' U F R' F R F')");
+                props.language === 'english'
+                    ? setHintText("insert orange-blue edge (U' F' U F R' F R F')")
+                    : setHintText("vlož oranžovo-modrú hranu (U' F' U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -661,7 +737,9 @@ export default function Cube3x3x3(props) {
                     [1, 0, 1.5],
                 ])
             ) {
-                setHintText("get orange-blue edge out (R U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get orange-blue edge out (R U R' U' F' U' F)")
+                    : setHintText("vyber oranžovo-modrú hranu (R U R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -681,7 +759,9 @@ export default function Cube3x3x3(props) {
                         [1, 0, 1.5],
                     ])
             ) {
-                setHintText("get orange-blue edge out (U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get orange-blue edge out (U R' U' F' U' F)")
+                    : setHintText("vyber oranžovo-modrú hranu (U R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -701,7 +781,9 @@ export default function Cube3x3x3(props) {
                         [1, 0, 1.5],
                     ])
             ) {
-                setHintText("get orange-blue edge out (R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get orange-blue edge out (R' U' F' U' F)")
+                    : setHintText("vyber oranžovo-modrú hranu (R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -721,7 +803,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText("get orange-blue edge out (U' F' U' F)");
+                props.language === 'english' ? setHintText("get orange-blue edge out (U' F' U' F)") : setHintText("vyber oranžovo-modrú hranu (U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -741,7 +823,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText("get orange-blue edge out ( F' U' F)");
+                props.language === 'english' ? setHintText("get orange-blue edge out ( F' U' F)") : setHintText("vyber oranžovo-modrú hranu ( F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -761,7 +843,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 0, 1],
                     ])
             ) {
-                setHintText("get orange-blue edge out (U' F)");
+                props.language === 'english' ? setHintText("get orange-blue edge out (U' F)") : setHintText("vyber oranžovo-modrú hranu (U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -781,7 +863,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 0, 1],
                     ])
             ) {
-                setHintText('get orange-blue edge out (F)');
+                props.language === 'english' ? setHintText('get orange-blue edge out (F)') : setHintText('vyber oranžovo-modrú hranu (F)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -796,7 +878,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (F' U F R' F R F'))");
+                props.language === 'english'
+                    ? setHintText("insert orange-blue edge (F' U F R' F R F')")
+                    : setHintText("vlož oranžovo-modrú hranu (F' U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -811,7 +895,9 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (U F R' F R F'))");
+                props.language === 'english'
+                    ? setHintText("insert orange-blue edge (U F R' F R F')")
+                    : setHintText("vlož oranžovo-modrú hranu (U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -826,7 +912,7 @@ export default function Cube3x3x3(props) {
                         [-1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert orange-blue edge (F R' F R F'))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (F R' F R F')") : setHintText("vlož oranžovo-modrú hranu (F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -841,7 +927,7 @@ export default function Cube3x3x3(props) {
                         [1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert orange-blue edge (R' F R F'))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (R' F R F')") : setHintText("vlož oranžovo-modrú hranu (R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -861,7 +947,7 @@ export default function Cube3x3x3(props) {
                         [1, 0, -1.5],
                     ])
             ) {
-                setHintText("insert orange-blue edge (F R F'))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (F R F')") : setHintText("vlož oranžovo-modrú hranu (F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -881,7 +967,7 @@ export default function Cube3x3x3(props) {
                         [1, 0, -1.5],
                     ])
             ) {
-                setHintText("insert orange-blue edge (R F'))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (R F')") : setHintText("vlož oranžovo-modrú hranu (R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -896,7 +982,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, -1, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (F'))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (F')") : setHintText("vlož oranžovo-modrú hranu (F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -911,7 +997,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (U R U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert orange-blue edge (U R U' R' F R' F' R)")
+                    : setHintText("vlož oranžovo-modrú hranu (U R U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -926,7 +1014,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (R U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert orange-blue edge (R U' R' F R' F' R)")
+                    : setHintText("vlož oranžovo-modrú hranu (R U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -941,7 +1031,9 @@ export default function Cube3x3x3(props) {
                         [1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert orange-blue edge (U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert orange-blue edge (U' R' F R' F' R)")
+                    : setHintText("vlož oranžovo-modrú hranu (U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -956,7 +1048,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, -1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (R' F R' F' R))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (R' F R' F' R)") : setHintText("vlož oranžovo-modrú hranu (R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -971,7 +1063,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (F R' F' R))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (F R' F' R)") : setHintText("vlož oranžovo-modrú hranu (F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -991,7 +1083,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, 0, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (R' F' R))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (R' F' R)") : setHintText("vlož oranžovo-modrú hranu (R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -1011,7 +1103,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, 0, 1],
                     ])
             ) {
-                setHintText("insert orange-blue edge (F' R))");
+                props.language === 'english' ? setHintText("insert orange-blue edge (F' R)") : setHintText("vlož oranžovo-modrú hranu (F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -1026,7 +1118,7 @@ export default function Cube3x3x3(props) {
                         [1, -1, -1.5],
                     ])
             ) {
-                setHintText('insert orange-blue edge (R))');
+                props.language === 'english' ? setHintText('insert orange-blue edge (R)') : setHintText('vlož oranžovo-modrú hranu (R)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[7]) ===
@@ -1051,7 +1143,9 @@ export default function Cube3x3x3(props) {
                         ])) &&
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])
             ) {
-                setHintText('get orange-blue edge to better spot (U)');
+                props.language === 'english'
+                    ? setHintText('get orange-blue edge to better spot (U)')
+                    : setHintText('daj oranžovo-modrú hranu na lepšie miesto (U)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[7]) ===
@@ -1103,18 +1197,23 @@ export default function Cube3x3x3(props) {
                             [1.5, 0, 1],
                         ]))
             ) {
-                setHintText('get orange-blue edge out (y)');
+                props.language === 'english' ? setHintText('get orange-blue edge out (y)') : setHintText('daj oranžovo-modrú hranu von (y)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([-1.5, 0, 0])) {
-                setHintText("get orange-blue edge out (R U R' U' F' U' F ) and repeat (y)");
+                props.language === 'english'
+                    ? setHintText("get orange-blue edge out (R U R' U' F' U' F ) and repeat (y)")
+                    : setHintText("daj oranžovo-modrú hranu von (R U R' U' F' U' F ) a opakuj (y)");
                 return;
             } else {
-                setHintText("get orange-blue edge out (R U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get orange-blue edge out (R U R' U' F' U' F)")
+                    : setHintText("daj oranžovo-modrú hranu von (R U R' U' F' U' F)");
                 return;
             }
         }
         if (progress === 11) {
             setHintText('rotate entire cube (y)');
+            props.language === 'english' ? setHintText('rotate entire cube (y)') : setHintText('otoč celú kocku (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, -1.5])) {
                 setProgress(12);
                 setHintText('-');
@@ -1135,7 +1234,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (U' F' U F R' F R F')");
+                props.language === 'english'
+                    ? setHintText("insert blue-red edge (U' F' U F R' F R F')")
+                    : setHintText("vlož modro-červenú hranu (U' F' U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1144,7 +1245,9 @@ export default function Cube3x3x3(props) {
                     [1.5, 0, 1],
                 ])
             ) {
-                setHintText("get blue-red edge out (R U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get blue-red edge out (R U R' U' F' U' F)")
+                    : setHintText("daj modro-červenú hranu von (R U R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1164,7 +1267,9 @@ export default function Cube3x3x3(props) {
                         [1, 0, 1.5],
                     ])
             ) {
-                setHintText("get blue-red edge out (U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get blue-red edge out (U R' U' F' U' F)")
+                    : setHintText("daj modro-červenú hranu von (U R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1184,7 +1289,9 @@ export default function Cube3x3x3(props) {
                         [1, 0, 1.5],
                     ])
             ) {
-                setHintText("get blue-red edge out (R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get blue-red edge out (R' U' F' U' F)")
+                    : setHintText("daj modro-červenú hranu von (R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1204,7 +1311,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText("get blue-red edge out (U' F' U' F)");
+                props.language === 'english' ? setHintText("get blue-red edge out (U' F' U' F)") : setHintText("daj modro-červenú hranu von (U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1224,7 +1331,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText("get blue-red edge out ( F' U' F)");
+                props.language === 'english' ? setHintText("get blue-red edge out ( F' U' F)") : setHintText("daj modro-červenú hranu von ( F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1245,6 +1352,7 @@ export default function Cube3x3x3(props) {
                     ])
             ) {
                 setHintText("get blue-red edge out (U' F)");
+                props.language === 'english' ? setHintText("get blue-red edge out (U' F)") : setHintText("daj modro-červenú hranu von (U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1264,7 +1372,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText('get blue-red edge out (F)');
+                props.language === 'english' ? setHintText('get blue-red edge out (F)') : setHintText('daj modro-červenú hranu von (F)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1279,7 +1387,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (F' U F R' F R F'))");
+                props.language === 'english'
+                    ? setHintText("insert blue-red edge (F' U F R' F R F')")
+                    : setHintText("vlož modro-červenú hranu (F' U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1294,7 +1404,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (U F R' F R F'))");
+                props.language === 'english' ? setHintText("insert blue-red edge (U F R' F R F')") : setHintText("vlož modro-červenú hranu (U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1309,7 +1419,7 @@ export default function Cube3x3x3(props) {
                         [-1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert blue-red edge (F R' F R F'))");
+                props.language === 'english' ? setHintText("insert blue-red edge (F R' F R F')") : setHintText("vlož modro-červenú hranu (F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1324,7 +1434,7 @@ export default function Cube3x3x3(props) {
                         [1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert blue-red edge (R' F R F'))");
+                props.language === 'english' ? setHintText("insert blue-red edge (R' F R F')") : setHintText("vlož modro-červenú hranu (R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1344,7 +1454,7 @@ export default function Cube3x3x3(props) {
                         [1, 0, -1.5],
                     ])
             ) {
-                setHintText("insert blue-red edge (F R F'))");
+                props.language === 'english' ? setHintText("insert blue-red edge (F R F')") : setHintText("vlož modro-červenú hranu (F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1364,7 +1474,7 @@ export default function Cube3x3x3(props) {
                         [1, 0, -1.5],
                     ])
             ) {
-                setHintText("insert blue-red edge (R F'))");
+                props.language === 'english' ? setHintText("insert blue-red edge (R F')") : setHintText("vlož modro-červenú hranu (R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1379,7 +1489,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, -1, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (F'))");
+                props.language === 'english' ? setHintText("insert blue-red edge (F')") : setHintText("vlož modro-červenú hranu (F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1394,7 +1504,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (U R U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert blue-red edge (U R U' R' F R' F' R)")
+                    : setHintText("vlož modro-červenú hranu (U R U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1409,7 +1521,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (R U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert blue-red edge (R U' R' F R' F' R)")
+                    : setHintText("vlož modro-červenú hranu (R U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1424,7 +1538,9 @@ export default function Cube3x3x3(props) {
                         [1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert blue-red edge (U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert blue-red edge (U' R' F R' F' R)")
+                    : setHintText("vlož modro-červenú hranu (U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1439,7 +1555,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, -1],
                     ])
             ) {
-                setHintText("insert blue-red edge (R' F R' F' R))");
+                props.language === 'english' ? setHintText("insert blue-red edge (R' F R' F' R)") : setHintText("vlož modro-červenú hranu (R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1454,7 +1570,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (F R' F' R))");
+                props.language === 'english' ? setHintText("insert blue-red edge (F R' F' R)") : setHintText("vlož modro-červenú hranu (F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1474,7 +1590,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, 0, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (R' F' R))");
+                props.language === 'english' ? setHintText("insert blue-red edge (R' F' R)") : setHintText("vlož modro-červenú hranu (R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1494,7 +1610,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, 0, 1],
                     ])
             ) {
-                setHintText("insert blue-red edge (F' R))");
+                props.language === 'english' ? setHintText("insert blue-red edge (F' R)") : setHintText("vlož modro-červenú hranu (F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1509,7 +1625,7 @@ export default function Cube3x3x3(props) {
                         [1, -1, -1.5],
                     ])
             ) {
-                setHintText('insert blue-red edge (R))');
+                props.language === 'english' ? setHintText('insert blue-red edge (R)') : setHintText('vlož modro-červenú hranu (R)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[6]) ===
@@ -1534,7 +1650,7 @@ export default function Cube3x3x3(props) {
                         ])) &&
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, -1.5])
             ) {
-                setHintText('get blue-red edge to better spot (U)');
+                props.language === 'english' ? setHintText('insert blue-red edge (U)') : setHintText('vlož modro-červenú hranu (U)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[7]) ===
@@ -1559,7 +1675,7 @@ export default function Cube3x3x3(props) {
                         ])) &&
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([-1.5, 0, 0])
             ) {
-                setHintText('get blue-red edge to better spot (U)');
+                props.language === 'english' ? setHintText('insert blue-red edge (U)') : setHintText('vlož modro-červenú hranu (U)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[6]) ===
@@ -1611,18 +1727,22 @@ export default function Cube3x3x3(props) {
                             [1.5, 0, 1],
                         ]))
             ) {
-                setHintText('get blue-red edge out (y)');
+                props.language === 'english' ? setHintText('get blue-red edge out (y)') : setHintText('vyber modro-červenú hranu (y)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([0, 0, -1.5])) {
-                setHintText("get blue-red edge out (R U R' U' F' U' F ) and repeat (y)");
+                props.language === 'english'
+                    ? setHintText("get blue-red edge out (R U R' U' F' U' F ) and repeat (y)")
+                    : setHintText("vyber modro-červenú hranu (R U R' U' F' U' F ) a opakuj (y)");
                 return;
             } else {
-                setHintText("get blue-red edge out (R U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get blue-red edge out (R U R' U' F' U' F ) and repeat (y)")
+                    : setHintText("vyber modro-červenú hranu (R U R' U' F' U' F ) a opakuj (y)");
                 return;
             }
         }
         if (progress === 13) {
-            setHintText('rotate entire cube (y)');
+            props.language === 'english' ? setHintText('rotate entire cube (y)') : setHintText('otoč celú kocku (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])) {
                 setProgress(14);
                 setHintText('-');
@@ -1643,7 +1763,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (U' F' U F R' F R F')");
+                props.language === 'english' ? setHintText('insert red-green edge (U)') : setHintText('vlož červeno-zelenú hranu (U)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1652,7 +1772,9 @@ export default function Cube3x3x3(props) {
                     [1, 0, 1.5],
                 ])
             ) {
-                setHintText("get red-green edge out (R U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get red-green edge out (R U R' U' F' U' F)")
+                    : setHintText("vyber červeno-zelenú hranu (R U R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1672,7 +1794,9 @@ export default function Cube3x3x3(props) {
                         [1, 0, 1.5],
                     ])
             ) {
-                setHintText("get red-green edge out (U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get red-green edge out (U R' U' F' U' F)")
+                    : setHintText("vyber červeno-zelenú hranu (U R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1692,7 +1816,9 @@ export default function Cube3x3x3(props) {
                         [1, 0, 1.5],
                     ])
             ) {
-                setHintText("get red-green edge out (R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get red-green edge out (R' U' F' U' F)")
+                    : setHintText("vyber červeno-zelenú hranu (R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1712,7 +1838,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText("get red-green edge out (U' F' U' F)");
+                props.language === 'english' ? setHintText("get red-green edge out (U' F' U' F)") : setHintText("vyber červeno-zelenú hranu (U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1732,7 +1858,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText("get red-green edge out ( F' U' F)");
+                props.language === 'english' ? setHintText("get red-green edge out ( F' U' F)") : setHintText("vyber červeno-zelenú hranu ( F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1752,7 +1878,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 0, 1],
                     ])
             ) {
-                setHintText("get red-green edge out (U' F)");
+                props.language === 'english' ? setHintText("get red-green edge out (U' F)") : setHintText("vyber červeno-zelenú hranu (U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1772,7 +1898,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 0, 1],
                     ])
             ) {
-                setHintText('get red-green edge out (F)');
+                props.language === 'english' ? setHintText('get red-green edge out (F)') : setHintText('vyber červeno-zelenú hranu (F)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1787,7 +1913,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (F' U F R' F R F'))");
+                props.language === 'english'
+                    ? setHintText("insert red-green edge (F' U F R' F R F')")
+                    : setHintText("vlož červeno-zelenú hranu (F' U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1802,7 +1930,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (U F R' F R F'))");
+                props.language === 'english' ? setHintText("insert red-green edge (U F R' F R F')") : setHintText("vlož červeno-zelenú hranu (U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1817,7 +1945,7 @@ export default function Cube3x3x3(props) {
                         [-1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert red-green edge (F R' F R F'))");
+                props.language === 'english' ? setHintText("insert red-green edge (F R' F R F')") : setHintText("vlož červeno-zelenú hranu (F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1832,7 +1960,7 @@ export default function Cube3x3x3(props) {
                         [1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert red-green edge (R' F R F'))");
+                props.language === 'english' ? setHintText("insert red-green edge (R' F R F')") : setHintText("vlož červeno-zelenú hranu (R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1852,7 +1980,7 @@ export default function Cube3x3x3(props) {
                         [1, 0, -1.5],
                     ])
             ) {
-                setHintText("insert red-green edge (F R F'))");
+                props.language === 'english' ? setHintText("insert red-green edge (F R F')") : setHintText("vlož červeno-zelenú hranu (F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1872,7 +2000,7 @@ export default function Cube3x3x3(props) {
                         [1, 0, -1.5],
                     ])
             ) {
-                setHintText("insert red-green edge (R F'))");
+                props.language === 'english' ? setHintText("insert red-green edge (R F')") : setHintText("vlož červeno-zelenú hranu (R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1887,7 +2015,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, -1, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (F'))");
+                props.language === 'english' ? setHintText("insert red-green edge (F')") : setHintText("vlož červeno-zelenú hranu (F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1902,7 +2030,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (U R U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert red-green edge (U R U' R' F R' F' R)")
+                    : setHintText("vlož červeno-zelenú hranu (U R U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1917,7 +2047,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (R U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert red-green edge (R U' R' F R' F' R)")
+                    : setHintText("vlož červeno-zelenú hranu (R U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1932,7 +2064,9 @@ export default function Cube3x3x3(props) {
                         [1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert red-green edge (U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert red-green edge (U' R' F R' F' R)")
+                    : setHintText("vlož červeno-zelenú hranu (U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1947,7 +2081,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, -1],
                     ])
             ) {
-                setHintText("insert red-green edge (R' F R' F' R))");
+                props.language === 'english' ? setHintText("insert red-green edge (R' F R' F' R)") : setHintText("vlož červeno-zelenú hranu (R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1962,7 +2096,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (F R' F' R))");
+                props.language === 'english' ? setHintText("insert red-green edge (F R' F' R)") : setHintText("vlož červeno-zelenú hranu (F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -1982,7 +2116,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, 0, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (R' F' R))");
+                props.language === 'english' ? setHintText("insert red-green edge (R' F' R)") : setHintText("vlož červeno-zelenú hranu (R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -2002,7 +2136,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, 0, 1],
                     ])
             ) {
-                setHintText("insert red-green edge (F' R))");
+                props.language === 'english' ? setHintText("insert red-green edge (F' R)") : setHintText("vlož červeno-zelenú hranu (F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -2017,7 +2151,7 @@ export default function Cube3x3x3(props) {
                         [1, -1, -1.5],
                     ])
             ) {
-                setHintText('insert red-green edge (R))');
+                props.language === 'english' ? setHintText('insert red-green edge (R)') : setHintText('vlož červeno-zelenú hranu (R)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[4]) ===
@@ -2042,7 +2176,9 @@ export default function Cube3x3x3(props) {
                         ])) &&
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([1.5, 0, 0])
             ) {
-                setHintText('get red-green edge to better spot (U)');
+                props.language === 'english'
+                    ? setHintText('get red-green edge to better spot (U)')
+                    : setHintText('získať červeno-zelenú hranu na lepšie miesto (U)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[4]) ===
@@ -2094,18 +2230,22 @@ export default function Cube3x3x3(props) {
                             [1.5, 0, 1],
                         ]))
             ) {
-                setHintText('get red-green edge out (y)');
+                props.language === 'english' ? setHintText('get red-green edge out (y)') : setHintText('získať červeno-zelenú hranu von (y)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([1.5, 0, 0])) {
-                setHintText("get red-green edge out (R U R' U' F' U' F ) and repeat (y)");
+                props.language === 'english'
+                    ? setHintText("get red-green edge out (R U R' U' F' U' F ) and repeat (y)")
+                    : setHintText("daj červeno-zelenú hranu von (R U R' U' F' U' F ) a opakuj (y)");
                 return;
             } else {
-                setHintText("get red-green edge out (R U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get red-green edge out (R U R' U' F' U' F ) and repeat (y)")
+                    : setHintText("daj červeno-zelenú hranu von (R U R' U' F' U' F ) a opakuj (y)");
                 return;
             }
         }
         if (progress === 15) {
-            setHintText('rotate entire cube (y)');
+            props.language === 'english' ? setHintText('rotate entire cube (y)') : setHintText('otoč celú kocku (y)');
             if (JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])) {
                 setProgress(16);
                 setHintText('-');
@@ -2126,7 +2266,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (U' F' U F R' F R F')");
+                props.language === 'english'
+                    ? setHintText("insert green-orange edge (U' F' U F R' F R F')")
+                    : setHintText("vlož červeno-oranžovú hranu (U' F' U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2135,7 +2277,9 @@ export default function Cube3x3x3(props) {
                     [1.5, 0, 1],
                 ])
             ) {
-                setHintText("get green-orange edge out (R U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get green-orange edge out (R U R' U' F' U' F)")
+                    : setHintText("daj červeno-oranžovú hranu von (R U R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2155,7 +2299,9 @@ export default function Cube3x3x3(props) {
                         [1, 0, 1.5],
                     ])
             ) {
-                setHintText("get green-orange edge out (U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get green-orange edge out (U R' U' F' U' F)")
+                    : setHintText("daj červeno-oranžovú hranu von (U R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2175,7 +2321,9 @@ export default function Cube3x3x3(props) {
                         [1, 0, 1.5],
                     ])
             ) {
-                setHintText("get green-orange edge out (R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get green-orange edge out (R' U' F' U' F)")
+                    : setHintText("daj červeno-oranžovú hranu von (R' U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2195,7 +2343,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText("get green-orange edge out (U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get green-orange edge out (U' F' U' F)")
+                    : setHintText("daj červeno-oranžovú hranu von (U' F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2215,7 +2365,7 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 0],
                     ])
             ) {
-                setHintText("get green-orange edge out ( F' U' F)");
+                props.language === 'english' ? setHintText("get green-orange edge out ( F' U' F)") : setHintText("daj červeno-oranžovú hranu von ( F' U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2235,7 +2385,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 0, 1],
                     ])
             ) {
-                setHintText("get green-orange edge out (U' F)");
+                props.language === 'english' ? setHintText("get green-orange edge out (U' F)") : setHintText("daj červeno-oranžovú hranu von (U' F)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2255,7 +2405,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 0, 1],
                     ])
             ) {
-                setHintText('get green-orange edge out (F)');
+                props.language === 'english' ? setHintText('get green-orange edge out (F)') : setHintText('daj červeno-oranžovú hranu von (F)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2270,7 +2420,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (F' U F R' F R F'))");
+                props.language === 'english'
+                    ? setHintText("insert green-orange edge (F' U F R' F R F')")
+                    : setHintText("vlož červeno-oranžovú hranu (F' U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2285,7 +2437,9 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (U F R' F R F'))");
+                props.language === 'english'
+                    ? setHintText("insert green-orange edge (U F R' F R F')")
+                    : setHintText("vlož červeno-oranžovú hranu (U F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2300,7 +2454,7 @@ export default function Cube3x3x3(props) {
                         [-1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert green-orange edge (F R' F R F'))");
+                props.language === 'english' ? setHintText("insert green-orange edge (F R' F R F')") : setHintText("vlož červeno-oranžovú hranu (F R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2315,7 +2469,7 @@ export default function Cube3x3x3(props) {
                         [1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert green-orange edge (R' F R F'))");
+                props.language === 'english' ? setHintText("insert green-orange edge (R' F R F')") : setHintText("vlož červeno-oranžovú hranu (R' F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2335,7 +2489,7 @@ export default function Cube3x3x3(props) {
                         [1, 0, -1.5],
                     ])
             ) {
-                setHintText("insert green-orange edge (F R F'))");
+                props.language === 'english' ? setHintText("insert green-orange edge (F R F')") : setHintText("vlož červeno-oranžovú hranu (F R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2355,7 +2509,7 @@ export default function Cube3x3x3(props) {
                         [1, 0, -1.5],
                     ])
             ) {
-                setHintText("insert green-orange edge (R F'))");
+                props.language === 'english' ? setHintText("insert green-orange edge (R F')") : setHintText("vlož červeno-oranžovú hranu (R F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2370,7 +2524,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, -1, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (F'))");
+                props.language === 'english' ? setHintText("insert green-orange edge (F')") : setHintText("vlož červeno-oranžovú hranu (F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2385,7 +2539,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (U R U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert green-orange edge (U R U' R' F R' F' R)")
+                    : setHintText("vlož červeno-oranžovú hranu (U R U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2400,7 +2556,9 @@ export default function Cube3x3x3(props) {
                         [1, -1.5, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (R U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert green-orange edge (R U' R' F R' F' R)")
+                    : setHintText("vlož červeno-oranžovú hranu (R U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2415,7 +2573,9 @@ export default function Cube3x3x3(props) {
                         [1, 1, 1.5],
                     ])
             ) {
-                setHintText("insert green-orange edge (U' R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert green-orange edge (U' R' F R' F' R)")
+                    : setHintText("vlož červeno-oranžovú hranu (U' R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2430,7 +2590,9 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, -1],
                     ])
             ) {
-                setHintText("insert green-orange edge (R' F R' F' R))");
+                props.language === 'english'
+                    ? setHintText("insert green-orange edge (R' F R' F' R)")
+                    : setHintText("vlož červeno-oranžovú hranu (R' F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2445,7 +2607,7 @@ export default function Cube3x3x3(props) {
                         [1.5, 1, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (F R' F' R))");
+                props.language === 'english' ? setHintText("insert green-orange edge (F R' F' R)") : setHintText("vlož červeno-oranžovú hranu (F R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2465,7 +2627,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, 0, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (R' F' R))");
+                props.language === 'english' ? setHintText("insert green-orange edge (R' F' R)") : setHintText("vlož červeno-oranžovú hranu (R' F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2485,7 +2647,7 @@ export default function Cube3x3x3(props) {
                         [-1.5, 0, 1],
                     ])
             ) {
-                setHintText("insert green-orange edge (F' R))");
+                props.language === 'english' ? setHintText("insert green-orange edge (F' R)") : setHintText("vlož červeno-oranžovú hranu (F' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2500,7 +2662,7 @@ export default function Cube3x3x3(props) {
                         [1, -1, -1.5],
                     ])
             ) {
-                setHintText('insert green-orange edge (R))');
+                props.language === 'english' ? setHintText('insert green-orange edge (R)') : setHintText('vlož červeno-oranžovú hranu (R)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[5]) ===
@@ -2525,7 +2687,9 @@ export default function Cube3x3x3(props) {
                         ])) &&
                 JSON.stringify(centerPiecesPositions[0]) === JSON.stringify([0, 0, 1.5])
             ) {
-                setHintText('get green-orange edge to better spot (U)');
+                props.language === 'english'
+                    ? setHintText('get green-orange edge to better spot (U)')
+                    : setHintText('daj červeno-oranžovú hranu na lepšie miesto (U)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[5]) ===
@@ -2577,13 +2741,17 @@ export default function Cube3x3x3(props) {
                             [1, 0, 1.5],
                         ]))
             ) {
-                setHintText('get orange-blue edge out (y)');
+                props.language === 'english' ? setHintText('get orange-blue edge out (y)') : setHintText('daj modro-oranžovú hranu von (y)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[0]) !== JSON.stringify([0, 0, 1.5])) {
-                setHintText("get orange-blue edge out (R U R' U' F' U' F ) and repeat (y)");
+                props.language === 'english'
+                    ? setHintText("get orange-blue edge out (R U R' U' F' U' F ) and repeat (y)")
+                    : setHintText("daj modro-oranžovú hranu von (R U R' U' F' U' F ) a opakuj (y)");
                 return;
             } else {
-                setHintText("get orange-blue edge out (R U R' U' F' U' F)");
+                props.language === 'english'
+                    ? setHintText("get orange-blue edge out (R U R' U' F' U' F ) and repeat (y)")
+                    : setHintText("daj modro-oranžovú hranu von (R U R' U' F' U' F ) a opakuj (y)");
                 return;
             }
         }
@@ -2646,7 +2814,7 @@ export default function Cube3x3x3(props) {
                         JSON.stringify(edgePiecesPositions[10][0]) === JSON.stringify([0, 1.5, 1]) ||
                         JSON.stringify(edgePiecesPositions[11][0]) === JSON.stringify([0, 1.5, 1])))
             ) {
-                setHintText("make cross on the top (F R U R' U' F')");
+                props.language === 'english' ? setHintText("make cross on the top (F R U R' U' F')") : setHintText("sprav kríž na vrchu (F R U R' U' F')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[2][1]).includes(',1.5,') &&
@@ -2663,10 +2831,10 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(edgePiecesPositions[10]).includes(',1.5,') &&
                 JSON.stringify(edgePiecesPositions[11]).includes(',1.5,')
             ) {
-                setHintText('make cross on the top (U)');
+                props.language === 'english' ? setHintText('make cross on the top (U)') : setHintText('sprav kríž na vrchu (U)');
                 return;
             } else {
-                setHintText("make cross on the top (F R U R' U' F')");
+                props.language === 'english' ? setHintText("make cross on the top (F R U R' U' F')") : setHintText("sprav kríž na vrchu (F R U R' U' F')");
                 return;
             }
         }
@@ -2798,7 +2966,9 @@ export default function Cube3x3x3(props) {
                             [1, 1.5, 0],
                         ]))
             ) {
-                setHintText("align yellow edges on the top (R U R' U R U2 R')");
+                props.language === 'english'
+                    ? setHintText("align yellow edges on the top (R U R' U R U2 R')")
+                    : setHintText("zarovnaj žlté hrany na vrchu (R U R' U R U2 R')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[2]).includes(',1.5,') &&
@@ -2806,22 +2976,24 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(edgePiecesPositions[10]).includes(',1.5,') &&
                 JSON.stringify(edgePiecesPositions[11]).includes(',1.5,')
             ) {
-                setHintText('align yellow edges on the top (U)');
+                props.language === 'english' ? setHintText('align yellow edges on the top (U)') : setHintText('zarovnaj žlté hrany na vrchu (U)');
                 return;
             } else {
-                setHintText("align yellow edges on the top (R U R' U R U2 R')");
+                props.language === 'english'
+                    ? setHintText("align yellow edges on the top (R U R' U R U2 R')")
+                    : setHintText("zarovnaj žlté hrany na vrchu (R U R' U R U2 R')");
                 return;
             }
         }
         if (progress === 19) {
             if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
-                setHintText('get white center on the bottom (x)');
+                props.language === 'english' ? setHintText('get white center on the bottom (x)') : setHintText('daj biely stred na spodok (x)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) {
-                setHintText("get white center on the bottom (x')");
+                props.language === 'english' ? setHintText("get white center on the bottom (x')") : setHintText("daj biely stred na spodok (x')");
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, -1.5, 0])) {
-                setHintText('get white center on the bottom (x2)');
+                props.language === 'english' ? setHintText('get white center on the bottom (x2)') : setHintText('daj biely stred na spodok (x2)');
                 return;
             } else {
                 setHintText('-');
@@ -2855,22 +3027,22 @@ export default function Cube3x3x3(props) {
                         [0, 1.5, 1],
                     ])
             ) {
-                setHintText('rotate yellow corners (D)');
+                props.language === 'english' ? setHintText('rotate yellow corners (D)') : setHintText('otáčaj žlté rohy (D)');
                 return;
             } else {
-                setHintText("rotate yellow corners (R U R' U')");
+                props.language === 'english' ? setHintText("rotate yellow corners (R U R' U')") : setHintText("otáčaj žlté rohy (R U R' U')");
                 return;
             }
         }
         if (progress === 21) {
             if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, 1.5])) {
-                setHintText("get white center on the bottom (x')");
+                props.language === 'english' ? setHintText("get white center on the bottom (x')") : setHintText("daj biely stred na spodok (x')");
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 0, -1.5])) {
-                setHintText('get white center on the bottom (x)');
+                props.language === 'english' ? setHintText('get white center on the bottom (x)') : setHintText('daj biely stred na spodok (x)');
                 return;
             } else if (JSON.stringify(centerPiecesPositions[2]) === JSON.stringify([0, 1.5, 0])) {
-                setHintText('get white center on the bottom (x2)');
+                props.language === 'english' ? setHintText('get white center on the bottom (x2)') : setHintText('daj biely stred na spodok (x2)');
                 return;
             } else {
                 setHintText('-');
@@ -2925,7 +3097,7 @@ export default function Cube3x3x3(props) {
                         [1, 1.5, -1],
                     ])
             ) {
-                setHintText('SOLVED!');
+                props.language === 'english' ? setHintText('SOLVED!') : setHintText('ZLOŽENÉ!');
                 setProgress(23);
                 return;
             } else if (
@@ -2974,7 +3146,7 @@ export default function Cube3x3x3(props) {
                         [1, 1.5, 1],
                     ])
             ) {
-                setHintText("solve the cube (U')");
+                props.language === 'english' ? setHintText("solve the cube (U')") : setHintText("doskladaj kocku (U')");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[2]) ===
@@ -3022,7 +3194,7 @@ export default function Cube3x3x3(props) {
                         [-1, 1.5, 1],
                     ])
             ) {
-                setHintText('solve the cube (U2)');
+                props.language === 'english' ? setHintText('solve the cube (U2)') : setHintText('doskladaj kocku (U2)');
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[2]) ===
@@ -3070,7 +3242,7 @@ export default function Cube3x3x3(props) {
                         [-1, 1.5, -1],
                     ])
             ) {
-                setHintText('solve the cube (U)');
+                props.language === 'english' ? setHintText('solve the cube (U)') : setHintText('doskladaj kocku (U)');
                 return;
             } else if (
                 (JSON.stringify(edgePiecesPositions[2]) ===
@@ -3178,7 +3350,9 @@ export default function Cube3x3x3(props) {
                             [-1, 1.5, 1],
                         ]))
             ) {
-                setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)");
+                props.language === 'english'
+                    ? setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)")
+                    : setHintText("doskladaj kocku (R' D R U R' D' R U R' D R U2 R' D' R)");
                 return;
             } else if (
                 JSON.stringify(edgePiecesPositions[2]) ===
@@ -3226,7 +3400,9 @@ export default function Cube3x3x3(props) {
                         [1, 1.5, -1],
                     ])
             ) {
-                setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)");
+                props.language === 'english'
+                    ? setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)")
+                    : setHintText("doskladaj kocku (R' D R U R' D' R U R' D R U2 R' D' R)");
                 return;
             } else if (
                 JSON.stringify(cornerPiecesPositions[2][2]).includes(',1.5,') &&
@@ -3234,10 +3410,12 @@ export default function Cube3x3x3(props) {
                 JSON.stringify(cornerPiecesPositions[6][2]).includes(',1.5,') &&
                 JSON.stringify(cornerPiecesPositions[7][2]).includes(',1.5,')
             ) {
-                setHintText('solve the cube (U)');
+                props.language === 'english' ? setHintText('solve the cube (U)') : setHintText('doskladaj kocku (U)');
                 return;
             } else {
-                setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)");
+                props.language === 'english'
+                    ? setHintText("solve the cube (R' D R U R' D' R U R' D R U2 R' D' R)")
+                    : setHintText("doskladaj kocku (R' D R U R' D' R U R' D R U2 R' D' R)");
                 return;
             }
         }
@@ -3671,16 +3849,16 @@ export default function Cube3x3x3(props) {
                 {renderCornerPieces()}
             </Canvas>
             <button className='reset-btn' onClick={props.resetCube}>
-                Reset
+                {props.language === 'english' ? 'Reset' : 'Resetovať'}
             </button>
             <button className='shuffle-btn' onClick={shuffleCube}>
-                Shuffle
+                {props.language === 'english' ? 'Shuffle' : 'Zamiešať'}
             </button>
             <button className='settings-btn' onClick={props.showSettings}>
-                Settings
+                {props.language === 'english' ? 'Settings' : 'Nastavenia'}
             </button>
             <button className='toggle-hint-btn' onClick={() => setIsHintTextVisible(!isHintTextVisible)}>
-                {isHintTextVisible ? 'Hide Hint' : 'Show Hint'}
+                {props.language === 'english' ? (isHintTextVisible ? 'Hide Hint' : 'Show Hint') : isHintTextVisible ? 'Schovať nápovedu' : 'Zobraziť nápovedu'}
             </button>
             <div className='toolbar'>
                 {buttons.map(({ label, arg, color }) => (
